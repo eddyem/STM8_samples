@@ -1,0 +1,13 @@
+This is a simple example of INDEPENDENT management of 3 stepper motors.
+All motors have independent lines DIR and CLK and common line EN.
+Communication with MCU realized through simple USB<->TTL converter.
+Just connect lines Rx/Tx of converter to Tx/Rx of evaluation boart,
+connect together lines GND and +3.3V.
+Communication speed: 57600, proto: 8N1
+Comminication with MCU don't need special soft: you can even run screen session
+or some terminal client like _com_. Another wariant is a simple client - client-term.
+MCU itself can print to terminal a short help about its protocol, just sent letter 'h'
+to it.
+
+!!! ALL "steps" suppose to be single pulses, you should convert them into real !!!
+!!!         steps (dividing by microstepping) in your own soft                 !!!

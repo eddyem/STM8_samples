@@ -1,0 +1,26 @@
+This is a simple example of INDEPENDENT management of 3 stepper motors.
+
+You can connect up to 256 devices to common UART line
+To work with them use simple protocol: 
+	- each byte have 8 bits of data and nineth control bit
+	- inactive modules don't read bytes with nineth bit == 0,
+		only active module reads them
+	- all modules send data with nineth bit == 0
+	- to activate module simple send its number with nineth bit == 1
+	- you can change module number (value will be stored in flash memory) by command 'N'
+		and get its current number with command 'n'
+
+All motors have independent lines DIR and CLK and common line EN.
+Motor selection performed by setting to 1 corresponding EN pin.
+Communication with MCU realized through simple USB<->TTL converter.
+Just connect lines Rx/Tx of converter to Tx/Rx of evaluation boart,
+connect together lines GND and +3.3V.
+Communication speed: 57600, proto: 8N1
+Comminication with MCU don't need special soft: you can even run screen session
+or some terminal client like _com_. Another wariant is a simple client - client-term.
+MCU itself can print to terminal a short help about its protocol, just sent letter 'h'
+to it.
+
+You can connect up to 4 (5 for motor 0) end-point switches for each motor.
+There's an ability to move till certain EP switches value, also you can move
+motors infinitely (for now it realized only for all motors simultaneously).
