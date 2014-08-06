@@ -36,7 +36,7 @@ void configure_timers(){
 	//TIM1_CCMR1 = 0x70; // OC1M = 111b - PWM mode 2 ( 0 -> 1)
 	TIM1_CCER1 =  1; // Channel 1 is on. Active is high
 	//TIM1_CCER1 =  3; // Channel 1 is on. Active is low
-	// default period: near 32ms
+	// default period: near 33ms (30Hz)
 	TIM2_ARRH = 127; TIM2_ARRL = 0;
 	// interrupts: update for timer 2, none for timer 1
 	TIM1_IER = 0;

@@ -19,11 +19,11 @@
  * MA 02110-1301, USA.
  */
 
-#include "stm8l.h"
 #include "ports_definition.h"
 #include "interrupts.h"
 #include "main.h"
 #include "noicegen.h"
+#include "CD74HC154_LEDs.h"
 
 /*
  * 0 0000
@@ -45,9 +45,9 @@
  */
 
 unsigned long Global_time = 0L, boom_start = 0L; // global time in ms
-unsigned int boom_length = 100; // length of "boom" in ms
+U16 boom_length = 100; // length of "boom" in ms
 U16 paused_val = 500; // interval between LED flashing
-U8 snd_i = 0, bank_i = 0;  // number of sample in sound, number in sine vawe
+U8 bank_i = 0;  // number of sample in meander (even/odd)
 U8 sample_flag = 0;   // flag is set in interrupt -> next sample in sound
 
 #ifdef UART
@@ -116,28 +116,23 @@ void printUint(U8 *val, U8 len){
 	uart_write((char*)&decimal_buff[ch+1]);
 }
 
-U8 readInt(int *val){
+U8 readInt(U16 *val){
 	unsigned long T = Global_time;
 	unsigned long R = 0;
-	int readed;
-	U8 sign = 0, rb, ret = 0, bad = 0;
+	U16 readed;
+	U8 rb, ret = 0, bad = 0;
 	do{
 		if(!UART_read_byte(&rb)) continue;
-		if(rb == '-' && R == 0){ // negative number
-			sign = 1;
-			continue;
-		}
 		if(rb < '0' || rb > '9') break; // number ends with any non-digit symbol that will be omitted
 		ret = 1; // there's at least one digit
 		R = R * 10L + rb - '0';
-		if(R > 0x7fff){ // bad value
+		if(R > 0xffff){ // bad value
 			R = 0;
-			bad = 0;
+			bad = 1;
 		}
 	}while(Global_time - T < 10000); // wait no longer than 10s
 	if(bad || !ret) return 0;
-	readed = (int) R;
-	if(sign) readed *= -1;
+	readed = (U16) R;
 	*val = readed;
 	return 1;
 }
@@ -155,7 +150,7 @@ int main() {
 	unsigned long T = 0L;
 	unsigned int I;
 	U8 cur_vol;
-	int Ival;
+	U16 Ival;
 #ifdef UART
 	U8 rb;
 #endif
@@ -171,6 +166,8 @@ int main() {
 	TIM4_IER = TIM_IER_UIE;
 	// auto-reload + interrupt on overflow + enable
 	TIM4_CR1 = TIM_CR1_APRE | TIM_CR1_URS | TIM_CR1_CEN;
+	// EXTI: PC1 & PC2 == "boom"
+	EXTI_CR1 = 0x10; // PCIS = 01 - rising edge only
 #ifdef UART
 	// Configure pins
 	// PC2 - PP output (on-board LED)
@@ -181,6 +178,9 @@ int main() {
 	PORT(UART_PORT, ODR) &= ~UART_TX_PIN; // turn off N push-down
 	//PORT(UART_PORT, CR1) |= UART_TX_PIN;
 #endif
+	// LEDS on DRUM
+	PORT(LEDS_PORT, DDR) |= 0x1f;
+	PORT(LEDS_PORT, CR1) |= 0x1f;
 	PC_DDR |= GPIO_PIN1; // setup timer's output
 	PC_ODR &= ~GPIO_PIN1;
 #ifdef UART
@@ -231,6 +231,7 @@ int main() {
 						"P/p\tBoom\n"
 						"F\tSet frequency\n"
 						"L\tChange boom length (in ms)\n"
+						"l\tblink LEDs by mask"
 						);
 				break;
 				break;
@@ -246,7 +247,7 @@ int main() {
 				break;
 				case 'F':
 					if(readInt(&Ival) && Ival > 64){
-						change_period(((U16)Ival) >> 4); // F*4 for 16 array values
+						change_period(Ival >> 4); // F*4 for 16 array values
 					}else error_msg("bad period");
 				break;
 				case 'P':
@@ -257,6 +258,11 @@ int main() {
 					if(readInt(&Ival) && Ival < 1000 && Ival > 1){
 						boom_length = Ival;
 					}else error_msg("bad length");
+				break;
+				case 'l':
+					if(readInt(&Ival) && (Ival == (Ival & 0x3f))){
+						set_LEDs(Ival);
+					}else error_msg("bad bitmask");
 				break;
 			}
 		}

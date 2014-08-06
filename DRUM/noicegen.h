@@ -31,10 +31,10 @@
 void configure_timers();
 
 // change period (in us)
-#define change_period(F) do{TIM2_ARRH = F >> 8; TIM2_ARRL = F;}while(0)
+#define change_period(F) do{TIM2_ARRH = F >> 8; TIM2_ARRL = F & 0xff;}while(0)
 #define change_CCR(C)  do{TIM1_CCR1H = 0; TIM1_CCR1L = C;}while(0)
 // change CCR value. U = Vcc *
-#define play_snd()     do{boom_start = Global_time; snd_i = 0; bank_i = 0; \
+#define play_snd()     do{boom_start = Global_time; bank_i = 0; \
 							TIM1_CR1 = TIM_EN; TIM2_CR1 = TIM_EN;}while(0)
 #define stop_snd()     do{TIM1_CR1 |= TIM_CR1_OPM; TIM2_CR1 = 0;}while(0)
 

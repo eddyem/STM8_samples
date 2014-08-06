@@ -22,6 +22,7 @@
 #include "ports_definition.h"
 #include "main.h"
 #include "noicegen.h"
+#include "CD74HC154_LEDs.h"
 
 // Top Level Interrupt
 INTERRUPT_HANDLER(TLI_IRQHandler, 0){}
@@ -43,8 +44,14 @@ INTERRUPT_HANDLER(EXTI_PORTB_IRQHandler, 4){
 }
 
 // External Interrupt PORTC
-INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 5){
-
+INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 5){// PC1 & PC2 - boom
+	U8 P = 0;
+	if(PC_IDR & GPIO_PIN1){ // first touch sensor, 100Hz
+		change_period(10000); P = 1;
+	}else if(PC_IDR & GPIO_PIN2){ // second touch sensor, 40Hz
+		change_period(25000); P = 1;
+	}
+	if(P) play_snd();
 }
 
 // External Interrupt PORTD
@@ -54,7 +61,6 @@ INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6){
 
 // External Interrupt PORTE
 INTERRUPT_HANDLER(EXTI_PORTE_IRQHandler, 7){
-
 }
 
 #ifdef STM8S903
@@ -173,6 +179,7 @@ INTERRUPT_HANDLER(TIM6_UPD_OVF_TRG_IRQHandler, 23){}
 INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23){
 	if(TIM4_SR & TIM_SR1_UIF){ // update interrupt
 		Global_time++; // increase timer
+		blink_next_LED(); // and switch to next LED
 	}
 	TIM4_SR = 0; // clear all interrupt flags
 }

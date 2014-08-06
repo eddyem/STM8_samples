@@ -39,7 +39,7 @@ $Descr A3 16535 11693
 encoding utf-8
 Sheet 1 3
 Title ""
-Date "28 jul 2014"
+Date "30 jul 2014"
 Rev ""
 Comp ""
 Comment1 ""
@@ -1004,8 +1004,6 @@ NoConn ~ 12800 3600
 NoConn ~ 12800 3500
 NoConn ~ 12800 3400
 NoConn ~ 12800 3300
-Wire Wire Line
-	12800 3100 12800 3200
 $Comp
 L GND #PWR?
 U 1 1 53D78C57
@@ -1021,10 +1019,9 @@ Wire Wire Line
 	13000 3250 13000 3200
 Wire Wire Line
 	13000 3200 12800 3200
-Connection ~ 12800 3200
 Text Notes 2050 3450 0    60   ~ 0
 LEDs address 3\n2\n1\n0
-Text Notes 2150 3250 0    60   ~ 0
+Text Notes 2650 3050 0    60   ~ 0
 DRUM0\nDRUM1
 Text Label 12800 3000 0    60   ~ 0
 PB3
@@ -1034,7 +1031,7 @@ Text Label 12800 2800 0    60   ~ 0
 PB1
 Text Label 12800 2700 0    60   ~ 0
 PB0
-Text Label 10900 4100 0    60   ~ 0
+Text Label 12800 3100 0    60   ~ 0
 PB4
 Text Label 10900 4250 0    60   ~ 0
 PB5
@@ -1052,4 +1049,8 @@ Wire Wire Line
 	10900 4250 10800 4250
 Wire Wire Line
 	10800 4100 10900 4100
+Text Label 10900 4100 0    60   ~ 0
+PF4
+Text Notes 2400 3350 0    60   ~ 0
+LEDs off
 $EndSCHEMATC

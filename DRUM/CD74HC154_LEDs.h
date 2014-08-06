@@ -1,7 +1,7 @@
 /*
- * ports_definition.h - definition of ports pins & so on
+ * CD74HC154_LEDs.h
  *
- * Copyright 2014 Edward V. Emelianov <eddy@sao.ru, edward.emelianoff@gmail.com>
+ * Copyright 2014 Edward V. Emelianoff <eddy@sao.ru>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,26 +20,16 @@
  */
 
 #pragma once
-#ifndef __PORTS_DEFINITION_H__
-#define __PORTS_DEFINITION_H__
+#ifndef __CD74HC154_LEDS_H__
+#define __CD74HC154_LEDS_H__
 
-#include "stm8l.h"
+#include "ports_definition.h"
 
-// macro for using in port constructions like PORT(LED_PORT, ODR) = xx
-#define CONCAT(a,b)		a##_##b
-#define PORT(a,b)		CONCAT(a,b)
+#define LEDS_AMOUNT 6    // we have only 6 LEDs on drum
 
-// on-board LED
-#define LED_PORT		PC
-#define LED_PIN			GPIO_PIN2
+void set_LEDs(U16 mask);
+void blink_next_LED();
+void reset_LEDs();
 
-// UART2_TX
-#define UART_PORT		PD
-#define UART_TX_PIN		GPIO_PIN5
+#endif // __CD74HC154_LEDS_H__
 
-// LEDs on drum: PB0..3 - LED number, PB4 - on(0)/off(1)
-#define LEDS_PORT		PB
-
-
-
-#endif // __PORTS_DEFINITION_H__

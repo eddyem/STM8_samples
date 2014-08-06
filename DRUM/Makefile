@@ -9,7 +9,7 @@ SRC=$(wildcard *.c)
 # ATTENTION: FIRST in list should be file with main()
 OBJ=$(SRC:%.c=%.rel)
 TRASH=$(OBJ) $(SRC:%.c=%.rst) $(SRC:%.c=%.asm) $(SRC:%.c=%.lst)
-TRASH+=$(SRC:%.c=%.sym) $(NAME).ihx $(NAME).lk $(NAME).map
+TRASH+=$(SRC:%.c=%.sym)  $(NAME).lk $(NAME).map
 INDEPENDENT_HEADERS=../stm8l.h ports_definition.h Makefile
 
 all: $(NAME).ihx
