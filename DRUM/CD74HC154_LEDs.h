@@ -25,11 +25,13 @@
 
 #include "ports_definition.h"
 
-#define LEDS_AMOUNT 6    // we have only 6 LEDs on drum
+extern U8 LED_effect;
 
 void set_LEDs(U16 mask);
 void blink_next_LED();
 void reset_LEDs();
+void next_LED_in_effects();
+void set_effect(U8 n);
 
 #endif // __CD74HC154_LEDS_H__
 

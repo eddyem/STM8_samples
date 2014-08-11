@@ -32,6 +32,33 @@ U8 UART_rx[UART_BUF_LEN]; // cycle buffer for received data
 U8 UART_rx_start_i = 0;   // started index of received data (from which reading starts)
 U8 UART_rx_cur_i = 0;     // index of current first byte in rx array (to which data will be written)
 
+/*
+ * 0 0000
+ * 1 0001
+ * 2 0010
+ * 3 0011
+ * 4 0100
+ * 5 0101
+ * 6 0110
+ * 7 0111
+ * 8 1000
+ * 9 1001
+ *10 1010
+ *11 1011
+ *12 1100
+ *13 1101
+ *14 1110
+ *15 1111
+ */
+// microsteps: DCBA = 1000, 1100, 0100, 0110, 0010, 0011, 0001, 1001 -- for ULN
+// what a shit is this > DCBA = 0001, 0010, 0110, 1010, 1001, 1000, 0100, 0000  - bipolar
+// 1000, 1010, 0010, 0110, 0100, 0101, 0001, 1001 - half-step
+// 1010, 0110, 0101, 1001 - full step
+char ustepsUNI[8] = {8, 12, 4, 6, 2, 3, 1, 9}; // ULN - unipolar
+char ustepsBIP[8] = {8, 10, 2, 6, 4, 5, 1, 9}; // bipolar
+// current usteps
+char *usteps = ustepsUNI;
+
 /**
  * Send one byte through UART
  * @param byte - data to send
@@ -174,7 +201,9 @@ int main() {
 			switch(rb){
 				case 'h': // help
 				case 'H':
-					uart_write("\nPROTO:\n+/-\tLED period\nS/s\tset/get Mspeed\nm\tget steps\nx\tstop\np\tpause/resume\nM\tmove motor\na\tadd Nstps\n");
+					uart_write("\nPROTO:\n+/-\tLED period\nS/s\tset/get Mspeed\n"
+					"m\tget steps\nx\tstop\np\tpause/resume\nM\tmove motor\na\tadd Nstps\n"
+					"u\tunipolar motor\nb\tbipolar motor\n");
 				break;
 				case '+':
 					paused_val += 100;
@@ -221,6 +250,12 @@ int main() {
 					}else{
 						error_msg("bad value");
 					}
+				break;
+				case 'u': // unipolar
+					usteps = ustepsUNI;
+				break;
+				case 'b': // bipolar
+					usteps = ustepsBIP;
 				break;
 			}
 		}

@@ -84,26 +84,7 @@ INTERRUPT_HANDLER(TIM5_CAP_COM_IRQHandler, 14){}
 
 #else // STM8S208, STM8S207, STM8S105 or STM8S103 or STM8AF62Ax or STM8AF52Ax or STM8AF626x
 volatile char Nustep = 0;  // microstep number
-/*
- * 0 0000
- * 1 0001
- * 2 0010
- * 3 0011
- * 4 0100
- * 5 0101
- * 6 0110
- * 7 0111
- * 8 1000
- * 9 1001
- *10 1010
- *11 1011
- *12 1100
- *13 1101
- *14 1110
- *15 1111
- */
-// microsteps: DCBA = 1000, 1100, 0100, 0110, 0010, 0011, 0001, 1001
-char usteps[8] = {8, 12, 4, 6, 2, 3, 1, 9};
+
 volatile char Ustep = 0;
 // Timer2 Update/Overflow/Break Interrupt
 INTERRUPT_HANDLER(TIM2_UPD_OVF_BRK_IRQHandler, 13){ // generate pulses for stepper CLK
@@ -115,12 +96,12 @@ INTERRUPT_HANDLER(TIM2_UPD_OVF_BRK_IRQHandler, 13){ // generate pulses for stepp
 		if(Dir){
 			if(++Ustep > 7){
 				Ustep = 0;
-				Nsteps++;
+				--Nsteps;
 			}
 		}else{
 			if(--Ustep < 0){
 				Ustep = 7;
-				Nsteps++;
+				--Nsteps;
 			}
 		}
 		if(Nsteps == 0){

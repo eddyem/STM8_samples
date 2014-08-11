@@ -39,7 +39,7 @@
 
 // LEDs on drum: PB0..3 - LED number, PB4 - on(0)/off(1)
 #define LEDS_PORT		PB
-
+#define LEDS_AMOUNT 6    // we have only 6 LEDs on drum
 
 
 #endif // __PORTS_DEFINITION_H__

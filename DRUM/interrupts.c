@@ -96,7 +96,8 @@ INTERRUPT_HANDLER(TIM5_CAP_COM_IRQHandler, 14){}
 #else // STM8S208, STM8S207, STM8S105 or STM8S103 or STM8AF62Ax or STM8AF52Ax or STM8AF626x
 
 // Timer2 Update/Overflow/Break Interrupt
-INTERRUPT_HANDLER(TIM2_UPD_OVF_BRK_IRQHandler, 13){ // generate pulses for stepper CLK
+// Timer2 runs with F*16 to change voltage level (F - frequency of sound)
+INTERRUPT_HANDLER(TIM2_UPD_OVF_BRK_IRQHandler, 13){
 	if(TIM2_SR1 & TIM_SR1_UIF){
 		sample_flag = 1;
 		TIM2_SR1 &= ~TIM_SR1_UIF;

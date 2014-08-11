@@ -215,11 +215,15 @@ int main() {
 				}
 			}
 		}
+		// paused_val is period of LEDs effects -> move to next number if EFFECT != 0
 		if((Global_time - T > paused_val) || (T > Global_time)){
 			T = Global_time;
 			#ifdef UART
 			PORT(LED_PORT, ODR) ^= LED_PIN; // blink on-board LED
 			#endif
+			if(LED_effect){
+				next_LED_in_effects();
+			}
 		}
 		#ifdef UART
 		if(UART_read_byte(&rb)){ // buffer isn't empty
@@ -231,7 +235,9 @@ int main() {
 						"P/p\tBoom\n"
 						"F\tSet frequency\n"
 						"L\tChange boom length (in ms)\n"
-						"l\tblink LEDs by mask"
+						"l\tblink LEDs by mask\n"
+						"r\treset LEDs\n"
+						"E\tset effect\n"
 						);
 				break;
 				break;
@@ -263,6 +269,12 @@ int main() {
 					if(readInt(&Ival) && (Ival == (Ival & 0x3f))){
 						set_LEDs(Ival);
 					}else error_msg("bad bitmask");
+				break;
+				case 'r':
+					reset_LEDs();
+				break;
+				case 'E':
+					if(readInt(&Ival)) set_effect(Ival);
 				break;
 			}
 		}
