@@ -118,7 +118,7 @@ int read_console(){
  * wait until at least one character pressed
  * @return character readed
  */
-int mygetchar(){ // п╟п╫п╟п╩п╬пЁ getchar() п╠п╣п╥ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬я│я┌п╦ п╤п╟я┌я▄ Enter
+int mygetchar(){ // аналог getchar() без необходимости жать Enter
 	int ret;
 	do ret = read_console();
 	while(ret == 0);
