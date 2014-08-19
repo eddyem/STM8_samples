@@ -39,7 +39,20 @@ INTERRUPT_HANDLER(EXTI_PORTA_IRQHandler, 3){}
 INTERRUPT_HANDLER(EXTI_PORTB_IRQHandler, 4){}
 
 // External Interrupt PORTC
-INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 5){}
+INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 5){
+	if(!(PC_IDR & GPIO_PIN4)){ // PC4 - pedal switch - connect to ground!
+		if(!drill_works)
+			DRILL_ON(); // in future it should be more complex: move motor down etc
+	}else{
+		// it would be better to set flags as drill motor would have to move up first
+		if(drill_works)
+			DRILL_OFF();
+	}
+	// PC2 - down; PC3 - up
+	if((PC_IDR & (GPIO_PIN2 | GPIO_PIN3)) != (GPIO_PIN2 | GPIO_PIN3)){
+		TRAY_STOP(); // stop tray motor
+	}
+}
 
 // External Interrupt PORTD
 INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6){
@@ -66,10 +79,11 @@ INTERRUPT_HANDLER(SPI_IRQHandler, 10){}
 
 // Timer1 Update/Overflow/Trigger/Break Interrupt
 INTERRUPT_HANDLER(TIM1_UPD_OVF_TRG_BRK_IRQHandler, 11){
+	/*
 	if(TIM1_SR1 & TIM_SR1_UIF){ // update interrupt
-		Global_time++; // increase timer
 	}
 	TIM1_SR1 = 0; // clear all interrupt flags
+	*/
 }
 
 // Timer1 Capture/Compare Interrupt routine.
@@ -170,7 +184,19 @@ INTERRUPT_HANDLER(UART3_RX_IRQHandler, 21){}
 INTERRUPT_HANDLER(ADC2_IRQHandler, 22){}
 #else
 // ADC1 interrupt
+//U8 val_ctr = 0;
+//U16 ADC_values[10];
 INTERRUPT_HANDLER(ADC1_IRQHandler, 22){
+	U16 v = ADC_DRL; // in right-alignment mode we should first read LSB
+	v |= ADC_DRH << 8;
+	//ADC_values[val_ctr++] = v;
+	ADC_value = v;
+	//if(val_ctr == 10) val_ctr = 0;
+	if(drill_works && auto_speed){
+		if(v > 50) DRILL_SLOWER();      // current = 0.48A
+		else if(v < 30) DRILL_FASTER(); // current = 0.29A
+	}
+	ADC_CSR &= 0x3f; // clear EOC & AWD flags
 }
 #endif // STM8S208 or STM8S207 or STM8AF52Ax or STM8AF62Ax
 
@@ -179,7 +205,12 @@ INTERRUPT_HANDLER(ADC1_IRQHandler, 22){
 INTERRUPT_HANDLER(TIM6_UPD_OVF_TRG_IRQHandler, 23){}
 #else // STM8S208, STM8S207, STM8S105 or STM8S103 or STM8AF52Ax or STM8AF62Ax or STM8AF626x
 // Timer4 Update/Overflow Interrupt
-INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23){}
+INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23){
+	if(TIM4_SR & TIM_SR1_UIF){ // update interrupt
+		Global_time++; // increase timer
+	}
+	TIM4_SR = 0; // clear all interrupt flags
+}
 #endif // STM8S903
 
 // Eeprom EEC Interrupt

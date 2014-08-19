@@ -28,6 +28,9 @@
 unsigned long Global_time = 0L; // global time in ms
 U16 paused_val = 500; // interval between LED flashing
 
+U8 drill_works = 0; // flag of working motor
+U8 auto_speed = 0;
+
 U8 UART_rx[UART_BUF_LEN]; // cycle buffer for received data
 U8 UART_rx_start_i = 0;   // started index of received data (from which reading starts)
 U8 UART_rx_cur_i = 0;     // index of current first byte in rx array (to which data will be written)
@@ -62,6 +65,8 @@ char usteps[8] =
 #else
 	#error Define MOTOR_TYPE_UNIPOLAR or MOTOR_TYPE_BIPOLAR
 #endif
+
+U16 ADC_value = 0; // value of last ADC measurement
 
 /**
  * Send one byte through UART
@@ -157,33 +162,65 @@ void error_msg(char *msg){
 int main() {
 	unsigned long T = 0L;
 	int Ival;
-	U8 rb;
+	U8 rb, v;
 	CFG_GCR |= 1; // disable SWIM
 	// Configure clocking
 	CLK_CKDIVR = 0; // F_HSI = 16MHz, f_CPU = 16MHz
 
-	// Configure timer 1 - systick
-	// prescaler = f_{in}/f_{tim1} - 1
-	// set Timer1 to 1MHz: 1/1 - 1 = 15
-	TIM1_PSCRH = 0;
-	TIM1_PSCRL = 15; // LSB should be written last as it updates prescaler
-	// auto-reload each 1ms: TIM_ARR = 1000 = 0x03E8
-	TIM1_ARRH = 0x03;
-	TIM1_ARRL = 0xE8;
+// Timer 4 (8 bit) used as system tick timer
+	// prescaler == 128 (2^7), Tfreq = 125kHz
+	// period = 1ms, so ARR = 125
+	TIM4_PSCR = 7;
+	TIM4_ARR = 125;
 	// interrupts: update
-	TIM1_IER = TIM_IER_UIE;
+	TIM4_IER = TIM_IER_UIE;
+	// auto-reload + interrupt on overflow + enable
+	TIM4_CR1 = TIM_CR1_APRE | TIM_CR1_URS | TIM_CR1_CEN;
+
+// Timer1 is PWM generator for drill motor: 1MHz -> 10kHz PWM from 0 to 100
+	TIM1_PSCRH = 0; // this timer have 16 bit prescaler
+	TIM1_PSCRL = 3; // LSB should be written last as it updates prescaler
+	// PWM frequency is 10kHz: 1000/10 = 100
+	TIM1_ARRH = 0;
+	TIM1_ARRL = 100;
+	TIM1_CCR1H = 0; TIM1_CCR1L = 10; // default: 10%
+	// channel 1 generates PWM pulses
+	TIM1_CCMR1 = 0x60; // OC1M = 110b - PWM mode 1 ( 1 -> 0)
+	//TIM1_CCMR1 = 0x70; // OC1M = 111b - PWM mode 2 ( 0 -> 1)
+	TIM1_CCER1 =  1; // Channel 1 is on. Active is high
+	//TIM1_CCER1 =  3; // Channel 1 is on. Active is low
+	// interrupts: none for timer 1
+	TIM1_IER = 0;
 	// auto-reload + interrupt on overflow + enable
 	TIM1_CR1 = TIM_CR1_APRE | TIM_CR1_URS | TIM_CR1_CEN;
 
-	// Configure pins
+// configure ADC
+	// select PF4 - Sence (AIN12) & enable interrupt for EOC
+	ADC_CSR = 0x2c; // EOCIE = 1; CH[3:0] = 0x0c (12)
+	ADC_TDRH = 0x10;// disable Schmitt triger for AIN12
+	// right alignment
+	ADC_CR2 = 0x08; // don't forget: first read ADC_DRL!
+	// f_{ADC} = f/18 & continuous non-buffered conversion & wake it up
+	ADC_CR1 = 0x73;
+	ADC_CR1 = 0x73; // turn on ADC (this needs second write operation)
+
+// Configure pins
+	// EXTI
+	EXTI_CR1 = 0x30; // PCIS[1:0] = 11b -> rising/falling
+	PC_CR1 = 0x1c;   // PC2, PC3 and PC4 are switches with pull-up
+	PC_CR2 = 0x1c;   // enable interrupts
+	// other
+	PC_DDR |= GPIO_PIN1;  // setup timer's output
+	DRILL_OFF();          // set PC1 to zero - power off motor
+
 	// PC2 - PP output (on-board LED)
-	PORT(LED_PORT, DDR) |= LED_PIN;
-	PORT(LED_PORT, CR1) |= LED_PIN;
+	PORT(LED_PORT, DDR)  |= LED_PIN;
+	PORT(LED_PORT, CR1)  |= LED_PIN;
 	// PD5 - UART2_TX
 	PORT(UART_PORT, DDR) |= UART_TX_PIN;
 	PORT(UART_PORT, CR1) |= UART_TX_PIN;
 
-	// Configure UART
+// Configure UART
 	// 8 bit, no parity, 1 stop (UART_CR1/3 = 0 - reset value)
 	// 57600 on 16MHz: BRR1=0x11, BRR2=0x06
 	UART2_BRR1 = 0x11; UART2_BRR2 = 0x06;
@@ -198,8 +235,13 @@ int main() {
 	// Loop
 	do{
 		if((Global_time - T > paused_val) || (T > Global_time)){
+			U8 i;
 			T = Global_time;
 			PORT(LED_PORT, ODR) ^= LED_PIN; // blink on-board LED
+			//ADC_value = 0;
+			//for(i = 0; i < 10; i++) ADC_value += ADC_values[i];
+			//ADC_value /= 10;
+			printUint((U8*)&ADC_value, 2); // & print out ADC value
 		}
 		if(UART_read_byte(&rb)){ // buffer isn't empty
 			switch(rb){
@@ -207,7 +249,11 @@ int main() {
 				case 'H':
 					uart_write("\nPROTO:\n+/-\tLED period\nS/s\tset/get Mspeed\n"
 					"m\tget steps\nx\tstop\np\tpause/resume\nM\tmove motor\na\tadd Nstps\n"
-					"u\tunipolar motor\nb\tbipolar motor\n");
+					"0\tturn drill OFF\n1\tturn drill ON\n"
+					">\trotate faster\n<\trotate slower\n"
+					"u\ttray up\nd\ttray down\n"
+					"c\tauto speed off\nz\tauto speed on\n"
+					"g\tget speed\n");
 				break;
 				case '+':
 					paused_val += 100;
@@ -217,7 +263,7 @@ int main() {
 				case '-':
 					paused_val -= 100;
 					if(paused_val < 100)  // but not less than 0.1s
-						paused_val = 500;
+						paused_val = 100;
 				break;
 				case 'S': // set stepper speed
 					if(readInt(&Ival) && Ival > MIN_STEP_LENGTH)
@@ -254,6 +300,34 @@ int main() {
 					}else{
 						error_msg("bad value");
 					}
+				break;
+				case '0': // turn off drill
+					DRILL_OFF();
+				break;
+				case '1': // turn on drill
+					DRILL_ON();
+				break;
+				case '>': // faster
+					DRILL_FASTER();
+				break;
+				case '<': // slower
+					DRILL_SLOWER();
+				break;
+				case 'u':
+					TRAY_UP();
+				break;
+				case 'd':
+					TRAY_DOWN();
+				break;
+				case 'c':
+					auto_speed = 0;
+				break;
+				case 'z':
+					auto_speed = 1;
+				break;
+				case 'g':
+					v = TIM1_CCR1L;
+					printUint(&v, 1);
 				break;
 			}
 		}

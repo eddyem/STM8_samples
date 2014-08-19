@@ -1,10 +1,5 @@
-update=Вс 17 авг 2014 23:25:44
-last_client=eeschema
-[cvpcb]
-version=1
-NetIExt=net
-[cvpcb/libraries]
-EquName1=devcms
+update=Вт 19 авг 2014 18:02:55
+last_client=cvpcb
 [pcbnew]
 version=1
 LastNetListRead=
@@ -25,7 +20,6 @@ DrawSegmentWidth="    0.200000"
 BoardOutlineThickness="    0.100000"
 ModuleOutlineThickness="    0.150000"
 [pcbnew/libraries]
-LibDir=
 LibName1=sockets
 LibName2=connect
 LibName3=discret
@@ -33,16 +27,16 @@ LibName4=pin_array
 LibName5=divers
 LibName6=smd_capacitors
 LibName7=smd_resistors
-LibName8=smd_crystal&oscillator
-LibName9=smd_dil
-LibName10=smd_transistors
-LibName11=libcms
-LibName12=display
-LibName13=led
-LibName14=dip_sockets
-LibName15=pga_sockets
-LibName16=valves
-LibName17=SOP8
+LibName8=smd_dil
+LibName9=smd_transistors
+LibName10=libcms
+LibName11=display
+LibName12=led
+LibName13=dip_sockets
+LibName14=pga_sockets
+LibName15=valves
+LibName16=SOP8
+LibDir=
 [eeschema]
 version=1
 LibDir=
@@ -86,3 +80,8 @@ LibName31=stm8s105k4t6c
 LibName32=L9110
 LibName33=LM1117
 LibName34=s8205a
+[cvpcb]
+version=1
+NetIExt=net
+[cvpcb/libraries]
+EquName1=devcms

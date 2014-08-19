@@ -47,6 +47,18 @@
 /***** Stepper motor *****/
 // Clocking
 #define STP_PORT		PB // PB0..3 -- pins A..D of stepper
+
+/* drill motor PC1 - timer 1 PWM output 1 */
+#define DRILL_ON()      do{TIM1_BKR |= 0x80; drill_works = 1;}while(0) // turn on drill motor
+#define DRILL_OFF()     do{TIM1_BKR &= ~0x80; PC_ODR &= ~GPIO_PIN1; drill_works = 0;}while(0) // turn it off
+#define DRILL_FASTER()  do{U8 r = TIM1_CCR1L; if(r < 100) TIM1_CCR1L = r+1;}while(0)// increase current
+#define DRILL_SLOWER()  do{U8 r = TIM1_CCR1L; if(r > 0)   TIM1_CCR1L = r-1;}while(0)  // decrease it
+
+/* tray motor: PB4, PB5 - rotation direction; PC2, PC3 - end-switches (bottom/top) */
+#define TRAY_UP()     do{if(!(PC_IDR & GPIO_PIN3)){PB_ODR &= ~0x30; PB_ODR |= 0x10;}}while(0)
+#define TRAY_DOWN()   do{if(!(PC_IDR & GPIO_PIN2)){PB_ODR &= ~0x30; PB_ODR |= 0x20;}}while(0)
+#define TRAY_STOP()   do{PB_ODR &= ~0x30;}while(0)
+
 #endif // __PORTS_DEFINITION_H__
 
 

@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-may-18)-stable date = Вс 17 авг 2014 22:58:37
+Cmp-Mod V01 Created by CvPcb (2013-may-18)-stable date = Вт 19 авг 2014 18:05:15
 
 BeginCmp
 TimeStamp = /52FB0413;
@@ -32,7 +32,14 @@ BeginCmp
 TimeStamp = /53F0F88C;
 Reference = C5;
 ValeurCmp = 47u;
-IdModule  = SM1206;
+IdModule  = SM1206POL;
+EndCmp
+
+BeginCmp
+TimeStamp = /53EF036E/53F36070;
+Reference = C6;
+ValeurCmp = 47u;
+IdModule  = SM1206POL;
 EndCmp
 
 BeginCmp
@@ -134,13 +141,6 @@ IdModule  = SIL-2;
 EndCmp
 
 BeginCmp
-TimeStamp = /53EF036E/53E67E1E;
-Reference = Q1;
-ValeurCmp = MOS_N;
-IdModule  = ;
-EndCmp
-
-BeginCmp
 TimeStamp = /52FB0DE2;
 Reference = R1;
 ValeurCmp = 1k;
@@ -164,7 +164,7 @@ EndCmp
 BeginCmp
 TimeStamp = /53EF036E/53E680EF;
 Reference = R4;
-ValeurCmp = 1k;
+ValeurCmp = 47k;
 IdModule  = SM0603;
 EndCmp
 
@@ -183,8 +183,36 @@ IdModule  = R4;
 EndCmp
 
 BeginCmp
-TimeStamp = /52FB0F3B;
+TimeStamp = /53EF036E/53F123DF;
+Reference = R7;
+ValeurCmp = 1R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /53F13089;
 Reference = SW1;
+ValeurCmp = DRILL;
+IdModule  = 2PIN_6mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /53F12B09;
+Reference = SW2;
+ValeurCmp = UP;
+IdModule  = 2PIN_6mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /53F12B1C;
+Reference = SW3;
+ValeurCmp = DOWN;
+IdModule  = 2PIN_6mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /52FB0F3B;
+Reference = SW4;
 ValeurCmp = SW_PUSH;
 IdModule  = 2PIN_6mm;
 EndCmp
@@ -201,6 +229,13 @@ TimeStamp = /53F0F811;
 Reference = U2;
 ValeurCmp = LM1117MPX-3.3;
 IdModule  = SOT223;
+EndCmp
+
+BeginCmp
+TimeStamp = /53EF036E/53F123C0;
+Reference = VT1;
+ValeurCmp = S8205A;
+IdModule  = TSSOP-8;
 EndCmp
 
 EndListe

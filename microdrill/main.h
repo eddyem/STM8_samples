@@ -33,6 +33,11 @@ extern U8 UART_rx[];
 extern U8 UART_rx_start_i;
 extern U8 UART_rx_cur_i;
 
+//extern U16 ADC_values[];
+extern U16 ADC_value; // value of last ADC measurement
+extern U8 drill_works;
+extern U8 auto_speed; // == 1 to automatic speed regulation
+
 void UART_send_byte(U8 byte);
 void uart_write(char *str);
 void printUint(U8 *val, U8 len);

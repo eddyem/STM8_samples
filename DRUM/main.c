@@ -168,6 +168,8 @@ int main() {
 	TIM4_CR1 = TIM_CR1_APRE | TIM_CR1_URS | TIM_CR1_CEN;
 	// EXTI: PC1 & PC2 == "boom"
 	EXTI_CR1 = 0x10; // PCIS = 01 - rising edge only
+	// PC_CR1 = 0x06;   // PC1 & PC2  pullup
+	// PC_CR1 = 0x06; // enable EXTI
 #ifdef UART
 	// Configure pins
 	// PC2 - PP output (on-board LED)
