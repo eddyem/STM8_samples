@@ -1,5 +1,5 @@
-update=Пн 28 июл 2014 17:50:54
-last_client=eeschema
+update=Сб 20 сен 2014 10:42:55
+last_client=pcbnew
 [general]
 version=1
 [eeschema]
@@ -44,3 +44,42 @@ LibName30=valves
 LibName31=stm8s105k4t6c
 LibName32=tda2822
 LibName33=CD74HC154
+LibName34=transistors_gaui
+[pcbnew]
+version=1
+LastNetListRead=
+UseCmpFile=1
+PadDrill="    0.600000"
+PadDrillOvalY="    0.600000"
+PadSizeH="    1.500000"
+PadSizeV="    1.500000"
+PcbTextSizeV="    1.500000"
+PcbTextSizeH="    1.500000"
+PcbTextThickness="    0.300000"
+ModuleTextSizeV="    1.000000"
+ModuleTextSizeH="    1.000000"
+ModuleTextSizeThickness="    0.150000"
+SolderMaskClearance="    0.000000"
+SolderMaskMinWidth="    0.000000"
+DrawSegmentWidth="    0.200000"
+BoardOutlineThickness="    0.100000"
+ModuleOutlineThickness="    0.150000"
+[pcbnew/libraries]
+LibDir=
+LibName1=sockets
+LibName2=connect
+LibName3=discret
+LibName4=pin_array
+LibName5=divers
+LibName6=smd_capacitors
+LibName7=smd_resistors
+LibName8=smd_crystal&oscillator
+LibName9=smd_dil
+LibName10=smd_transistors
+LibName11=libcms
+LibName12=display
+LibName13=led
+LibName14=dip_sockets
+LibName15=pga_sockets
+LibName16=valves
+LibName17=transistors_gaui
