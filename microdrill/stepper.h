@@ -26,7 +26,7 @@
 #include "ports_definition.h"
 #include "main.h"
 
-extern volatile  long Nsteps;
+extern volatile long Nsteps;
 extern U16 Stepper_speed;
 extern volatile char Dir;
 

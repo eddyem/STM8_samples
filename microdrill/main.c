@@ -26,6 +26,7 @@
 #include "stepper.h"
 
 unsigned long Global_time = 0L; // global time in ms
+volatile char exti_event = -1; // flag & counter of EXTI interrupt
 U16 paused_val = 500; // interval between LED flashing
 
 U8 drill_works = 0; // flag of working motor
@@ -46,12 +47,12 @@ U8 UART_rx_cur_i = 0;     // index of current first byte in rx array (to which d
  * 7 0111
  * 8 1000
  * 9 1001
- *10 1010
- *11 1011
- *12 1100
- *13 1101
- *14 1110
- *15 1111
+ *10 1010 a
+ *11 1011 b
+ *12 1100 c
+ *13 1101 d
+ *14 1110 e
+ *15 1111 f
  */
 // microsteps: DCBA = 1000, 1100, 0100, 0110, 0010, 0011, 0001, 1001 -- for ULN
 // what a shit is this > DCBA = 0001, 0010, 0110, 1010, 1001, 1000, 0100, 0000  - bipolar
@@ -66,7 +67,7 @@ char usteps[8] =
 	#error Define MOTOR_TYPE_UNIPOLAR or MOTOR_TYPE_BIPOLAR
 #endif
 
-U16 ADC_value = 0; // value of last ADC measurement
+volatile U16 ADC_value = 0; // value of last ADC measurement
 
 /**
  * Send one byte through UART
@@ -159,8 +160,44 @@ void error_msg(char *msg){
 	UART_send_byte('\n');
 }
 
+U8 old_buttons_state = BTNS_EXTI_MASK; // default buttons state - none pressed
+void check_buttons(){
+	U8 btn_state = BTNS_IDR & BTNS_EXTI_MASK, btns_changed;
+	if(btn_state == old_buttons_state) goto rtn; // none changed
+	btns_changed = btn_state ^ old_buttons_state; // XOR -> 1 on changed states
+	// check for footswitch
+	if(FOOTSW_TEST(btns_changed)){
+		if(!FOOTSW_TEST(btn_state)){ // pedal switch pressed - connect to ground!
+			if(!drill_works){
+				DRILL_ON();
+			}
+			add_steps(-5000); // this is a trick to move more than stage allows
+			uart_write("move down\n");
+		}else{
+			add_steps(-5000); // return to previous state (this function moves RELATIVELY)
+			uart_write("move up\n");
+		}
+	}
+	// check for tray endswitches. We don't care for their off state, so only check ON
+	if(TRAYSW_TEST(btns_changed) && TRAYSW_PRSD(btn_state)){
+		uart_write("tray stop\n");
+		TRAY_STOP(); // stop tray motor in any moving direction
+	}
+	// check for user buttons pressed (the same - only pressed)
+	if(BTN12_TEST(btns_changed) && !BTN12_TEST(btn_state)){ // pressed both buttons
+		uart_write("both buttons\n");
+	}else if(BTN1_TEST(btns_changed) && !BTN1_TEST(btn_state)){ // btn1
+		uart_write("button 1\n");
+	}else if(BTN2_TEST(btns_changed) && !BTN2_TEST(btn_state)){ // btn2
+		uart_write("button 2\n");
+	}
+	old_buttons_state = btn_state;
+rtn:
+	BTNS_EXTI_ENABLE();
+}
+
 int main() {
-	unsigned long T = 0L;
+	unsigned long T = 0L, TT = 0L;
 	int Ival;
 	U8 rb, v;
 	CFG_GCR |= 1; // disable SWIM
@@ -206,9 +243,8 @@ int main() {
 
 // Configure pins
 	// EXTI
-	EXTI_CR1 = 0x30; // PCIS[1:0] = 11b -> rising/falling
-	PC_CR1 = 0x1c;   // PC2, PC3 and PC4 are switches with pull-up
-	PC_CR2 = 0x1c;   // enable interrupts
+	BTNS_SETUP();
+	BTNS_EXTI_ENABLE();  // enable interrupts
 	// other
 	PC_DDR |= GPIO_PIN1;  // setup timer's output
 	DRILL_OFF();          // set PC1 to zero - power off motor
@@ -234,14 +270,24 @@ int main() {
 
 	// Loop
 	do{
+		if(Global_time != TT){ // once per 1ms
+			TT = Global_time;
+			// check EXTI counter
+			if(exti_event > 0){ // delay for 50us - decrement counter
+				exti_event--;
+			}else if(exti_event == 0){
+				exti_event = -1;
+				check_buttons();
+			}
+		}
 		if((Global_time - T > paused_val) || (T > Global_time)){
-			U8 i;
+			//U8 i;
 			T = Global_time;
 			PORT(LED_PORT, ODR) ^= LED_PIN; // blink on-board LED
 			//ADC_value = 0;
 			//for(i = 0; i < 10; i++) ADC_value += ADC_values[i];
 			//ADC_value /= 10;
-			printUint((U8*)&ADC_value, 2); // & print out ADC value
+		//	printUint((U8*)&ADC_value, 2); // & print out ADC value
 		}
 		if(UART_read_byte(&rb)){ // buffer isn't empty
 			switch(rb){

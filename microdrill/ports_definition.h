@@ -46,32 +46,58 @@
 
 /***** Stepper motor *****/
 // Clocking
-#define STP_PORT		PB // PB0..3 -- pins A..D of stepper
+#define STP_PORT        PB // PB0..3 -- pins A..D of stepper
 
-/* drill motor PC1 - timer 1 PWM output 1 */
+/* drill motor PC1 - timer 1 PWM output 1; PC5 - footswitch */
 #define DRILL_ON()      do{TIM1_BKR |= 0x80; drill_works = 1;}while(0) // turn on drill motor
 #define DRILL_OFF()     do{TIM1_BKR &= ~0x80; PC_ODR &= ~GPIO_PIN1; drill_works = 0;}while(0) // turn it off
 #define DRILL_FASTER()  do{U8 r = TIM1_CCR1L; if(r < 100) TIM1_CCR1L = r+1;}while(0)// increase current
 #define DRILL_SLOWER()  do{U8 r = TIM1_CCR1L; if(r > 0)   TIM1_CCR1L = r-1;}while(0)  // decrease it
+#define FOOTSWITCH      ((PC_IDR & GPIO_PIN5))
+#define FOOTSW_TEST(x)  ((x & GPIO_PIN5))
 
-/* tray motor: PB4, PB5 - rotation direction; PC2, PC3 - end-switches (bottom/top) */
-#define TRAY_UP()     do{if(!(PC_IDR & GPIO_PIN3)){PB_ODR &= ~0x30; PB_ODR |= 0x10;}}while(0)
-#define TRAY_DOWN()   do{if(!(PC_IDR & GPIO_PIN2)){PB_ODR &= ~0x30; PB_ODR |= 0x20;}}while(0)
-#define TRAY_STOP()   do{PB_ODR &= ~0x30;}while(0)
+/* tray motor: PD2, PD3 - rotation direction; PC3, PC4 - end-switches (bottom/top) */
+#define TRAY_TOP_SW     ((PC_IDR & GPIO_PIN4))
+#define TRAY_BTM_SW     ((PC_IDR & GPIO_PIN3))
+#define TRAYSW_TEST(x)  ((x & (GPIO_PIN3 | GPIO_PIN4)))
+#define TRAYSW_PRSD(x)  (((x & (GPIO_PIN3 | GPIO_PIN4)) != (GPIO_PIN3 | GPIO_PIN4)))
+#define TRAY_STOP()     do{PD_ODR &= ~0x0C;}while(0)
+#define TRAY_UP()       do{if(!TRAY_TOP_SW){PD_ODR &= ~0x0C; PC_ODR |= 0x04;}}while(0)
+#define TRAY_DOWN()     do{if(!(TRAY_BTM_SW)){PD_ODR &= ~0x0C; PC_ODR |= 0x08;}}while(0)
+
+/* Buttons: PC6 - BTN1 & PC7 - BTN2 */
+#define BTN1          ((PC_IDR & GPIO_PIN6))
+#define BTN2          ((PC_IDR & GPIO_PIN7))
+#define BTN1_TEST(x)  ((x & GPIO_PIN6))
+#define BTN2_TEST(x)  ((x & GPIO_PIN7))
+#define BTN12_TEST(x) (((x & (GPIO_PIN7 | GPIO_PIN6)) == (GPIO_PIN7 | GPIO_PIN6)))
+
+// EXTI for all buttons: PC3..7
+#define BTNS_IDR             PC_IDR
+#define BTNS_EXTI_MASK       (0xf8)
+#define BTNS_EXTI_DISABLE()  do{PC_CR2 = 0;}while(0)
+#define BTNS_EXTI_ENABLE()   do{PC_CR2 = BTNS_EXTI_MASK;}while(0)
+#define BTNS_SETUP()         do{EXTI_CR1 = 0x30; PC_CR1 |= BTNS_EXTI_MASK;}while(0)
 
 #endif // __PORTS_DEFINITION_H__
-
 
 /*
  * PORTS:
  * 	DRILL
  * 		PC1 - PWM (TIM1_CH1)
  * 		PF4 - Sence (AIN12)
- * 		PC4 - Pedal switch
+ * 		PC5 - Pedal switch
  * 	Stepper motor
  * 		PB0, PB1, PB2, PB3 - phases of motor
  * 	Slider (tray) motor
- * 		PB4, PB5 - rotation direction
- * 		PC2 - down end-switch
- * 		PC3 - up end-switch
+ * 		PD2, PD3 - rotation direction
+ * 		PC3 - down end-switch
+ * 		PC4 - up end-switch
+ * 	On-tray buttons & resistor
+ * 		PB4 - variable resistor (AIN4)
+ * 		PC6 - BTN1
+ * 		PC7 - BTN2
+ * 	UART
+ * 		PD5 - TX
+ * 		PD6 - RX
  */

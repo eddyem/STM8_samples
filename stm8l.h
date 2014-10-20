@@ -111,8 +111,29 @@ typedef unsigned int U16;
 #define GPIO_PIN6		(1 << 6)
 #define GPIO_PIN7		(1 << 7)
 
+/* -------------------- FLASH/EEPROM -------------------- */
+#define FLASH_CR1	*(unsigned char*)0x505A
+#define FLASH_CR2	*(unsigned char*)0x505B
+#define FLASH_NCR2	*(unsigned char*)0x505C
+#define FLASH_FPR	*(unsigned char*)0x505D
+#define FLASH_NFPR	*(unsigned char*)0x505E
+#define FLASH_IAPSR	*(unsigned char*)0x505F
+#define FLASH_PUKR	*(unsigned char*)0x5062 // progmem unprotection
+#define FLASH_DUKR	*(unsigned char*)0x5064 // EEPROM unprotection
 
-/* CLOCK */
+#define EEPROM_KEY1		0xAE  // keys to manage EEPROM's write access
+#define EEPROM_KEY2		0x56
+
+/* ------------------- interrupts ------------------- */
+#define EXTI_CR1	*(unsigned char*)0x50A0
+#define EXTI_CR2	*(unsigned char*)0x50A1
+#define INTERRUPT_HANDLER(fn, num)		void fn() __interrupt(num)
+#define INTERRUPT_DEFINITION(fn, num)	extern void fn() __interrupt(num)
+
+// Reset status register
+#define RST_SR		*(unsigned char*)0x50B3
+
+/* ------------------- CLOCK ------------------- */
 #define CLK_ICKR		*(unsigned char*)0x50C0
 #define CLK_ECKR		*(unsigned char*)0x50C1
 #define CLK_CMSR		*(unsigned char*)0x50C3
@@ -126,7 +147,44 @@ typedef unsigned int U16;
 #define CLK_HSITRIMR	*(unsigned char*)0x50CC
 #define CLK_SWIMCCR		*(unsigned char*)0x50CD
 
+/* ------------------- Watchdog ------------------ */
+#define WWDG_CR			*(unsigned char*)0x50D1
+#define WWDG_WR			*(unsigned char*)0x50D2
+#define IWDG_KR			*(unsigned char*)0x50E0
+#define IWDG_PR			*(unsigned char*)0x50E1
+#define IWDG_RLR		*(unsigned char*)0x50E2
 
+/* ------------------- AWU, BEEP ------------------- */
+#define AWU_CSR1		*(unsigned char*)0x50F0
+#define AWU_APR			*(unsigned char*)0x50F1
+#define AWU_TBR			*(unsigned char*)0x50F2
+#define BEEP_CSR		*(unsigned char*)0x50F3
+
+/* ------------------- SPI ------------------- */
+#define SPI_CR1			*(unsigned char*)0x5200
+#define SPI_CR2			*(unsigned char*)0x5201
+#define SPI_ICR			*(unsigned char*)0x5202
+#define SPI_SR			*(unsigned char*)0x5203
+#define SPI_DR			*(unsigned char*)0x5204
+#define SPI_CRCPR		*(unsigned char*)0x5205
+#define SPI_RXCRCR		*(unsigned char*)0x5206
+#define SPI_TXCRCR		*(unsigned char*)0x5207
+
+/* ------------------- I2C ------------------- */
+#define I2C_CR1			*(unsigned char*)0x5210
+#define I2C_CR2			*(unsigned char*)0x5211
+#define I2C_FREQR		*(unsigned char*)0x5212
+#define I2C_OARL		*(unsigned char*)0x5213
+#define I2C_OARH		*(unsigned char*)0x5214
+#define I2C_DR			*(unsigned char*)0x5216
+#define I2C_SR1			*(unsigned char*)0x5217
+#define I2C_SR2			*(unsigned char*)0x5218
+#define I2C_SR3			*(unsigned char*)0x5219
+#define I2C_ITR			*(unsigned char*)0x521A
+#define I2C_CCRL		*(unsigned char*)0x521B
+#define I2C_CCRH		*(unsigned char*)0x521C
+#define I2C_TRISER		*(unsigned char*)0x521D
+#define I2C_PECR		*(unsigned char*)0x521E
 
 /* ------------------- UART ------------------- */
 #ifdef STM8S003
@@ -265,6 +323,7 @@ typedef unsigned int U16;
 
 /* TIM2 */
 #define TIM2_CR1	*(unsigned char*)0x5300
+#if defined STM8S105 || defined STM8S103
 #define TIM2_IER	*(unsigned char*)0x5301
 #define TIM2_SR1	*(unsigned char*)0x5302
 #define TIM2_SR2	*(unsigned char*)0x5303
@@ -285,8 +344,32 @@ typedef unsigned int U16;
 #define TIM2_CCR2L	*(unsigned char*)0x5312
 #define TIM2_CCR3H	*(unsigned char*)0x5313
 #define TIM2_CCR3L	*(unsigned char*)0x5314
+#elif defined STM8S003
+#define TIM2_IER	*(unsigned char*)0x5303
+#define TIM2_SR1	*(unsigned char*)0x5304
+#define TIM2_SR2	*(unsigned char*)0x5305
+#define TIM2_EGR	*(unsigned char*)0x5306
+#define TIM2_CCMR1	*(unsigned char*)0x5307
+#define TIM2_CCMR2	*(unsigned char*)0x5308
+#define TIM2_CCMR3	*(unsigned char*)0x5309
+#define TIM2_CCER1	*(unsigned char*)0x530A
+#define TIM2_CCER2	*(unsigned char*)0x530B
+#define TIM2_CNTRH	*(unsigned char*)0x530C
+#define TIM2_CNTRL	*(unsigned char*)0x530D
+#define TIM2_PSCR	*(unsigned char*)0x530E
+#define TIM2_ARRH	*(unsigned char*)0x530F
+#define TIM2_ARRL	*(unsigned char*)0x5310
+#define TIM2_CCR1H	*(unsigned char*)0x5311
+#define TIM2_CCR1L	*(unsigned char*)0x5312
+#define TIM2_CCR2H	*(unsigned char*)0x5313
+#define TIM2_CCR2L	*(unsigned char*)0x5314
+#define TIM2_CCR3H	*(unsigned char*)0x5315
+#define TIM2_CCR3L	*(unsigned char*)0x5316
+#endif
+
 
 /* TIM3 */
+#if defined STM8S105 || defined STM8S103
 #define TIM3_CR1	*(unsigned char*)0x5320
 #define TIM3_IER	*(unsigned char*)0x5321
 #define TIM3_SR1	*(unsigned char*)0x5322
@@ -304,15 +387,25 @@ typedef unsigned int U16;
 #define TIM3_CCR1L	*(unsigned char*)0x532E
 #define TIM3_CCR2H	*(unsigned char*)0x532F
 #define TIM3_CCR2L	*(unsigned char*)0x5330
+#endif
 
 /* TIM4 */
 #define TIM4_CR1	*(unsigned char*)0x5340
+#if defined STM8S105 || defined STM8S103
 #define TIM4_IER	*(unsigned char*)0x5341
 #define TIM4_SR		*(unsigned char*)0x5342
 #define TIM4_EGR	*(unsigned char*)0x5343
 #define TIM4_CNTR	*(unsigned char*)0x5344
 #define TIM4_PSCR	*(unsigned char*)0x5345
 #define TIM4_ARR	*(unsigned char*)0x5346
+#elif defined STM8S003
+#define TIM4_IER	*(unsigned char*)0x5343
+#define TIM4_SR		*(unsigned char*)0x5344
+#define TIM4_EGR	*(unsigned char*)0x5345
+#define TIM4_CNTR	*(unsigned char*)0x5346
+#define TIM4_PSCR	*(unsigned char*)0x5347
+#define TIM4_ARR	*(unsigned char*)0x5348
+#endif
 
 /* ------------------- ADC ------------------- */
 #define ADC_DB0RH	*(unsigned char*)0x53E0
@@ -353,7 +446,19 @@ typedef unsigned int U16;
 #define ADC_AWCRL	*(unsigned char*)0x540F
 
 /* ------------------- swim control ------------------- */
-#define CFG_GCR		*(unsigned char*)0x7F60
+#define CFG_GCR			*(unsigned char*)0x7F60
+#define SWIM_CSR		*(unsigned char*)0x7F80
+
+/* ------------------- ITC ------------------- */
+#define ITC_SPR1		*(unsigned char*)0x7F70
+#define ITC_SPR2		*(unsigned char*)0x7F71
+#define ITC_SPR3		*(unsigned char*)0x7F72
+#define ITC_SPR4		*(unsigned char*)0x7F73
+#define ITC_SPR5		*(unsigned char*)0x7F74
+#define ITC_SPR6		*(unsigned char*)0x7F75
+#define ITC_SPR7		*(unsigned char*)0x7F76
+#define ITC_SPR8		*(unsigned char*)0x7F77
+
 
 /* -------------------- UNIQUE ID -------------------- */
 #if defined STM8S105 || defined STM8S103 // maybe some other MCU have this too???
@@ -371,25 +476,9 @@ typedef unsigned int U16;
 #define U_ID11		(unsigned char*)0x48D8
 #endif // defined STM8S105 || defined STM8S103
 
-/* -------------------- FLASH/EEPROM -------------------- */
-#define FLASH_CR1	*(unsigned char*)0x505A
-#define FLASH_CR2	*(unsigned char*)0x505B
-#define FLASH_NCR2	*(unsigned char*)0x505C
-#define FLASH_FPR	*(unsigned char*)0x505D
-#define FLASH_NFPR	*(unsigned char*)0x505E
-#define FLASH_IAPSR	*(unsigned char*)0x505F
-#define FLASH_PUKR	*(unsigned char*)0x5062 // progmem unprotection
-#define FLASH_DUKR	*(unsigned char*)0x5064 // EEPROM unprotection
-
-#define EEPROM_KEY1		0xAE  // keys to manage EEPROM's write access
-#define EEPROM_KEY2		0x56
-
-/* ------------------- interrupts ------------------- */
-#define EXTI_CR1	*(unsigned char*)0x50A0
-#define EXTI_CR2	*(unsigned char*)0x50A1
-#define INTERRUPT_HANDLER(fn, num)		void fn() __interrupt(num)
-#define INTERRUPT_DEFINITION(fn, num)	extern void fn() __interrupt(num)
 // CCR REGISTER: bits 3&5 should be 1 if you wanna change EXTI_CRx
 #define CCR			*(unsigned char*)0x7F0A
 
 #endif // __STM8L_H__
+
+// #define 		*(unsigned char*)0x

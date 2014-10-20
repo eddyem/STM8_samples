@@ -47,7 +47,6 @@
 unsigned long Global_time = 0L, boom_start = 0L; // global time in ms
 U16 boom_length = 100; // length of "boom" in ms
 U16 paused_val = 500; // interval between LED flashing
-U8 bank_i = 0;  // number of sample in meander (even/odd)
 U8 sample_flag = 0;   // flag is set in interrupt -> next sample in sound
 
 #ifdef UART
@@ -148,7 +147,8 @@ void error_msg(char *msg){
 
 int main() {
 	unsigned long T = 0L;
-	unsigned int I;
+	unsigned long I;
+	U8 bank_i = 0;  // number of sample in meander (even/odd)
 	U8 cur_vol;
 	U16 Ival;
 #ifdef UART
@@ -199,19 +199,21 @@ int main() {
 
 	// Loop
 	do{
-		if(sample_flag){ // next sample in sound
+		if(sample_flag){ // next sample in sound (TIM2 irq)
+			sample_flag = 0;
 			I = Global_time - boom_start; // amount of us from start
 			if(I > boom_length || boom_start > Global_time){
 				// end of sound
 				stop_snd();
 			}else{
-				I *= 16;
-				cur_vol = 16 - I / boom_length; // linear fading
 				// generate meander
 				if(bank_i){
 					change_CCR(0);
 					bank_i = 0;
 				}else{
+					I <<= 8; // multiply by PWM len
+					I /= boom_length;
+					cur_vol = 255 - (I & 0xff); // linear fading
 					change_CCR(cur_vol);
 					bank_i = 1;
 				}
@@ -254,8 +256,8 @@ int main() {
 						paused_val = 500;
 				break;
 				case 'F':
-					if(readInt(&Ival) && Ival > 64){
-						change_period(Ival >> 4); // F*4 for 16 array values
+					if(readInt(&Ival)){
+						change_period(Ival);
 					}else error_msg("bad period");
 				break;
 				case 'P':

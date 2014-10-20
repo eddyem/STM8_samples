@@ -40,18 +40,8 @@ INTERRUPT_HANDLER(EXTI_PORTB_IRQHandler, 4){}
 
 // External Interrupt PORTC
 INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 5){
-	if(!(PC_IDR & GPIO_PIN4)){ // PC4 - pedal switch - connect to ground!
-		if(!drill_works)
-			DRILL_ON(); // in future it should be more complex: move motor down etc
-	}else{
-		// it would be better to set flags as drill motor would have to move up first
-		if(drill_works)
-			DRILL_OFF();
-	}
-	// PC2 - down; PC3 - up
-	if((PC_IDR & (GPIO_PIN2 | GPIO_PIN3)) != (GPIO_PIN2 | GPIO_PIN3)){
-		TRAY_STOP(); // stop tray motor
-	}
+	BTNS_EXTI_DISABLE();
+	exti_event = 100; // set pause to 100us
 }
 
 // External Interrupt PORTD
@@ -194,7 +184,10 @@ INTERRUPT_HANDLER(ADC1_IRQHandler, 22){
 	//if(val_ctr == 10) val_ctr = 0;
 	if(drill_works && auto_speed){
 		if(v > 50) DRILL_SLOWER();      // current = 0.48A
-		else if(v < 30) DRILL_FASTER(); // current = 0.29A
+		else if(v < 3){ // no motor or break?
+			DRILL_OFF();
+			uart_write("No drill motor?");
+		}else if(v < 30) DRILL_FASTER(); // current = 0.29A
 	}
 	ADC_CSR &= 0x3f; // clear EOC & AWD flags
 }

@@ -1,5 +1,5 @@
-update=Сб 20 сен 2014 10:42:55
-last_client=pcbnew
+update=Сб 11 окт 2014 09:56:09
+last_client=cvpcb
 [general]
 version=1
 [eeschema]
@@ -65,7 +65,6 @@ DrawSegmentWidth="    0.200000"
 BoardOutlineThickness="    0.100000"
 ModuleOutlineThickness="    0.150000"
 [pcbnew/libraries]
-LibDir=
 LibName1=sockets
 LibName2=connect
 LibName3=discret
@@ -82,4 +81,11 @@ LibName13=led
 LibName14=dip_sockets
 LibName15=pga_sockets
 LibName16=valves
-LibName17=transistors_gaui
+LibName17=capacitors
+LibName18=devboard_pins
+LibDir=
+[cvpcb]
+version=1
+NetIExt=net
+[cvpcb/libraries]
+EquName1=devcms

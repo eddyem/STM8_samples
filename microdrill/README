@@ -1,0 +1,57 @@
+Algorithm
+
+1. Main functionality - footswitch
+
+By pressing footswitch you move drill down. Speed setup produced
+by variable resistor on tray's control. Pulling footswitch
+up returns drill into its previous position. If you press down the
+footswitch when drill haven't reach its starting position, it moves down
+again and returns back on next pulling up.
+
+If drill motor was off, pressing footswitch will also turn it on.
+
+/*
+ * the behaviour of steps counter depends on footswitch state; timer
+ * setup varies due to varistor value.
+ */
+
+
+2. Tray buttons
+
+2.1. Left button (BTN1) used to setup the zero point of drill: 
+	- drill quickly moves up
+	- stepper speed changes to lowest
+	- while pressing down the footswitch motor moves down
+	- press BTN1 again to set current position as zero-point
+
+/*
+ * Button control: by default, EXTI interrupts serve buttons.
+ * To avoid clash, EXTI interrupt handler sets the special flag 
+ * value to 50 (in milliseconds) and turns off EXTI IRQ.
+ * In the main() body the endless cycle checks value of system
+ * timer variable changed by system timer once per millisecond.
+ * If the EXTI pause flag non-zero, it decrements it until zero.
+ * After that EXTI turns on again and keys state occured. This
+ * allows also to avoid some noice on MCU inputs.
+ */
+
+2.2. Right button (BTN2) used to switch between regulation
+of stepper speed or drill speed by variable resistor on tray's
+control. The default state is stepper (vertical) speed regulation.
+
+Drill works with algorithm of automatical moment correction:
+if drill stalled, the PWM duty reduced until current through drill's
+winding stabilize to max value. Conversely, when current through winding
+falls to very low value, PWM duty increased until normal current
+value. Varistor allows you to set these limiting values in drill speed
+mode.
+
+2.3. Simultaneous pressing of both buttons will:
+	- stop drill motor
+	- move tray up
+	- move drill down
+
+So, you can easily change drilling bits. After that press again BTN1+BTN2
+to return tray down & drill motor up. After this operation the uppest
+drill's position will be zero.
+

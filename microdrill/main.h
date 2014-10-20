@@ -24,6 +24,8 @@
 
 extern unsigned long Global_time; // global time in ms
 
+extern volatile char exti_event; // flag of EXTI interrupt == 0 -> check keys
+
 extern char usteps[]; // current array for microsteps
 
 #define UART_BUF_LEN 8			// max 7 bytes transmited in on operation
@@ -34,7 +36,7 @@ extern U8 UART_rx_start_i;
 extern U8 UART_rx_cur_i;
 
 //extern U16 ADC_values[];
-extern U16 ADC_value; // value of last ADC measurement
+extern volatile U16 ADC_value; // value of last ADC measurement
 extern U8 drill_works;
 extern U8 auto_speed; // == 1 to automatic speed regulation
 

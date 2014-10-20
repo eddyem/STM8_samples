@@ -26,7 +26,6 @@
 
 extern unsigned long Global_time, boom_start; // global time in ms
 extern U8 sample_flag; // flag is set in interrupt -> next sample in sound
-extern U8 bank_i;
 
 #define UART_BUF_LEN 8			// max 7 bytes transmited in on operation
 #define MIN_STEP_LENGTH 9		// max speed, microseconds for one microstep
