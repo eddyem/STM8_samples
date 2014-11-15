@@ -1,0 +1,77 @@
+PCBNEW-LibModule-V1  Вс 16 ноя 2014 00:05:44
+# encoding utf-8
+Units mm
+$INDEX
+TSSOP-8
+$EndINDEX
+$MODULE TSSOP-8
+Po 0 0 0 15 5467C025 00000000 ~~
+Li TSSOP-8
+Sc 0
+AR /53EF036E/53F123C0
+Op 0 0 0
+T0 0 -3.2 1 1 0 0.15 N V 21 N "VT1"
+T1 0 2.9 1 1 0 0.15 N V 21 N "S8205A"
+DC -1.7 -1 -1.5 -0.8 0.15 21
+DS 2.2 -1.5 2.2 1.5 0.15 21
+DS -2.2 -1.5 -2.2 1.5 0.15 21
+DS -2.2 1.5 2.2 1.5 0.15 21
+DS -2.2 -1.5 2.2 -1.5 0.15 21
+$PAD
+Sh "1" R 1.1 0.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 1 "/Drill motor/DRILL-"
+Po -2.8 -0.975
+$EndPAD
+$PAD
+Sh "2" R 1.1 0.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 3 "N-0000038"
+Po -2.8 -0.325
+$EndPAD
+$PAD
+Sh "3" R 1.1 0.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 3 "N-0000038"
+Po -2.8 0.325
+$EndPAD
+$PAD
+Sh "4" R 1.1 0.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 2 "/Drill motor/PWM_in"
+Po -2.8 0.975
+$EndPAD
+$PAD
+Sh "5" R 1.1 0.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 3 "N-0000038"
+Po 2.8 0.975
+$EndPAD
+$PAD
+Sh "6" R 1.1 0.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 2.8 0.325
+$EndPAD
+$PAD
+Sh "7" R 1.1 0.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 3 "N-0000038"
+Po 2.8 -0.325
+$EndPAD
+$PAD
+Sh "8" R 1.1 0.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 1 "/Drill motor/DRILL-"
+Po 2.8 -0.975
+$EndPAD
+$EndMODULE TSSOP-8
+$EndLIBRARY
