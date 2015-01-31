@@ -30,7 +30,9 @@ volatile char exti_event = -1; // flag & counter of EXTI interrupt
 U16 paused_val = 500; // interval between LED flashing
 
 U8 drill_works = 0; // flag of working motor
+U8 set_to_zero = 0; // flag showing that motor is in state of zero point setting up
 U8 auto_speed = 0;
+U8 drill_spd_regul = 0; // in default case we regulate stepper speed by variable resistor
 
 U8 UART_rx[UART_BUF_LEN]; // cycle buffer for received data
 U8 UART_rx_start_i = 0;   // started index of received data (from which reading starts)
@@ -67,7 +69,8 @@ char usteps[8] =
 	#error Define MOTOR_TYPE_UNIPOLAR or MOTOR_TYPE_BIPOLAR
 #endif
 
-volatile U16 ADC_value = 0; // value of last ADC measurement
+volatile U16 ADC_value = 0;    // value of last ADC measurement (drill sense)
+volatile U16 Stp_speed = 50; // stepper speed set by varistor
 
 /**
  * Send one byte through UART
@@ -166,7 +169,7 @@ void check_buttons(){
 	if(btn_state == old_buttons_state) goto rtn; // none changed
 	btns_changed = btn_state ^ old_buttons_state; // XOR -> 1 on changed states
 	// check for footswitch
-	if(FOOTSW_TEST(btns_changed)){
+	if(FOOTSW_TEST(btns_changed) && !TRAY_BTM_SW){ // move only when tray is down!
 		if(!FOOTSW_TEST(btn_state)){ // pedal switch pressed - connect to ground!
 			if(!drill_works){
 				DRILL_ON();
@@ -174,22 +177,47 @@ void check_buttons(){
 			add_steps(-5000); // this is a trick to move more than stage allows
 			uart_write("move down\n");
 		}else{
-			add_steps(-5000); // return to previous state (this function moves RELATIVELY)
-			uart_write("move up\n");
+			if(set_to_zero){
+				set_to_zero = 0;
+				stop_motor();
+			}else{
+				add_steps(-5000); // return to previous state (this function moves RELATIVELY)
+				uart_write("move up\n");
+			}
 		}
 	}
 	// check for tray endswitches. We don't care for their off state, so only check ON
 	if(TRAYSW_TEST(btns_changed) && TRAYSW_PRSD(btn_state)){
 		uart_write("tray stop\n");
 		TRAY_STOP(); // stop tray motor in any moving direction
+		if(!TRAY_BTM_SW) set_stepper_speed(Stp_speed); // restore stepper speed in down position
 	}
 	// check for user buttons pressed (the same - only pressed)
 	if(BTN12_TEST(btns_changed) && !BTN12_TEST(btn_state)){ // pressed both buttons
-		uart_write("both buttons\n");
+		uart_write("move tray ");
+		DRILL_OFF();
+		if(!TRAY_TOP_SW){ // tray is up -> move it down & stepper up
+			uart_write("down\n");
+			move_motor(-FULL_SCALE_STEPS);
+			while(Nsteps); // wait until it moves
+			TRAY_DOWN();
+		}else{ // move tray up & stepper down
+			uart_write("up\n");
+			set_stepper_speed(MAX_STEPPER_SPEED); // move as faster as possible
+			move_motor(FULL_SCALE_STEPS);
+			while(Nsteps); // wait until it moves
+			TRAY_UP();
+		}
 	}else if(BTN1_TEST(btns_changed) && !BTN1_TEST(btn_state)){ // btn1
 		uart_write("button 1\n");
+		set_stepper_speed(MAX_STEPPER_SPEED);
+		move_motor(-FULL_SCALE_STEPS);
+		while(Nsteps); // wait until it moves
+		set_stepper_speed(MIN_STEPPER_SPEED);
+		set_to_zero = 1;
 	}else if(BTN2_TEST(btns_changed) && !BTN2_TEST(btn_state)){ // btn2
 		uart_write("button 2\n");
+		drill_spd_regul = !drill_spd_regul;
 	}
 	old_buttons_state = btn_state;
 rtn:
@@ -232,9 +260,11 @@ int main() {
 	TIM1_CR1 = TIM_CR1_APRE | TIM_CR1_URS | TIM_CR1_CEN;
 
 // configure ADC
+	// PB4 (AIN4) is potentiometer regulated motor speed
 	// select PF4 - Sence (AIN12) & enable interrupt for EOC
 	ADC_CSR = 0x2c; // EOCIE = 1; CH[3:0] = 0x0c (12)
 	ADC_TDRH = 0x10;// disable Schmitt triger for AIN12
+	ADC_TDRL = 0x10;// disable Schmitt triger for AIN4
 	// right alignment
 	ADC_CR2 = 0x08; // don't forget: first read ADC_DRL!
 	// f_{ADC} = f/18 & continuous non-buffered conversion & wake it up
@@ -265,7 +295,7 @@ int main() {
 	// enable all interrupts
 	enableInterrupts();
 
-	set_stepper_speed(1000);
+	set_stepper_speed(Stp_speed);
 	setup_stepper_pins();
 
 	// Loop

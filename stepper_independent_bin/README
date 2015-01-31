@@ -17,7 +17,7 @@ Just connect lines Rx/Tx of converter to Tx/Rx of evaluation boart,
 connect together lines GND and +3.3V.
 Communication speed: 57600, proto: 8N1
 Comminication with MCU don't need special soft: you can even run screen session
-or some terminal client like _com_. Another wariant is a simple client - client-term.
+or some terminal client like _com_. Another variant is a simple client - client-term.
 MCU itself can print to terminal a short help about its protocol, just sent letter 'h'
 to it.
 

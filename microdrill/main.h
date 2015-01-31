@@ -22,6 +22,8 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
+#include "stm8l.h"
+
 extern unsigned long Global_time; // global time in ms
 
 extern volatile char exti_event; // flag of EXTI interrupt == 0 -> check keys
@@ -39,6 +41,8 @@ extern U8 UART_rx_cur_i;
 extern volatile U16 ADC_value; // value of last ADC measurement
 extern U8 drill_works;
 extern U8 auto_speed; // == 1 to automatic speed regulation
+extern U8 drill_spd_regul;
+extern volatile U16 Stp_speed;
 
 void UART_send_byte(U8 byte);
 void uart_write(char *str);

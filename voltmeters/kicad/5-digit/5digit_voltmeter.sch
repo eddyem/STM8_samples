@@ -1,0 +1,211 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:stm8
+LIBS:st-microelectronics
+LIBS:stm8s003
+LIBS:seven_segm
+LIBS:ht7136
+LIBS:5digit_voltmeter-cache
+EELAYER 27 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date "31 jan 2015"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L STM8S003F3P6 IC?
+U 1 1 54CCE7DB
+P 5500 3650
+F 0 "IC?" H 5500 4250 60  0000 C CNN
+F 1 "STM8S003F3P6" H 5500 2850 60  0000 C CNN
+F 2 "TSSOP20" H 5400 4150 60  0001 C CNN
+F 3 "~" H 5500 3650 60  0000 C CNN
+	1    5500 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_PACK4 RP?
+U 1 1 54CCE809
+P 7400 4250
+F 0 "RP?" H 7400 4700 40  0000 C CNN
+F 1 "220" H 7400 4200 40  0000 C CNN
+F 2 "" H 7400 4250 60  0000 C CNN
+F 3 "" H 7400 4250 60  0000 C CNN
+	1    7400 4250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6850 4200 7200 4200
+Wire Wire Line
+	7200 4100 6850 4100
+Wire Wire Line
+	6850 4000 7200 4000
+Wire Wire Line
+	7200 3900 6850 3900
+$Comp
+L ARK-SN410362N DIS?
+U 1 1 54CCF1E1
+P 9600 1650
+F 0 "DIS?" H 9600 2150 60  0000 C CNN
+F 1 "ARK-SN410362N" H 9600 1200 60  0000 C CNN
+F 2 "~" H 9600 1650 60  0000 C CNN
+F 3 "~" H 9600 1650 60  0000 C CNN
+	1    9600 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L ARK-SP410361N DIS?
+U 1 1 54CCF1F0
+P 9700 2950
+F 0 "DIS?" H 9700 3450 60  0000 C CNN
+F 1 "ARK-SP410361N" H 9700 2500 60  0000 C CNN
+F 2 "~" H 9450 2950 60  0000 C CNN
+F 3 "~" H 9450 2950 60  0000 C CNN
+	1    9700 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L HT7136 U?
+U 1 1 54CD13ED
+P 2700 950
+F 0 "U?" H 2850 754 60  0000 C CNN
+F 1 "HT7136" H 2700 1150 60  0000 C CNN
+F 2 "~" H 2700 950 60  0000 C CNN
+F 3 "~" H 2700 950 60  0000 C CNN
+	1    2700 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_3 K?
+U 1 1 54CD13FC
+P 850 900
+F 0 "K?" V 800 900 50  0000 C CNN
+F 1 "CONN_3" V 900 900 40  0000 C CNN
+F 2 "" H 850 900 60  0000 C CNN
+F 3 "" H 850 900 60  0000 C CNN
+	1    850  900 
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 54CD1415
+P 1300 1100
+F 0 "#PWR?" H 1300 1100 30  0001 C CNN
+F 1 "GND" H 1300 1030 30  0001 C CNN
+F 2 "" H 1300 1100 60  0000 C CNN
+F 3 "" H 1300 1100 60  0000 C CNN
+	1    1300 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1300 1100 1300 1000
+Wire Wire Line
+	1300 1000 1200 1000
+Wire Wire Line
+	1200 800  1450 800 
+$Comp
+L DIODESCH D?
+U 1 1 54CD143B
+P 1950 900
+F 0 "D?" H 1950 1000 40  0000 C CNN
+F 1 "DIODESCH" H 1950 800 40  0000 C CNN
+F 2 "" H 1950 900 60  0000 C CNN
+F 3 "" H 1950 900 60  0000 C CNN
+	1    1950 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1200 900  1750 900 
+Wire Wire Line
+	2150 900  2300 900 
+$Comp
+L GND #PWR?
+U 1 1 54CD1463
+P 2700 1300
+F 0 "#PWR?" H 2700 1300 30  0001 C CNN
+F 1 "GND" H 2700 1230 30  0001 C CNN
+F 2 "" H 2700 1300 60  0000 C CNN
+F 3 "" H 2700 1300 60  0000 C CNN
+	1    2700 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 1300 2700 1200
+$Comp
+L C C1
+U 1 1 54CD1475
+P 2200 1250
+F 0 "C1" H 2250 1350 50  0000 L CNN
+F 1 "100n" H 2250 1150 50  0000 L CNN
+F 2 "" H 2200 1250 60  0000 C CNN
+F 3 "" H 2200 1250 60  0000 C CNN
+	1    2200 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 1050 2200 900 
+Connection ~ 2200 900 
+$Comp
+L GND #PWR?
+U 1 1 54CD148D
+P 2200 1550
+F 0 "#PWR?" H 2200 1550 30  0001 C CNN
+F 1 "GND" H 2200 1480 30  0001 C CNN
+F 2 "" H 2200 1550 60  0000 C CNN
+F 3 "" H 2200 1550 60  0000 C CNN
+	1    2200 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 1450 2200 1550
+$Comp
+L CP1 C2
+U 1 1 54CD14C2
+P 3250 1100
+F 0 "C2" H 3300 1200 50  0000 L CNN
+F 1 "100u" H 3300 1000 50  0000 L CNN
+F 2 "" H 3250 1100 60  0000 C CNN
+F 3 "" H 3250 1100 60  0000 C CNN
+	1    3250 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 900  3100 900 
+$EndSCHEMATC

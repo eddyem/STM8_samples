@@ -32,9 +32,8 @@ LIBS:valves
 LIBS:stm8s105k4t6c
 LIBS:tda2822
 LIBS:CD74HC154
-LIBS:transistors_gaui
 LIBS:drum-cache
-EELAYER 27 0
+EELAYER 24 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8

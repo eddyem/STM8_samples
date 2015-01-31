@@ -36,6 +36,9 @@
 #define CONCAT(a, b)	a ## _ ## b
 #define PORT(a, b)		CONCAT(a , b)
 
+// Potentiometer threshold (in ADU) - 0.5% error
+#define POTENT_TRESHOLD     (5)
+
 // on-board LED
 #define LED_PORT		PC
 #define LED_PIN			GPIO_PIN2
@@ -47,11 +50,20 @@
 /***** Stepper motor *****/
 // Clocking
 #define STP_PORT        PB // PB0..3 -- pins A..D of stepper
+// amount of steps on all trace
+#define FULL_SCALE_STEPS   (3000)
+#define MAX_STEPPER_SPEED  (500)
+#define MIN_STEPPER_SPEED  (20)
 
 /* drill motor PC1 - timer 1 PWM output 1; PC5 - footswitch */
+// speed (in ADU values of voltage on schunt)
+#define MAX_DRILL_SPEED (50)
+#define NORMAL_DRILL_SPEED (30)
+extern U8 Upper_TIM1_CCR1L; // max speed set by user
 #define DRILL_ON()      do{TIM1_BKR |= 0x80; drill_works = 1;}while(0) // turn on drill motor
 #define DRILL_OFF()     do{TIM1_BKR &= ~0x80; PC_ODR &= ~GPIO_PIN1; drill_works = 0;}while(0) // turn it off
-#define DRILL_FASTER()  do{U8 r = TIM1_CCR1L; if(r < 100) TIM1_CCR1L = r+1;}while(0)// increase current
+#define DRILL_SETMAX(X) do{Upper_TIM1_CCR1L = X; TIM1_CCR1L = X;}while(0)
+#define DRILL_FASTER()  do{U8 r = TIM1_CCR1L; if(r < Upper_TIM1_CCR1L) TIM1_CCR1L = r+1;}while(0)// increase current
 #define DRILL_SLOWER()  do{U8 r = TIM1_CCR1L; if(r > 0)   TIM1_CCR1L = r-1;}while(0)  // decrease it
 #define FOOTSWITCH      ((PC_IDR & GPIO_PIN5))
 #define FOOTSW_TEST(x)  ((x & GPIO_PIN5))

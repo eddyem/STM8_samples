@@ -22,7 +22,7 @@ If drill motor was off, pressing footswitch will also turn it on.
 	- drill quickly moves up
 	- stepper speed changes to lowest
 	- while pressing down the footswitch motor moves down
-	- press BTN1 again to set current position as zero-point
+	- on footswitch release motor stops at current position
 
 /*
  * Button control: by default, EXTI interrupts serve buttons.
