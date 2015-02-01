@@ -1,6 +1,6 @@
-update=Сб 31 янв 2015 20:40:05
+update=Сб 31 янв 2015 21:44:03
 version=1
-last_client=eeschema
+last_client=kicad
 [cvpcb]
 version=1
 NetIExt=net
@@ -40,8 +40,13 @@ LibName11=valves
 version=1
 [eeschema]
 version=1
-LibDir=/home/eddy/Docs/ELECTRONICS/STM8/voltmeters/kicad
+PageLayoutDescrFile=
+SubpartIdSeparator=0
+SubpartFirstId=65
+LibDir=/Data/documents/00__Electronics/STM8/voltmeters/kicad
 NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
 RptD_X=0
 RptD_Y=100
 RptLab=1
@@ -78,7 +83,7 @@ LibName28=atmel
 LibName29=contrib
 LibName30=valves
 LibName31=stm8
-LibName32=st-microelectronics
-LibName33=/home/eddy/Docs/ELECTRONICS/STM8/voltmeters/kicad/stm8s003
-LibName34=/home/eddy/Docs/ELECTRONICS/STM8/voltmeters/kicad/seven_segm
-LibName35=ht7136
+LibName32=ht7136
+LibName33=mcp3421
+LibName34=seven_segm
+LibName35=stm8s003
