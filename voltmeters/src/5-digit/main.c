@@ -22,6 +22,7 @@
 #include "main.h"
 #include "interrupts.h"
 #include "led.h"
+#include "soft_i2c.h"
 
 U32 Global_time = 0L; // global time in ms
 eeprom_data *saved_data = (eeprom_data*)EEPROM_START_ADDR;
@@ -66,7 +67,8 @@ void eeprom_default_setup(){
 int main() {
 	U32 T_LED = 0L;  // time of last digit update
 	U32 T_time = 0L; // timer
-
+	long voltage = 0L;
+	U8 cntr = 0;
 	// Configure clocking
 	CLK_CKDIVR = 0; // F_HSI = 16MHz, f_CPU = 16MHz
 	// Configure pins
@@ -103,18 +105,46 @@ int main() {
 	TIM2_IER = TIM_IER_CC2IE;
 	*/
 	eeprom_default_setup();
+	soft_I2C_setup();
+	soft_I2C_write_config(0xd0, 0x1c); // write configuration
 	// enable all interrupts
 	enableInterrupts();
 	set_display_buf("-----"); // on init show -----
 	// Loop
 	do {
-		if(((unsigned int)(Global_time - T_time) > 1000) || (T_time > Global_time)){ // once per 3 seconds we start measurement
+		// onse per 300ms refresh displayed value
+		if(((unsigned int)(Global_time - T_time) > 300) || (T_time > Global_time)){
 			T_time = Global_time;
-			display_long(testtimer++,0);
+			switch (soft_I2C_state){
+				case SOFT_I2C_NO_DEVICE:
+					set_display_buf(" EEE "); // error
+				break;
+				default: // refresh data
+					voltage /= cntr;
+					display_long(voltage, 1);
+					cntr = 0;
+					voltage = 0;
+			}
+
+			//display_long(testtimer++,0);
 		}
 		if((U8)(Global_time - T_LED) > LED_delay){
+			if(soft_I2C_state == SOFT_I2C_DATA_READ_OK){
+				if((readed_data & 1<<7) == 0){ // !RDY == 0
+					readed_data >>= 8;
+					// prepare data for rounded output
+					voltage += (long)(readed_data & 0x3ffff);
+					cntr++;
+				}
+			}
 			T_LED = Global_time;
 			show_next_digit();
+			// refresh data
+			if(soft_I2C_state == SOFT_I2C_NO_DEVICE){ // try to repeat writing config after an error
+				soft_I2C_write_config(0xd0, 0x1c);
+			}else{
+				soft_I2C_read4bytes(0xd0);
+			}
 		}
 	} while(1);
 }

@@ -21,6 +21,7 @@
 
 #include "stm8l.h"
 #include "interrupts.h"
+#include "soft_i2c.h"
 
 // Top Level Interrupt
 INTERRUPT_HANDLER(TLI_IRQHandler, 0){}
@@ -85,26 +86,15 @@ INTERRUPT_HANDLER(TIM5_CAP_COM_IRQHandler, 14){}
 INTERRUPT_HANDLER(TIM2_UPD_OVF_BRK_IRQHandler, 13){}
 
 // Timer2 Capture/Compare Interrupt
-// store the current counter value and wait for next pulse
+// process soft I2C
 INTERRUPT_HANDLER(TIM2_CAP_COM_IRQHandler, 14){
-	/*
-	TIM2_CR1 = 0; // stop timer
-	if(TIM2_SR2){ // overcapture: noice etc.
-		TIM2_SR2 = 0;
-		TIM2_SR1 = 0;
-		ZW_off();
-		return;
+	if(TIM2_SR1 & TIM_SR1_UIF){
+		TIM2_SR1 &= ~TIM_SR1_UIF; // take off flag
+		tick_counter++;
+		process_soft_I2C();
 	}
-	ZW_catch_bit();
-	TIM2_SR1 = 0;
-	TIM2_CNTRH = 0;
-	TIM2_CNTRL = 0;
-	*/
 }
-/*
-	TIM2_CCMR2 = 1; // IC2 is mapped on TI2FP2
-	TIM2_CCMR1 = 2; // IC1 is mapped on TI2FP1
-*/
+
 #endif // STM8S903
 
 #if defined (STM8S208) || defined(STM8S207) || defined(STM8S007) || defined(STM8S105) || \

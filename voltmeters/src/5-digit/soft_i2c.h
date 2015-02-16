@@ -1,5 +1,5 @@
 /*
- * main.h
+ * soft_i2c.h
  *
  * Copyright 2015 Edward V. Emelianoff <eddy@sao.ru>
  *
@@ -18,23 +18,35 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  */
+
 #pragma once
-#ifndef __MAIN_H__
-#define __MAIN_H__
+#ifndef __SOFT_I2C_H__
+#define __SOFT_I2C_H__
 
 #include "stm8l.h"
 
-#define EEPROM_MAGICK  (0x1234)
-#define DEFAULT_ADU_TO_MV  (35840)
-#define DEFAULT_MAX_ADU  (119800)
+// SDA - PC7, SCL - PD1
+#define I2C_SDA_PORT	PC
+#define I2C_SDA_PIN		GPIO_PIN7
+#define I2C_SCL_PORT	PD
+#define I2C_SCL_PIN		GPIO_PIN1
 
-typedef struct{
-	U16 magick;
-	U32 ADU_to_mV;
-	U32 max_ADU;
-}eeprom_data;
+typedef enum{
+	 SOFT_I2C_OK            // all OK
+	,SOFT_I2C_BUSY          // previous transmission is active
+	,SOFT_I2C_NO_DEVICE     // no device found
+	,SOFT_I2C_DATA_SEND_OK  // data transmitted without errors
+	,SOFT_I2C_DATA_READ_OK  // data readed without errors
+} soft_I2C_errors;
 
-#define CONCAT(a,b)		a##_##b
-#define PORT(a,b)		CONCAT(a,b)
+extern soft_I2C_errors soft_I2C_state;
+extern U32 readed_data;
+extern U8 tick_counter;
 
-#endif // __MAIN_H__
+void soft_I2C_setup();
+void soft_I2C_set_speed(U16 Pulse_len);
+void process_soft_I2C();
+U8 soft_I2C_write_config(U8 dev, U8 conf);
+U8 soft_I2C_read4bytes(U8 dev);
+
+#endif // __SOFT_I2C_H__

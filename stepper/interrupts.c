@@ -22,6 +22,7 @@
 #include "ports_definition.h"
 #include "main.h"
 #include "stepper.h"
+#include "soft_i2c.h"
 
 // Top Level Interrupt
 INTERRUPT_HANDLER(TLI_IRQHandler, 0){}

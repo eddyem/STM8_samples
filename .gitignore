@@ -8,3 +8,4 @@
 *.drl
 .hg*
 *.tgz
+.dropbox.attr

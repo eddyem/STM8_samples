@@ -1,4 +1,4 @@
-update=Вт 17 фев 2015 00:34:33
+update=Вт 17 фев 2015 00:35:25
 version=1
 last_client=eeschema
 [cvpcb]
@@ -40,7 +40,7 @@ LibName11=valves
 version=1
 [eeschema]
 version=1
-LibDir=/home/eddy/Docs/ELECTRONICS/STM8/voltmeters/kicad/5-digit;/home/eddy/Docs/ELECTRONICS/STM8/voltmeters/kicad
+LibDir=/home/eddy/Docs/ELECTRONICS/STM8/voltmeters/kicad
 NetFmtName=
 RptD_X=0
 RptD_Y=100
