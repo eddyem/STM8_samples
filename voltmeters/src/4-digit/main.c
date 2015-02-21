@@ -22,16 +22,30 @@
 #include "main.h"
 #include "interrupts.h"
 #include "led.h"
-#include "soft_i2c.h"
+
+int temp;
+#define PIX_SORT(a,b) { if ((a)>(b)) PIX_SWAP((a),(b)); }
+#define PIX_SWAP(a,b) { temp=(a);(a)=(b);(b)=temp; }
+int p[9]; // buffer for median filtering
+int opt_med9(){
+    PIX_SORT(p[1], p[2]) ; PIX_SORT(p[4], p[5]) ; PIX_SORT(p[7], p[8]) ;
+    PIX_SORT(p[0], p[1]) ; PIX_SORT(p[3], p[4]) ; PIX_SORT(p[6], p[7]) ;
+    PIX_SORT(p[1], p[2]) ; PIX_SORT(p[4], p[5]) ; PIX_SORT(p[7], p[8]) ;
+    PIX_SORT(p[0], p[3]) ; PIX_SORT(p[5], p[8]) ; PIX_SORT(p[4], p[7]) ;
+    PIX_SORT(p[3], p[6]) ; PIX_SORT(p[1], p[4]) ; PIX_SORT(p[2], p[5]) ;
+    PIX_SORT(p[4], p[7]) ; PIX_SORT(p[4], p[2]) ; PIX_SORT(p[6], p[4]) ;
+    PIX_SORT(p[4], p[2]) ; return(p[4]) ;
+}
+
 
 U32 Global_time = 0L; // global time in ms
-eeprom_data *saved_data = (eeprom_data*)EEPROM_START_ADDR;
+//eeprom_data *saved_data = (eeprom_data*)EEPROM_START_ADDR;
 
-U32 testtimer;
+//U32 testtimer;
 
 // one digit emitting time
 #define LED_delay  1
-
+/*
 U8 change_eeprom_value(U8 *addr, U8 *val, U8 len){
 	U8 i;
 	// unlock memory
@@ -63,12 +77,15 @@ void eeprom_default_setup(){
 		testtimer = 0; // other times - from zero
 	}
 }
+*/
 
 int main() {
 	U32 T_LED = 0L;  // time of last digit update
 	U32 T_time = 0L; // timer
+	int U = 0;
+	int pidx = 0; // index in median buffer
 	long voltage = 0L;
-	U8 cntr = 0;
+	long cntr = 0;
 	// Configure clocking
 	CLK_CKDIVR = 0; // F_HSI = 16MHz, f_CPU = 16MHz
 	// Configure pins
@@ -87,62 +104,48 @@ int main() {
 	TIM1_IER = TIM_IER_UIE;
 	// auto-reload + interrupt on overflow + enable
 	TIM1_CR1 = TIM_CR1_APRE | TIM_CR1_URS | TIM_CR1_CEN;
-	// Configure Timer2:
-	// capture/compare channel
-	// channel CC1 (0->1) stores low pulse length,
-	// channel CC2 (1->0) stores time period between two consequent zero-transitions
-	//TIM2_IER = TIM_IER_CC2IE;// |TIM_IER_UIE ;
-	//TIM2_CCER1 = 0x30; // CC2: enable, capture on 1->0; CC1: disable
-	// TIM2 frequency == 16MHz / 2^TIM2_PSCR
-	// main frequency: 1MHz
-//	TIM2_PSCR = 15;
-/*
-	TIM2_PSCR = 1; // 8MHz
-	TIM2_CCMR2 = 1;
-	TIM2_CCER1 = 0x10; // CC2: enable, capture on 0->1
-	TIM2_IER = TIM_IER_CC2IE;
-	*/
-	eeprom_default_setup();
-	soft_I2C_setup();
-	soft_I2C_write_config(0xd0, 0x1c); // write configuration
+	//eeprom_default_setup();
+	// configure ADC
+	// select PD2[AIN3] & enable interrupt for EOC
+	ADC_CSR = 0x23;
+	ADC_TDRL = 0x08; // disable Schmitt triger for AIN3
+	// right alignment
+	ADC_CR2 = 0x08; // don't forget: first read ADC_DRL!
+	// f_{ADC} = f/18 & continuous non-buffered conversion & wake it up
+	ADC_CR1 = 0x73;
+	ADC_CR1 = 0x73; // turn on ADC (this needs second write operation)
+
 	// enable all interrupts
 	enableInterrupts();
-	set_display_buf("-----"); // on init show -----
+	set_display_buf(" E0 "); // low power -> infinitive rebooting
 	// Loop
 	do {
 		// onse per 300ms refresh displayed value
 		if(((unsigned int)(Global_time - T_time) > 300) || (T_time > Global_time)){
 			T_time = Global_time;
-			switch (soft_I2C_state){
-				case SOFT_I2C_NO_DEVICE:
-					set_display_buf(" EEE "); // error
-				break;
-				default: // refresh data
-					voltage /= cntr;
-					display_long(voltage, 1);
-					cntr = 0;
-					voltage = 0;
-			}
-
-			//display_long(testtimer++,0);
+			voltage /= cntr; // average
+			// convert ADU to U: U = 10[R2/(R5,6+R2)]*ADU>>10[norm] *100[100th of V]*3.3[amplitude] ->
+			// U = (3300*ADU)>>10;
+			voltage *= 3300;
+			U = (int)(voltage >> 10);
+			display_int(U, 1);
+			cntr = 0;
+			voltage = 0L;
+			pidx = 0;
 		}
 		if((U8)(Global_time - T_LED) > LED_delay){
-			if(soft_I2C_state == SOFT_I2C_DATA_READ_OK){
-				if((readed_data & 1<<7) == 0){ // !RDY == 0
-					readed_data >>= 8;
-					// prepare data for rounded output
-					voltage += (long)(readed_data & 0x3ffff);
+			if(ADC_ready){
+				// prepare data for rounded output
+				p[pidx] = ADC_value;
+				if(++pidx == 9){ // buffer is ready
+					voltage += (long)(opt_med9());
 					cntr++;
+					pidx = 0;
 				}
+				ADC_ready = 0;
 			}
 			T_LED = Global_time;
 			show_next_digit();
-			// refresh data
-			if(soft_I2C_state == SOFT_I2C_NO_DEVICE){ // try to repeat writing config after an error
-				soft_I2C_write_config(0xd0, 0x1c);
-			}else{
-				soft_I2C_read4bytes(0xd0);
-			}
 		}
 	} while(1);
 }
