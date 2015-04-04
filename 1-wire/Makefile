@@ -1,16 +1,16 @@
 NAME=testproj
 SDCC=sdcc
 
-CCFLAGS=-DSTM8S003 -I../ -I/usr/share/sdcc/include -mstm8 --out-fmt-ihx
-LDFLAGS=-mstm8 --out-fmt-ihx -lstm8
-FLASHFLAGS=-cstlinkv2 -pstm8s003
+CCFLAGS=-DSTM8S105 -I../ -I/usr/share/sdcc/include -mstm8 --out-fmt-ihx
+LDFLAGS= -mstm8 --out-fmt-ihx -lstm8
+FLASHFLAGS=-cstlinkv2 -pstm8s105
 
 SRC=$(wildcard *.c)
 # ATTENTION: FIRST in list should be file with main()
 OBJ=$(SRC:%.c=%.rel)
 TRASH=$(OBJ) $(SRC:%.c=%.rst) $(SRC:%.c=%.asm) $(SRC:%.c=%.lst)
-TRASH+=$(SRC:%.c=%.sym)  $(NAME).lk $(NAME).map
-INDEPENDENT_HEADERS=../stm8l.h Makefile
+TRASH+=$(SRC:%.c=%.sym) $(NAME).lk $(NAME).map
+INDEPENDENT_HEADERS=../stm8l.h ports_definition.h Makefile
 
 all: $(NAME).ihx
 
