@@ -25,6 +25,8 @@
 
 #include "stm8l.h"
 
+#define ERR_TEMP_VAL  200000
+
 #define TIM2REGH(reg)  TIM2_##reg##H
 #define TIM2REGL(reg)  TIM2_##reg##L
 #define TIM2REG(reg, val)  do{TIM2REGH(reg) = val >> 8; TIM2REGL(reg) = val & 0xff;}while(0)
@@ -42,7 +44,6 @@
 #define RESET_BARRIER     ((U16)550)
 #define ONE_ZERO_BARRIER  ((U16)10)
 
-#define OW_CONVERSION_DONE ((PORT(PD,IDR) & GPIO_PIN3))
 #define OW_BUSY  ((TIM2_CR1 & TIM_CR1_CEN))
 
 
@@ -99,6 +100,24 @@ typedef enum{
 	OW_MODE_RESET       // reset bus
 } OW_modes;
 
+typedef struct{
+	U8 is_free;
+	U8 ROM_bytes[8];
+} ow_ROM;
+
+#define EEPROM_MAGICK  (0x1234)
+
+// there's only 128 bytes of EEPROM on STM8S003!!!
+// so we have not more than 14 sensors!
+#define MAX_SENSORS (14)
+
+typedef struct{
+	U16 magick;
+	ow_ROM ROMs[MAX_SENSORS];
+} eeprom_data;
+
+extern U8 ROM[];
+extern eeprom_data *saved_data;
 
 extern volatile U8  ow_data;          // byte to send/receive
 extern volatile U8  onewire_tick_ctr; // tick counter
@@ -119,5 +138,9 @@ void onewire_receive_bytes(U8 N);
 void onewire_send_bytes(U8 N);
 
 long gettemp();
+
+void eeprom_default_setup();
+U8 erase_saved_ROM(U8 num);
+U8 store_ROM();
 
 #endif // __ONEWIRE_H__

@@ -6,7 +6,7 @@ LDFLAGS= -mstm8 --out-fmt-ihx -lstm8
 FLASHFLAGS=-cstlinkv2 -pstm8s105
 
 SRC=$(wildcard *.c)
-# ATTENTION: FIRST in list should be file with main()
+
 OBJ=$(SRC:%.c=%.rel)
 TRASH=$(OBJ) $(SRC:%.c=%.rst) $(SRC:%.c=%.asm) $(SRC:%.c=%.lst)
 TRASH+=$(SRC:%.c=%.sym) $(NAME).lk $(NAME).map
@@ -14,10 +14,10 @@ INDEPENDENT_HEADERS=../stm8l.h ports_definition.h Makefile
 
 all: $(NAME).ihx
 
-$(SRC) : %.c : %.h $(INDEPENDENT_HEADERS)
-	@touch $@
-
-%.h: ;
+#$(SRC) : %.c : %.h $(INDEPENDENT_HEADERS)
+#	@touch $@
+#
+#%.h: ;
 
 clean:
 	rm -f $(TRASH)

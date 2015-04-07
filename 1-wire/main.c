@@ -26,21 +26,35 @@
 volatile unsigned long Global_time = 0L; // global time in ms
 U16 paused_val = 500; // interval between LED flashing
 volatile U8 waitforread = 0;
+U8 matchROM = 0,         // scan all stored ROMs
+starting_val = 0,        // starting ROM number for next portion of scan
+delete_notexistant = 0;  // delete all ROMs that not exists
 
-// show received scrtchpad
-void show_received_data(){
+void show_ROM(U8 *ptr){
 	char i;
-//	uart_write("show_received_data()\n");
-	for(i = 8; i > -1; i--){
-		if(i < 8) UART_send_byte(',');
-		printUHEX(ow_data_array[i]);
+	for(i = 7; i > -1; i--){
+		if(i < 7) UART_send_byte(',');
+		printUHEX(ptr[i]);
 	}
+	UART_send_byte('\n');
 	ow_process_resdata = NULL;
-	uart_write("\nTemp: ");
-	print_long(gettemp());
-	uart_write("dergC\n");
 }
 
+void show_last_ROM(){
+	char i;
+	for(i = 7; i > -1; i--)
+		ROM[i] = ow_data_array[i];
+	show_ROM(ROM);
+}
+
+void show_stored_ROMs(){
+	U8 i;
+	for(i = 0; i < MAX_SENSORS; i++)
+		if((saved_data->ROMs[i]).is_free == 0)
+			show_ROM((saved_data->ROMs[i]).ROM_bytes);
+}
+
+void show_received_data();
 // ask to read N bytes after temper request
 void send_read_seq(){
 //	uart_write("send_read_seq()\n");
@@ -48,14 +62,85 @@ void send_read_seq(){
 	ow_process_resdata = show_received_data;
 }
 
+void read_next_sensor(){
+	U8 i;
+	U8 *rom = NULL;
+	if(!onewire_reset()) return;
+	for(;starting_val < MAX_SENSORS; starting_val++)
+		if((saved_data->ROMs[starting_val]).is_free == 0){
+			rom = (saved_data->ROMs[starting_val]).ROM_bytes;
+			starting_val++;
+			break;
+		}
+	if(!rom){
+		ow_process_resdata = NULL;
+		delete_notexistant = 0;
+		return; // all done
+	}
+	ow_data_array[0] = OW_READ_SCRATCHPAD;
+	ow_process_resdata = send_read_seq;
+	for(i = 0; i < 8; i++){
+		ow_data_array[i+1] = rom[i];
+		//if(i) UART_send_byte(',');
+		//printUHEX(rom[i]);
+	}
+	ow_data_array[9] = OW_MATCH_ROM;
+	onewire_send_bytes(10);
+}
+
+// show received scrtchpad
+void show_received_data(){
+//	char i;
+	long L;
+/*
+	for(i = 8; i > -1; i--){
+		if(i < 8) UART_send_byte(',');
+		printUHEX(ow_data_array[i]);
+	}
+*/
+	print_long((long)starting_val);
+	uart_write(": ");
+	ow_process_resdata = NULL;
+	L = gettemp();
+	if(L == ERR_TEMP_VAL){
+		uart_write("no such device");
+		if(delete_notexistant){
+			uart_write(", ");
+			if(!erase_saved_ROM(starting_val-1)) uart_write("can't ");
+			uart_write("delete");
+		}
+	}else{
+		print_long(gettemp());
+		uart_write("/10 degr.C");
+	}
+	UART_send_byte('\n');
+	if(matchROM) // read next value if we have several sensors
+		read_next_sensor();
+}
+
 void wait_reading(){
 //	uart_write("wait_reading()\n");
-	waitforread = 1;
-	ow_process_resdata = NULL;
+	if(ow_data_array[0] == 0xff){ // the conversion is done!
+		waitforread = 1;
+		ow_process_resdata = NULL;
+	}else{
+		onewire_receive_bytes(1); // send read seq waiting for end of conversion
+	}
+}
+
+void start_temp_reading(){
+	if(!onewire_reset()){
+		uart_write("no devices found!");
+		return;
+	}
+	ow_data_array[0] = OW_CONVERT_T;
+	ow_data_array[1] = OW_SKIP_ROM;
+	ow_process_resdata = wait_reading;
+	onewire_send_bytes(2);
 }
 
 int main() {
-	unsigned long T = 0L;
+	unsigned long T = 0L, Tow = 0L;
 //	int Ival;
 	U8 rb;
 	CFG_GCR |= 1; // disable SWIM
@@ -80,6 +165,8 @@ int main() {
 
 	onewire_setup();
 
+	eeprom_default_setup();
+
 	// enable all interrupts
 	enableInterrupts();
 
@@ -88,16 +175,25 @@ int main() {
 		if((Global_time - T > paused_val) || (T > Global_time)){
 			T = Global_time;
 			PORT(LED_PORT, ODR) ^= LED_PIN; // blink on-board LED
-			if(!OW_CONVERSION_DONE) uart_write("conversion in process\n");
 		}
-		process_onewire();
+		if(Global_time != Tow){ // process every byte not frequently than once per 1ms
+			Tow = Global_time;
+			process_onewire();
+		}
 		if(UART_read_byte(&rb)){ // buffer isn't empty
 			switch(rb){
 				case 'h': // help
 				case 'H':
 					uart_write("\nPROTO:\n+/-\tLED period\nS/s\tset/get Mspeed\n"
 					"r: reset 1-wire\n"
-					"w: read temper\n");
+					"w: read temper\n"
+					"D: delete not existant ROMs (only for next reading cycle)\n"
+					"R: read ROM\n"
+					//"M: match ROM / not match ROM\n"
+					"S: store last readed ROM\n"
+					"Z: show all stored ROMs\n"
+					"W: read temperatures for all stored ROMs\n"
+					);
 				break;
 				case '+':
 					paused_val += 100;
@@ -116,27 +212,49 @@ int main() {
 					uart_write(")\n");
 				break;
 				case 'w':
-					if(!onewire_reset()){
-						uart_write("no devices found!");
-						break;
+					start_temp_reading();
+				break;
+				case 'D':
+					delete_notexistant = 1;
+				break;
+				case 'R':
+					if(onewire_reset()){
+						onewire_send_byte(OW_READ_ROM);
+						while(OW_BUSY);
+						ow_process_resdata = show_last_ROM;
+						onewire_receive_bytes(8);
 					}
-					ow_data_array[0] = OW_CONVERT_T;
-					ow_data_array[1] = OW_SKIP_ROM;
-					ow_process_resdata = wait_reading;
-					onewire_send_bytes(2);
+				break;
+			//	case 'M':
+			//		matchROM = !matchROM;
+			//	break;
+				case 'S':
+					uart_write("storing last ROM ");
+					if(!store_ROM()) uart_write("fails\n");
+					else uart_write("done\n");
+				break;
+				case 'Z':
+					show_stored_ROMs();
+				break;
+				case 'W':
+					matchROM = 1;
+					start_temp_reading();
 				break;
 			}
 		}
 		if(waitforread){
-			if(OW_CONVERSION_DONE){
-				if(onewire_reset()){
-					waitforread = 0;
-					ow_process_resdata = send_read_seq;
+			if(onewire_reset()){
+				ow_process_resdata = send_read_seq;
+				waitforread = 0;
+				if(!matchROM){
 					ow_data_array[0] = OW_READ_SCRATCHPAD;
 					ow_data_array[1] = OW_SKIP_ROM;
 					onewire_send_bytes(2);
-				}else uart_write("error reseting!");
-			}
+				}else{
+					starting_val = 0;
+					read_next_sensor();
+				}
+			}else uart_write("error reseting!");
 		}
 	}while(1);
 }

@@ -323,6 +323,17 @@ typedef unsigned long U32;
 #define TIM_SR1_CC1IF (1 << 1)
 #define TIM_SR1_UIF (1 << 0)
 
+/* TIM_EGR bits */
+#define TIM_EGR_BG (1 << 7)
+#define TIM_EGR_TG (1 << 6)
+#define TIM_EGR_COMG (1 << 5)
+#define TIM_EGR_CC4G (1 << 4)
+#define TIM_EGR_CC3G (1 << 3)
+#define TIM_EGR_CC2G (1 << 2)
+#define TIM_EGR_CC1G (1 << 1)
+#define TIM_EGR_UG (1 << 0)
+
+
 /* TIM2 */
 #define TIM2_CR1	*(unsigned char*)0x5300
 #if defined STM8S105 || defined STM8S103

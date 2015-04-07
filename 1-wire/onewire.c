@@ -22,6 +22,10 @@
 #include "ports_definition.h"
 #include "uart.h"
 
+// last gotten ROM in reverse order
+U8 ROM[8];
+
+eeprom_data *saved_data = (eeprom_data*)EEPROM_START_ADDR;
 // mode of 1-wire
 volatile OW_modes ow_mode = OW_MODE_OFF;
 // length of zero-pulse (TIM2_CCR1)
@@ -176,16 +180,16 @@ void onewire_send_bytes(U8 N){
  * process 1-wire events
  */
 void process_onewire(){
-	if(OW_BUSY || !OW_CONVERSION_DONE) return; // let data to be processed
+	if(OW_BUSY) return; // let data to be processed
 	switch(ow_mode){
 		case OW_MODE_RECEIVE_N: // wait for receiving of N bytes -> send next byte
-
+/*
 uart_write("receive ");
 printUHEX(ow_data);
 UART_send_byte(' ');
 printUHEX(onewire_gotlen);
 UART_send_byte('\n');
-
+*/
 			ow_data_array[--ow_byte_ctr] = ow_data;
 			if(ow_byte_ctr){ // there's some more data to receive
 				onewire_wait_for_receive(); // wait for another byte
@@ -198,21 +202,21 @@ UART_send_byte('\n');
 			}
 		break;
 		case OW_MODE_TRANSMIT_N:
-uart_write("transmit ");
+//uart_write("transmit ");
 			if(ow_byte_ctr){ // we have some more data to transmit
-printUHEX(ow_data_array[ow_byte_ctr-1]);
-UART_send_byte('\n');
+//printUHEX(ow_data_array[ow_byte_ctr-1]);
+//UART_send_byte('\n');
 				onewire_send_byte(ow_data_array[--ow_byte_ctr]);
 				return;
 			}
 			ow_mode = OW_MODE_OFF;
-uart_write("is over\n");
+//uart_write("is over\n");
 			if(ow_process_resdata){
 				ow_process_resdata();
 			}
 		break;
 		case OW_MODE_RESET:
-uart_write("reset done!\n");
+//uart_write("reset done!\n");
 			ow_mode = OW_MODE_OFF;
 		break;
 		default: // OW_MODE_OFF
@@ -222,7 +226,7 @@ uart_write("reset done!\n");
 
 /**
  * convert temperature from ow_data_array (scratchpad)
- * in case of error return 200000
+ * in case of error return 200000 (ERR_TEMP_VAL)
  * return value in 1000th degrees centigrade
  * don't forget that bytes in ow_data_array have reverce order!!!
  * so:
@@ -238,20 +242,87 @@ uart_write("reset done!\n");
  */
 long gettemp(){
 	// detect DS18S20
-	long t;
+	long t = 0L;
 	U8 l,m;
 	char v;
+	if(ow_data_array[1] == 0xff) // 0xff can be only if there's no such device or some other error
+		return ERR_TEMP_VAL;
+	m = ow_data_array[7];
+	l = ow_data_array[8];
 	if(ow_data_array[4] == 0xff){ // DS18S20
-		;
+		v = l >> 1 | (m & 0x80); // take signum from MSB
+		t = ((long)v) * 10L;
+		if(l&1) t += 5L; // decimal 0.5
 	}
 	else{
-		m = ow_data_array[7];
-		l = ow_data_array[8];
 		v = l>>4 | ((m & 7)<<4);
 		if(m&0x80){ // minus
 			v |= 0x80;
 		}
-		t = ((long)v) * 1000 + ((long)l&0x0f)*125;
+		t = ((long)v) * 10L;
+		m = l&0x0f; // add decimal
+		t += (long)m; // t = v*10 + l*1.25 -> convert
+		if(m > 1) t++; // 1->1, 2->3, 3->4, 4->5, 4->6
+		else if(m > 5) t+=2L; // 6->8, 7->9
 	}
 	return t;
+}
+
+U8 unlock_EEPROM(){
+	// unlock memory
+	FLASH_DUKR = EEPROM_KEY1;
+	FLASH_DUKR = EEPROM_KEY2;
+	// check bit DUL=1 in FLASH_IAPSR
+	if(!(FLASH_IAPSR & 0x08))
+		return 0;
+	return 1;
+}
+
+void lock_EEPROM(){
+	while(!(FLASH_IAPSR & 0x04)); // wait till end
+	// clear DUL to lock write
+	FLASH_IAPSR &= ~0x08;
+}
+
+/**
+ * setup EEPROM after first run: mark all cells as free
+ */
+void eeprom_default_setup(){
+	U8 i;
+	if(saved_data->magick == EEPROM_MAGICK) return; // all OK
+	if(!unlock_EEPROM()) return;
+	saved_data->magick = EEPROM_MAGICK;
+	for(i = 0; i < MAX_SENSORS; i++)
+		(saved_data->ROMs[i]).is_free = 1;
+	lock_EEPROM();
+}
+
+/**
+ * erase cell with number num
+ * return 0 if fails
+ */
+U8 erase_saved_ROM(U8 num){
+	if(!unlock_EEPROM()) return 0;
+	saved_data->ROMs[num].is_free = 1;
+	lock_EEPROM();
+	return 1;
+}
+
+/**
+ * store last ROM in EEPROM
+ * return 0 if fails
+ */
+U8 store_ROM(){
+	U8 i;
+	ow_ROM *cell = NULL;
+	for(i = 0; i < MAX_SENSORS; i++)
+		if(saved_data->ROMs[i].is_free) break;
+	if(i == MAX_SENSORS) return 0; // fail: all cells are busy
+	cell = &(saved_data->ROMs[i]);
+	if(!unlock_EEPROM()) return 0;
+	cell->is_free = 0;
+	for(i = 0; i < 8; i++)
+		cell->ROM_bytes[i] = ROM[i];
+	lock_EEPROM();
+	return 1;
 }
