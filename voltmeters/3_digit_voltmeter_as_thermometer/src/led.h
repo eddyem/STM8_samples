@@ -24,24 +24,12 @@
 
 #include "stm8l.h"
 
-#ifdef BUTNS
 extern volatile U8 buttons_state; // flags for button: 1 - pressed, 0 - not pressed
-#endif
 
+void LED_init();
 void set_display_buf(char *str);
-void show_buf_digit(U8 N);
 void show_next_digit();
-void lights_off();
 void display_int(int i, char voltmeter);
 void display_DP_at_pos(U8 i);
-
-/**
- * Initialize ports
- * PA3, PB4|5, PC3|4|5|6|7, PD1|4|5
-*/
-#define LED_init()	do{ \
-		PA_DDR = 0x08; PB_DDR = 0x30; PC_DDR = 0xf8; PD_DDR = 0x32; \
-		PA_CR1 = 0x08; PB_CR1 = 0x30; PC_CR1 = 0xf8; PD_CR1 = 0x32; \
-	}while(0)
 
 #endif // __LED_H__

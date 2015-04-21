@@ -43,14 +43,17 @@
  */
 
 /*
- * BUTTONS (if BUTNS defined)
+ * BUTTONS
+ * DON'T FORGET: PB4 & PB5 are "real open-drain"! They can't be pullup inputs, so
+ * 		you should solder resistor 10..47k to appropriate buttons!
  * 0 - PB4, 1 - PB5, 2 - PD1, 3..7 - PC3..PC7
  * or:
  * 0 - F(10), 1 - B(7), 2 - C(4), 3 - A(11), 4 - E(1), 5 - D(2), 6 - DP(3), 7 - G(5)
  */
-#ifdef BUTNS
 volatile U8 buttons_state;
-#endif
+
+static U8 display_buffer[3] = {' ',' ',' '}; // blank by default
+static U8 N_current = 0; // current digit to display
 
 /*
  * Number of digit on indicator with common anode
@@ -59,16 +62,29 @@ volatile U8 buttons_state;
 #define CLEAR_ANODES() do{PD_ODR &= ~(0x30);PA_ODR &= ~(0x08);}while(0)
 
 /************* arrays for ports *************/
-// PB, mask: 0x30, PB4:0x10=16, PB5:0x20=32
+// PB, mask: 0x30 (dec: 48), PB4:0x10=16, PB5:0x20=32
+// To light up a segment we should setup it as PPout -> this arrays are inverse!
 #define PB_BLANK 0x30
-static U8 PB_bits[18] = {0,16,16,16,0,32,32,16,0,0,0,32,32,16,32,32,48,32};
-// PC, mask: 0xF8, PC3:0x08=8, PC4:0x10=16, PC5:0x20=32, PC6:0x40=64, PC7:0x80=128
+static U8 PB_bits[18] = {48,32,32,32,48,16,16,32,48,48,48,16,16,32,16,16,0,16};
+// PC, mask: 0xF8 (dec: 248), PC3:0x08=8, PC4:0x10=16, PC5:0x20=32, PC6:0x40=64, PC7:0x80=128
 #define PC_BLANK 0xF8
-//static U8 PC_bits[18] = {128,184,0,16,56,16,0,176,0,16,32,8,128,8,0,32,56,40};
-static U8 PC_bits[18] = {192,248,64,80,120,80,64,240,64,80,96,72,192,72,64,96,120,104};
+static U8 PC_bits[18] = {56,0,184,168,128,168,184,8,184,168,152,176,56,176,184,152,128,144};
 // PD, mask: 0x02, PD1
-static U8 PD_bits[18] = {0,0,2,0,0,0,0,0,0,0,0,0,2,0,2,2,2,0};
+static U8 PD_bits[18] = {2,2,0,2,2,2,2,2,2,2,2,2,0,2,0,0,0,2};
 #define PD_BLANK 0x02
+
+/**
+ * Initialize ports
+ * anodes (PA3, PD4, PD5) are push-pull outputs,
+ * cathodes (PB4, PB5, PD1, PC3..PC7) are ODouts in active mode, pullup inputs in buttons reading and floating inputs in inactive
+ * PA3, PB4|5, PC3|4|5|6|7, PD1|4|5
+*/
+void LED_init(){
+	PA_DDR |= 0x08; PD_DDR |= 0x30; // anodes are PPout, cathodes  will be PPout only in active mode
+	PA_CR1 |= 0x08; PD_CR1 |= 0x30;
+	// prepare cathodes ODR
+	PB_ODR &= ~PB_BLANK; PC_ODR &= ~PC_BLANK; PD_ODR &= ~PD_BLANK;
+}
 
 /*
  ********************* GPIO (page 111) ********************
@@ -81,81 +97,64 @@ static U8 PD_bits[18] = {0,0,2,0,0,0,0,0,0,0,0,0,2,0,2,2,2,0};
  */
 
 /**
- * Setup for writing a letter
- * @param ltr - letter (0..17 for 0..F, - or h | 0x80 for DP, any other value for 'space')
+ * Show next digit - function calls from main() by some system time value amount
  */
-void write_letter(U8 ltr){
-	U8 L = ltr & 0x7f;
-// process buttons attached to A1 and cathodes
-#ifdef BUTNS
-if(PA_DDR & 0x08){ // first digit was lighten up
-// convert all cathodes to pullup inputs (CR1 is already in ones)
+void show_next_digit(){
+	U8 L = display_buffer[N_current] & 0x7f;
+	// first turn all off
+	CLEAR_ANODES();
+	// convert all cathodes to pullup inputs (CR1 is already in ones)
 	PB_DDR &= ~PB_BLANK;
 	PC_DDR &= ~PC_BLANK;
 	PD_DDR &= ~PD_BLANK;
-// and turn anode into zero
-	//PA_ODR &= ~0x08;
-}
-#endif
-	// first turn all off
-	CLEAR_ANODES();
-	// light up all segments
-	PB_ODR &= ~PB_BLANK;
-	PC_ODR &= ~PC_BLANK;
-	PD_ODR &= ~PD_BLANK;
-	// now clear spare segments
+	PB_CR1 |= PB_BLANK;
+	PC_CR1 |= PC_BLANK;
+	PD_CR1 |= PD_BLANK;
+// process buttons attached to A1 and cathodes
+	if(N_current == 1){ // first digit was lighten up, now we light second -- check buttons
+		// now check button states: 0 - PB4, 1 - PB5, 2 - PD1, 3..7 - PC3..PC7
+		buttons_state =
+			((PB_IDR & PB_BLANK) >> 4) |
+			((PD_IDR & PD_BLANK) << 1) |
+			(PC_IDR & PC_BLANK);
+	}
+	// switch all anodes to floating inputs
+	PA_DDR &= ~0x08; PA_CR1 &= ~0x08;
+	PD_DDR &= ~0x30; PD_CR1 &= ~0x30;
+	// turn off pullups of cathodes (also all outputs now will be OD)
+	PB_CR1 &= ~PB_BLANK;
+	PC_CR1 &= ~PC_BLANK;
+	PD_CR1 &= ~PD_BLANK;
+	// now set spare segments switching them to ODoutputs
 	if(L < 18){ // letter
-		PB_ODR |= PB_bits[L];
-		PC_ODR |= PC_bits[L];
-		PD_ODR |= PD_bits[L];
-	}else{ // space - turn all OFF
-		PB_ODR |= PB_BLANK;
-		PC_ODR |= PC_BLANK;
-		PD_ODR |= PD_BLANK;
+		PB_DDR |= PB_bits[L];
+		PC_DDR |= PC_bits[L];
+		PD_DDR |= PD_bits[L];
 	}
-	if(ltr & 0x80){ // DP
-		PC_ODR &= ~GPIO_PIN6;
+	if(display_buffer[N_current] & 0x80){ // DP
+		PC_DDR |= GPIO_PIN6;
 	}
-#ifdef BUTNS
-if(PA_DDR & 0x08){ // first digit was lighten up
-// now check button states: 0 - PB4, 1 - PB5, 2 - PD1, 3..7 - PC3..PC7
-	buttons_state =
-		((PB_IDR & PB_BLANK) >> 4) |
-		((PD_IDR & PD_BLANK) << 1) |
-		(PC_IDR & PC_BLANK);
-	PA_DDR &= ~0x08; // switch first anode to input
-	// and switch cathodes to output
-	PB_DDR |= PB_BLANK;
-	PC_DDR |= PC_BLANK;
-	PD_DDR |= PD_BLANK;
-}
-#endif
-}
 
-/**
- * Turn on anode power for digit N (0..2: PA3, PD4, PD5 -- A0x08, D0x10, D0x20)
- * @param N - number of digit (0..2), if other - no action (display off)
- * @return
- */
-void light_up_digit(U8 N){
-	switch(N){
+	switch(N_current){
 		case 0:
-#ifdef BUTNS
 			PA_DDR |= 0x08; // switch to output
-#endif
+			PA_CR1 |= 0x08; // push-pull
 			PA_ODR |= 0x08;
 		break;
 		case 1:
+			PD_DDR |= 0x10;
+			PD_CR1 |= 0x10;
 			PD_ODR |= 0x10;
 		break;
 		case 2:
+			PD_DDR |= 0x20;
+			PD_CR1 |= 0x20;
 			PD_ODR |= 0x20;
 		break;
 	}
-}
 
-static U8 display_buffer[3] = {' ',' ',' '}; // blank by default
-static U8 N_current = 0; // current digit to display
+	if(++N_current > 2) N_current = 0;
+}
 
 /**
  * fills buffer to display
@@ -209,36 +208,8 @@ void set_display_buf(char *str){
 }
 
 /**
- * Show Nth digit of buffer (function ran by timer)
- * @param N - number of digit in buffer (0..3)
- */
-void show_buf_digit(U8 N){
-	if(N > 2) return;
-	write_letter(display_buffer[N]);
-	light_up_digit(N);
-}
-
-/**
- * Show next digit - function calls from main() by some system time value amount
- */
-void show_next_digit(){
-	show_buf_digit(N_current++);
-	if(N_current > 2) N_current = 0;
-}
-
-/**
- * Turn off current digit: to change display brightness
- */
-void lights_off(){
-	U8 N;
-	if(N_current) N = N_current - 1;
-	else N = 2;
-	light_up_digit(N);
-}
-
-/**
  * convert integer value i into string and display it
- * @param i - value to display, -99 <= i <= 999, if wrong, displays "---E"
+ * @param i - value to display, -99 <= i <= 999, if wrong, displays "--E"
  */
 void display_int(int I, char voltmeter){
 	int rem;

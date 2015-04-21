@@ -1,7 +1,7 @@
 NAME=testproj
 SDCC=sdcc
 
-CCFLAGS=-DSTM8S003 -I../ -I../../ -I/usr/share/sdcc/include -mstm8 --out-fmt-ihx -DBUTNS
+CCFLAGS=-DSTM8S003 -I../ -I../../ -I/usr/share/sdcc/include -mstm8 --out-fmt-ihx
 LDFLAGS=-mstm8 --out-fmt-ihx -lstm8
 FLASHFLAGS=-cstlinkv2 -pstm8s003
 
@@ -13,8 +13,8 @@ INDEPENDENT_HEADERS=../stm8l.h Makefile
 
 all: $(NAME).ihx
 
-$(SRC) : %.c : %.h $(INDEPENDENT_HEADERS)
-	@touch $@
+#$(SRC) : %.c : %.h $(INDEPENDENT_HEADERS)
+#	@touch $@
 
 %.h: ;
 
