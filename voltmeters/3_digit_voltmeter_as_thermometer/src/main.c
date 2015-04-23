@@ -214,6 +214,7 @@ int main() {
 								set_display_buf("eee");
 							}else{
 								display_int(starting_val+1,0);
+								read_next_sensor();
 							}
 						}
 					}

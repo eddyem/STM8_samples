@@ -1,4 +1,4 @@
-update=Пт 10 апр 2015 00:07:11
+update=Чт 23 апр 2015 20:20:15
 version=1
 last_client=kicad
 [cvpcb]
@@ -83,7 +83,4 @@ LibName28=atmel
 LibName29=contrib
 LibName30=valves
 LibName31=stm8
-LibName32=ht7136
-LibName33=mcp3421
-LibName34=seven_segm
-LibName35=stm8s003
+LibName32=local
