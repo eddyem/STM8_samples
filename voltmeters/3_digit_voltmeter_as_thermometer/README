@@ -1,0 +1,20 @@
+Look schematic in directory kicad
+
+If you want to measure simply one point, just connect DS18B20 or DS18S20. Thermometer is polling each 1 second.
+
+By pressing "Store new rom" button you can save ROM of connecter thermometer in EEPROM of STM8.
+Saving several ROMs & connecting after that all thermometers you will be able to see themperature in each
+point: for 0.3 seconds will be displayed sensor number (you will see it when press "store" button) after for 0.7s
+will be displayed themperature.
+
+Press "delete nonexistant" to delete ROMs of not connected thermometers
+
+Press "delete all" to delete all ROMs stored.
+
+
+DISPLAYER ERRORS:
+  --- - starting
+  e00 - Not found any DS18x20 (broken wire?)
+  eab - Error when read (or sensor with that number is absent)
+  eee - strange EEPROM error
+  eff - can't store last ROM: no space left or EEPROM error
