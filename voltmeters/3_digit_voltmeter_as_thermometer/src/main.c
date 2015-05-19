@@ -195,8 +195,12 @@ int main() {
 					set_display_buf("eab");
 				}else{
 					temp_ready = 0;
-					display_int((int)temp_readed,0);
-					display_DP_at_pos(1);
+					if(temp_readed > -100 && temp_readed < 1000){
+						display_int((int)temp_readed, 0);
+						display_DP_at_pos(1);
+					}else{ // display only integer part
+						display_int((int)temp_readed/10, 0);
+					}
 				}
 				if(matchROM) ++starting_val;
 			}else{ // show number
