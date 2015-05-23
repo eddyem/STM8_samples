@@ -26,6 +26,49 @@
 volatile unsigned long Global_time = 0L; // global time in ms
 U16 paused_val = 500; // interval between LED flashing
 
+#if defined STM8S105
+U8 unlock_EEPROM(){
+	// unlock memory
+	FLASH_DUKR = EEPROM_KEY1;
+	FLASH_DUKR = EEPROM_KEY2;
+	// check bit DUL=1 in FLASH_IAPSR
+	if(!(FLASH_IAPSR & 0x08))
+		return 0;
+	return 1;
+}
+
+void lock_EEPROM(){
+	while(!(FLASH_IAPSR & 0x04)); // wait till end
+	// clear DUL to lock write
+	FLASH_IAPSR &= ~0x08;
+}
+
+/**
+ * check OPT2 bit AFR6 for I2C remapping to PB4/PB5
+ */
+U8 opt2_default_setup(){
+	U8 ret = 0;
+	U8 val = OPT2 | 0x40;
+	if(OPT2 & 0x40) return 0;
+	disableInterrupts();
+	FLASH_CR2 = 0x80; // enable write OPT
+	FLASH_NCR2 = ~0x80;
+	if(!unlock_EEPROM()){ret = 1; goto out;}
+	if(!(FLASH_CR2 & 0x80)){ret = 3; goto out;}
+	// set AFR6 in OPT2 & reset in NOPT2
+	OPT2 = val;
+	NOPT2 = ~val;
+	lock_EEPROM();
+	FLASH_CR2 &= ~0x80; // disable write OPT
+	FLASH_NCR2 |= 0x80;
+	ret = 2;
+out:
+	enableInterrupts();
+	return ret;
+}
+#endif // STM8S105
+
+
 int main() {
 	unsigned long T = 0L, siT = 0L;
 	U8 rb;
@@ -46,6 +89,9 @@ int main() {
 	PORT(LED_PORT, DDR)  |= LED_PIN;
 	PORT(LED_PORT, CR1)  |= LED_PIN;
 
+#if defined STM8S105
+	opt2_default_setup();
+#endif
 	uart_init();
 
 	si7005_setup();
@@ -67,6 +113,7 @@ int main() {
 						"I\tread Si7005 device id\n"
 						"T\tread themperature\n"
 						"P\tread pressure\n"
+						//"O\tread OPT"
 					);
 				break;
 				case '+':
@@ -88,6 +135,14 @@ int main() {
 				case 'P':
 					si7005_read_P();
 				break;
+/*				case 'O':
+					printUHEX(OPT2);
+					printUHEX(NOPT2);
+				break;
+				case 'W':
+					printUHEX(opt2_default_setup());
+				break;
+*/
 			}
 		}
 		if(Global_time != siT){

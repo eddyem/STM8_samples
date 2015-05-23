@@ -67,12 +67,15 @@ void si7005_read_ID(){
  */
 void si7005_read_T(){
 	const U8 cmd[2] = {0x03, 0x11};
+	i2c_status st = I2C_OK;
 	if(state != RELAX){
 		error_msg("measurements are in process");
 		return;
 	}
-	if(i2c_7bit_send(cmd, 2) != I2C_OK){
-		error_msg("can't send read sequence");
+	st = i2c_7bit_send(cmd, 2);
+	if(st != I2C_OK){
+		error_msg("can't send read sequence ");
+		printUHEX(st);UART_send_byte('\n');
 		return;
 	}
 	state = WAITFORT;
@@ -83,12 +86,15 @@ void si7005_read_T(){
  */
 void si7005_read_P(){
 	const U8 cmd[2] = {0x03, 0x01};
+	i2c_status st = I2C_OK;
 	if(state != RELAX){
 		error_msg("measurements are in process");
 		return;
 	}
-	if(i2c_7bit_send(cmd, 2) != I2C_OK){
-		error_msg("can't send read sequence");
+	st = i2c_7bit_send(cmd, 2);
+	if(st != I2C_OK){
+		error_msg("can't send read sequence ");
+		printUHEX(st);UART_send_byte('\n');
 		return;
 	}
 	state = WAITFORP;

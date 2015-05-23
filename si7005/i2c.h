@@ -32,7 +32,7 @@ typedef enum{
 	I2C_TMOUT,
 	I2C_NOADDR,
 	I2C_NACK,
-	I2C_HWPROBLEM
+	I2C_HWPROBLEM,
 } i2c_status;
 
 void i2c_setup();
