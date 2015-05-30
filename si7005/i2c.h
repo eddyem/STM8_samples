@@ -37,9 +37,9 @@ typedef enum{
 
 void i2c_setup();
 void i2c_set_addr7(U8 addr);
-i2c_status i2c_7bit_send_onebyte(U8 data);
-i2c_status i2c_7bit_send(U8 *data, U8 datalen);
-i2c_status i2c_7bit_receive_onebyte(U8 *data);
-i2c_status i2c_7bit_receive_twobyte(U8 *data);
+i2c_status i2c_7bit_send_onebyte(U8 data, U8 stop);
+i2c_status i2c_7bit_send(U8 *data, U8 datalen, U8 stop);
+i2c_status i2c_7bit_receive_onebyte(U8 *data, U8 wait);
+i2c_status i2c_7bit_receive_twobyte(U8 *data, U8 wait);
 
 #endif // __I2C_H__

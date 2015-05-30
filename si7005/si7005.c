@@ -48,17 +48,16 @@ void si7005_read_ID(){
 		error_msg("measurements are in process");
 		return;
 	}
-	if((st = i2c_7bit_send_onebyte(0x11)) == I2C_OK){
-		if((st = i2c_7bit_receive_onebyte(&ID)) == I2C_OK){
+	if((st = i2c_7bit_send_onebyte(0x11, 0)) == I2C_OK){
+		if((st = i2c_7bit_receive_onebyte(&ID,0)) == I2C_OK){
 			uart_write("got ID: ");
 			printUHEX(ID);
 			UART_send_byte('\n');
 		}
 	}
 	if(st != I2C_OK){
-		uart_write("can't write 0x11, errcode: ");
-		printUHEX(st);
-		UART_send_byte('\n');
+		uart_write("can't read ID, errcode: ");
+		printUHEX(st); UART_send_byte('\n');
 	}
 }
 
@@ -72,9 +71,9 @@ void si7005_read_T(){
 		error_msg("measurements are in process");
 		return;
 	}
-	st = i2c_7bit_send(cmd, 2);
+	st = i2c_7bit_send(cmd, 2, 1);
 	if(st != I2C_OK){
-		error_msg("can't send read sequence ");
+		error_msg("can't send read sequence, err: ");
 		printUHEX(st);UART_send_byte('\n');
 		return;
 	}
@@ -91,9 +90,9 @@ void si7005_read_P(){
 		error_msg("measurements are in process");
 		return;
 	}
-	st = i2c_7bit_send(cmd, 2);
+	st = i2c_7bit_send(cmd, 2, 1);
 	if(st != I2C_OK){
-		error_msg("can't send read sequence ");
+		error_msg("can't send read sequence, err: ");
 		printUHEX(st);UART_send_byte('\n');
 		return;
 	}
@@ -121,6 +120,7 @@ static void display_data(U8 *d){
 			return;
 	}
 	print_long(idata);
+	UART_send_byte('\n');
 }
 
 /*
@@ -131,21 +131,21 @@ void si7005_process(){
 	i2c_status st;
 	if(state == RELAX) return;
 	if(state == WAITFORP || state == WAITFORT){ // poll RDY
-		if(i2c_7bit_send_onebyte(0) == I2C_OK){
-			if(i2c_7bit_receive_onebyte(&b) == I2C_OK){
+		if((st = i2c_7bit_send_onebyte(0, 0)) == I2C_OK){
+			if(i2c_7bit_receive_onebyte(&b,0) == I2C_OK){
 				if(b) return; // !RDY
-				if((st = i2c_7bit_send_onebyte(1)) == I2C_OK)
-					if((st = i2c_7bit_receive_twobyte(T)) == I2C_OK)
+				if((st = i2c_7bit_send_onebyte(1, 0)) == I2C_OK)
+					if((st = i2c_7bit_receive_twobyte(T,0)) == I2C_OK)
 						display_data(T);
 				state = RELAX;
 				if(st){
 					uart_write("can't read value, err: ");
-					printUHEX(st);
-					UART_send_byte('\n');
+					printUHEX(st); UART_send_byte('\n');
 				}
 			}
 		}else{
-			error_msg("can't poll !RDY");
+			error_msg("can't poll !RDY, err: ");
+			printUHEX(st); UART_send_byte('\n');
 			state = RELAX;
 		}
 	}
