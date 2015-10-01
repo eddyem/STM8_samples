@@ -492,6 +492,42 @@ typedef unsigned long U32;
 // CCR REGISTER: bits 3&5 should be 1 if you wanna change EXTI_CRx
 #define CCR			*(unsigned char*)0x7F0A
 
+/* -------------------- OPTION BYTES -------------------- */
+#if defined STM8S105
+// readout protection
+#define OPT0		*(unsigned char*)0x4800
+// user boot code
+#define OPT1		*(unsigned char*)0x4801
+#define NOPT1		*(unsigned char*)0x4802
+// alternate functions remapping
+// | AFR7 | ... | AFR0 |
+// AFR7 - PD4 = BEEP; AFR6 - PB4/PB5 = I2C; AFR5 - PB0..3 - TIM1
+// AFR4 - PD7 = TIM1_CH4; AFR3 - PD0 = TIM1_BKIN
+// AFR2 - PD0 = CLK_CCO; AFR1 - PA3 = TIM3_CH1, PD2 = TIM2_CH3
+// AFR0 - PD3 = ADC_ETR
+#define OPT2		*(unsigned char*)0x4803
+#define NOPT2		*(unsigned char*)0x4804
+// trim, watchdog
+#define OPT3		*(unsigned char*)0x4805
+#define NOPT3		*(unsigned char*)0x4806
+// extclc, awu
+#define OPT4		*(unsigned char*)0x4807
+#define NOPT4		*(unsigned char*)0x4808
+// HSE stab time
+#define OPT5		*(unsigned char*)0x4809
+#define NOPT5		*(unsigned char*)0x480a
+// none
+#define OPT6		*(unsigned char*)0x480b
+#define NOPT6		*(unsigned char*)0x480c
+// none
+#define OPT7		*(unsigned char*)0x480d
+#define NOPT7		*(unsigned char*)0x480e
+// bootloader opt byte
+#define OPTBL		*(unsigned char*)0x487e
+#define NOPTBL		*(unsigned char*)0x487f
+
+#endif
+
 #endif // __STM8L_H__
 
 // #define 		*(unsigned char*)0x
