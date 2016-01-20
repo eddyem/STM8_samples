@@ -3,7 +3,7 @@ SDCC=sdcc
 
 CCFLAGS=-DSTM8S105 -I../ -I/usr/share/sdcc/include -mstm8 --out-fmt-ihx
 LDFLAGS= -mstm8 --out-fmt-ihx -lstm8
-FLASHFLAGS=-cstlinkv2 -pstm8s105
+FLASHFLAGS=-cstlinkv2 -pstm8s105?4
 
 SRC=$(wildcard *.c)
 
