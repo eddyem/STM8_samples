@@ -255,15 +255,12 @@ long gettemp(){
 		if(l&1) t += 5L; // decimal 0.5
 	}
 	else{
-		v = l>>4 | ((m & 7)<<4);
-		if(m&0x80){ // minus
-			v |= 0x80;
-		}
+		v = l>>4 | ((m & 7)<<4) | (m & 0x80);
 		t = ((long)v) * 10L;
 		m = l&0x0f; // add decimal
-		t += (long)m; // t = v*10 + l*1.25 -> convert
-		if(m > 1) t++; // 1->1, 2->3, 3->4, 4->5, 4->6
-		else if(m > 5) t+=2L; // 6->8, 7->9
+		t += (long)m; // t = v*10 + l*0.625 -> convert
+		if(m) ++t; // 1->1, 2->3, 3->4, 4->5, 5->6
+		if(m > 5) ++t; // 6->8, 7->9
 	}
 	return t;
 }

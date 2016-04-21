@@ -171,6 +171,34 @@ typedef unsigned long U32;
 #define SPI_CRCPR		*(unsigned char*)0x5205
 #define SPI_RXCRCR		*(unsigned char*)0x5206
 #define SPI_TXCRCR		*(unsigned char*)0x5207
+// SPI_CR1 (page 271): | LSBFIRST | SPE | BR[2:0] | MSTR | CPOL | CPHA |
+#define SPI_CR1_LSBFIRST (1<<7)
+#define SPI_CR1_SPE      (1<<6)
+#define SPI_CR1_BRMASK   (0x38)
+#define SPI_CR1_MSTR     (1<<2)
+#define SPI_CR1_CPOL     (1<<1)
+#define SPI_CR1_CPHA     (1)
+// SPI_CR2 (page 272): | BDM | BDOE | CRCEN | CRCNEXT | - | RXONLY | SSM | SSI |
+#define SPI_CR2_BDM      (1<<7)
+#define SPI_CR2_BDOE     (1<<6)
+#define SPI_CR2_CRCEN    (1<<5)
+#define SPI_CR2_CRCNEXT  (1<<4)
+#define SPI_CR2_RXONLY   (1<<2)
+#define SPI_CR2_SSM      (1<<1)
+#define SPI_CR2_SSI      (1)
+// SPI_ICR (page 273): | TXIE | RXIE | ERRIE | WKIE | - | - | - | - |
+#define SPI_ICR_TXIE     (1<<7)
+#define SPI_ICR_RXIE     (1<<6)
+#define SPI_ICR_ERRIE    (1<<5)
+#define SPI_ICR_WKIE     (1<<4)
+// SPI_SR (page 274):  | BSY | OVR | MODF | CRCERR | WKUP | - | TXE | RXNE |
+#define SPI_SR_BSY       (1<<7)
+#define SPI_SR_OVR       (1<<6)
+#define SPI_SR_MODF      (1<<5)
+#define SPI_SR_CRCERR    (1<<4)
+#define SPI_SR_WKUP      (1<<3)
+#define SPI_SR_TXE       (1<<1)
+#define SPI_SR_RXNE      (1)
 
 /* ------------------- I2C ------------------- */
 #define I2C_CR1			*(unsigned char*)0x5210
