@@ -1,0 +1,402 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:stm8
+LIBS:bake-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L STM8L101F3P U1
+U 1 1 5A4A0140
+P 5500 2650
+F 0 "U1" H 4350 3550 50  0000 L CNN
+F 1 "STM8L101F3P" H 4350 3450 50  0000 L CNN
+F 2 "Housings_SSOP.pretty:TSSOP-20_4.4x6.5mm_Pitch0.65mm" H 4350 1850 50  0001 L CIN
+F 3 "" H 5500 2250 50  0001 C CNN
+	1    5500 2650
+	1    0    0    -1  
+$EndComp
+Text Notes 1400 1450 0    60   ~ 0
+IN:\n2 концевика комфорок\n2 ручки включения\nOUT:\n1 динамик\n2 светодиода\n1 beeper out (соед. с динамиком)
+$Comp
+L CONN_01X02 J1
+U 1 1 5A4A1481
+P 1900 2250
+F 0 "J1" H 1900 2400 50  0000 C CNN
+F 1 "power" V 2000 2250 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks.pretty:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 1900 2250 50  0001 C CNN
+F 3 "" H 1900 2250 50  0001 C CNN
+	1    1900 2250
+	-1   0    0    -1  
+$EndComp
+$Comp
+L GND #PWR01
+U 1 1 5A4A160E
+P 2150 2300
+F 0 "#PWR01" H 2150 2050 50  0001 C CNN
+F 1 "GND" H 2150 2150 50  0000 C CNN
+F 2 "" H 2150 2300 50  0001 C CNN
+F 3 "" H 2150 2300 50  0001 C CNN
+	1    2150 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2100 2300 2250 2300
+$Comp
+L VDD #PWR02
+U 1 1 5A4A162A
+P 2150 2200
+F 0 "#PWR02" H 2150 2050 50  0001 C CNN
+F 1 "VDD" H 2150 2350 50  0000 C CNN
+F 2 "" H 2150 2200 50  0001 C CNN
+F 3 "" H 2150 2200 50  0001 C CNN
+	1    2150 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2100 2200 2250 2200
+$Comp
+L VDD #PWR03
+U 1 1 5A4A1649
+P 5500 1700
+F 0 "#PWR03" H 5500 1550 50  0001 C CNN
+F 1 "VDD" H 5500 1850 50  0000 C CNN
+F 2 "" H 5500 1700 50  0001 C CNN
+F 3 "" H 5500 1700 50  0001 C CNN
+	1    5500 1700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 1700 5500 1750
+$Comp
+L GND #PWR04
+U 1 1 5A4A1678
+P 5500 3600
+F 0 "#PWR04" H 5500 3350 50  0001 C CNN
+F 1 "GND" H 5500 3450 50  0000 C CNN
+F 2 "" H 5500 3600 50  0001 C CNN
+F 3 "" H 5500 3600 50  0001 C CNN
+	1    5500 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 3600 5500 3550
+$Comp
+L Q_PMOS_GSD Q2
+U 1 1 5A4A181D
+P 7950 2050
+F 0 "Q2" H 8150 2100 50  0000 L CNN
+F 1 "SI2305DS" H 8150 2000 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD.pretty:SOT-23_Handsoldering" H 8150 2150 50  0001 C CNN
+F 3 "" H 7950 2050 50  0001 C CNN
+	1    7950 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L VDD #PWR05
+U 1 1 5A4A1A28
+P 7600 1100
+F 0 "#PWR05" H 7600 950 50  0001 C CNN
+F 1 "VDD" H 7600 1250 50  0000 C CNN
+F 2 "" H 7600 1100 50  0001 C CNN
+F 3 "" H 7600 1100 50  0001 C CNN
+	1    7600 1100
+	1    0    0    -1  
+$EndComp
+Text Label 6800 2050 0    60   ~ 0
+SWIM
+Text Label 6900 2150 0    60   ~ 0
+NRST
+Wire Wire Line
+	6900 2150 6800 2150
+Text Label 7650 1450 2    60   ~ 0
+SWIM
+Text Label 7650 1350 2    60   ~ 0
+NRST
+$Comp
+L GND #PWR06
+U 1 1 5A4A1B70
+P 7250 1150
+F 0 "#PWR06" H 7250 900 50  0001 C CNN
+F 1 "GND" H 7250 1000 50  0000 C CNN
+F 2 "" H 7250 1150 50  0001 C CNN
+F 3 "" H 7250 1150 50  0001 C CNN
+	1    7250 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X04 J4
+U 1 1 5A4A1BAE
+P 7850 1300
+F 0 "J4" H 7850 1550 50  0000 C CNN
+F 1 "SWIM" V 7950 1300 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks.pretty:TerminalBlock_Pheonix_MPT-2.54mm_4pol" H 7850 1300 50  0001 C CNN
+F 3 "" H 7850 1300 50  0001 C CNN
+	1    7850 1300
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR07
+U 1 1 5A4A2086
+P 8050 2300
+F 0 "#PWR07" H 8050 2050 50  0001 C CNN
+F 1 "GND" H 8050 2150 50  0000 C CNN
+F 2 "" H 8050 2300 50  0001 C CNN
+F 3 "" H 8050 2300 50  0001 C CNN
+	1    8050 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8050 2300 8050 2250
+Text Label 8050 1800 0    60   ~ 0
+Sound
+Wire Wire Line
+	8050 1800 8050 1850
+Text Label 4200 2050 2    60   ~ 0
+Burner0
+Text Label 4200 2150 2    60   ~ 0
+Burner1
+Text Label 6800 2950 0    60   ~ 0
+B0On
+Text Label 6800 3050 0    60   ~ 0
+B1On
+Text Label 7300 3150 0    60   ~ 0
+LED0
+Text Label 7300 3350 0    60   ~ 0
+LED1
+Text Label 4200 2250 2    60   ~ 0
+Rx
+Text Label 4200 2350 2    60   ~ 0
+Tx
+$Comp
+L CONN_01X02 J3
+U 1 1 5A4A27FE
+P 3400 2500
+F 0 "J3" H 3400 2650 50  0000 C CNN
+F 1 "USART_On" V 3500 2500 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks.pretty:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 3400 2500 50  0001 C CNN
+F 3 "" H 3400 2500 50  0001 C CNN
+	1    3400 2500
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR08
+U 1 1 5A4A2A29
+P 3600 2600
+F 0 "#PWR08" H 3600 2350 50  0001 C CNN
+F 1 "GND" H 3600 2450 50  0000 C CNN
+F 2 "" H 3600 2600 50  0001 C CNN
+F 3 "" H 3600 2600 50  0001 C CNN
+	1    3600 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3600 2600 3600 2550
+Wire Wire Line
+	3600 2450 4200 2450
+$Comp
+L Q_PMOS_GSD Q1
+U 1 1 5A4A2D67
+P 7500 2500
+F 0 "Q1" H 7700 2550 50  0000 L CNN
+F 1 "SI2305DS" H 7700 2450 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD.pretty:SOT-23_Handsoldering" H 7700 2600 50  0001 C CNN
+F 3 "" H 7500 2500 50  0001 C CNN
+	1    7500 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR09
+U 1 1 5A4A2D6D
+P 7600 2750
+F 0 "#PWR09" H 7600 2500 50  0001 C CNN
+F 1 "GND" H 7600 2600 50  0000 C CNN
+F 2 "" H 7600 2750 50  0001 C CNN
+F 3 "" H 7600 2750 50  0001 C CNN
+	1    7600 2750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7600 2750 7600 2700
+Wire Wire Line
+	7600 2300 7600 1850
+Wire Wire Line
+	7600 1850 8050 1850
+Connection ~ 8050 1850
+Wire Wire Line
+	6800 2050 7750 2050
+Text Label 4200 2650 2    60   ~ 0
+O3
+$Comp
+L R R1
+U 1 1 5A4A48A5
+P 7150 3150
+F 0 "R1" V 7230 3150 50  0000 C CNN
+F 1 "220" V 7150 3150 50  0000 C CNN
+F 2 "Resistors_SMD.pretty:R_0805_HandSoldering" V 7080 3150 50  0001 C CNN
+F 3 "" H 7150 3150 50  0001 C CNN
+	1    7150 3150
+	0    1    1    0   
+$EndComp
+$Comp
+L R R2
+U 1 1 5A4A49CB
+P 7150 3350
+F 0 "R2" V 7230 3350 50  0000 C CNN
+F 1 "220" V 7150 3350 50  0000 C CNN
+F 2 "Resistors_SMD.pretty:R_0805_HandSoldering" V 7080 3350 50  0001 C CNN
+F 3 "" H 7150 3350 50  0001 C CNN
+	1    7150 3350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7000 3350 7000 3250
+Wire Wire Line
+	7000 3250 6800 3250
+Wire Wire Line
+	6800 3150 7000 3150
+$Comp
+L CONN_01X02 J2
+U 1 1 5A4A4CFB
+P 3400 2100
+F 0 "J2" H 3400 2250 50  0000 C CNN
+F 1 "USART" V 3500 2100 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks.pretty:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 3400 2100 50  0001 C CNN
+F 3 "" H 3400 2100 50  0001 C CNN
+	1    3400 2100
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3600 2050 3800 2050
+Wire Wire Line
+	3800 2050 3800 2250
+Wire Wire Line
+	3800 2250 4200 2250
+Wire Wire Line
+	3600 2350 4200 2350
+Wire Wire Line
+	3600 2150 3600 2350
+$Comp
+L C C1
+U 1 1 5A4A52CA
+P 2400 2250
+F 0 "C1" H 2425 2350 50  0000 L CNN
+F 1 "0.1" H 2425 2150 50  0000 L CNN
+F 2 "Capacitors_SMD.pretty:C_0603_HandSoldering" H 2438 2100 50  0001 C CNN
+F 3 "" H 2400 2250 50  0001 C CNN
+	1    2400 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 2300 2250 2400
+Wire Wire Line
+	2250 2400 2400 2400
+Connection ~ 2150 2300
+Wire Wire Line
+	2250 2200 2250 2100
+Wire Wire Line
+	2250 2100 2400 2100
+Connection ~ 2150 2200
+$Comp
+L CONN_01X07 J5
+U 1 1 5A4A5E14
+P 9450 3000
+F 0 "J5" H 9450 3400 50  0000 C CNN
+F 1 "CONN_01X07" V 9550 3000 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks.pretty:TerminalBlock_Pheonix_MPT-2.54mm_7pol" H 9450 3000 50  0001 C CNN
+F 3 "" H 9450 3000 50  0001 C CNN
+	1    9450 3000
+	1    0    0    -1  
+$EndComp
+Text Label 9250 2800 2    60   ~ 0
+B0On
+Text Label 9250 2900 2    60   ~ 0
+B1On
+Text Label 9250 3200 2    60   ~ 0
+Burner0
+Text Label 9250 3300 2    60   ~ 0
+Burner1
+Text Label 9250 2700 2    60   ~ 0
+Sound
+Text Label 9250 3000 2    60   ~ 0
+LED0
+Text Label 9250 3100 2    60   ~ 0
+LED1
+$Comp
+L PWR_FLAG #FLG010
+U 1 1 5A4A701A
+P 2300 2050
+F 0 "#FLG010" H 2300 2125 50  0001 C CNN
+F 1 "PWR_FLAG" H 2300 2200 50  0000 C CNN
+F 2 "" H 2300 2050 50  0001 C CNN
+F 3 "" H 2300 2050 50  0001 C CNN
+	1    2300 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L PWR_FLAG #FLG011
+U 1 1 5A4A705C
+P 2300 2550
+F 0 "#FLG011" H 2300 2625 50  0001 C CNN
+F 1 "PWR_FLAG" H 2300 2700 50  0000 C CNN
+F 2 "" H 2300 2550 50  0001 C CNN
+F 3 "" H 2300 2550 50  0001 C CNN
+	1    2300 2550
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2300 2550 2300 2400
+Connection ~ 2300 2400
+Wire Wire Line
+	2300 2050 2300 2100
+Connection ~ 2300 2100
+Wire Wire Line
+	7300 2500 7300 2850
+Wire Wire Line
+	7300 2850 6800 2850
+Wire Wire Line
+	7250 1150 7650 1150
+Wire Wire Line
+	7600 1100 7600 1250
+Wire Wire Line
+	7600 1250 7650 1250
+$EndSCHEMATC
