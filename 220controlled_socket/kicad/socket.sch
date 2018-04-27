@@ -2,19 +2,9 @@ EESchema Schematic File Version 2
 LIBS:socket-rescue
 LIBS:ch34x
 LIBS:bt137
-LIBS:MCU_ST_STM8
-LIBS:Relay_SolidState
-LIBS:Device
-LIBS:Diode
-LIBS:Relay
-LIBS:Triac_Thyristor
-LIBS:Interface_UART
-LIBS:Power_Protection
-LIBS:Connector_Specialized
-LIBS:Connector_Generic
 LIBS:power
 LIBS:acs712
-LIBS:Isolator
+LIBS:transistors
 LIBS:socket-cache
 EELAYER 25 0
 EELAYER END
@@ -1067,7 +1057,7 @@ F 3 "" H 5000 5050 50  0001 C CNN
 $EndComp
 Text Label 4750 4400 2    60   ~ 0
 ~In0
-Text Label 4750 4800 2    60   ~ 0
+Text Label 4900 5000 2    60   ~ 0
 ~In1
 Text Label 3300 5800 2    60   ~ 0
 Out0
@@ -1146,17 +1136,6 @@ F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder" V 6630 3350 50  0
 F 3 "" H 6700 3350 50  0001 C CNN
 	1    6700 3350
 	0    1    1    0   
-$EndComp
-$Comp
-L Q_NMOS_GSD Q6
-U 1 1 5A7B0D05
-P 7100 3350
-F 0 "Q6" H 7300 3400 50  0000 L CNN
-F 1 "AO3407" H 7300 3300 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 7300 3450 50  0001 C CNN
-F 3 "" H 7100 3350 50  0001 C CNN
-	1    7100 3350
-	1    0    0    1   
 $EndComp
 Wire Wire Line
 	1900 2200 1900 2500
@@ -1375,7 +1354,7 @@ Connection ~ 9900 3950
 Wire Wire Line
 	9900 3900 9900 5000
 Wire Wire Line
-	10750 3950 10750 3750
+	10750 3750 10750 3950
 Wire Wire Line
 	10750 3750 10850 3750
 Wire Wire Line
@@ -1414,20 +1393,11 @@ Connection ~ 4750 5550
 Wire Wire Line
 	5000 4600 5000 5050
 Wire Wire Line
-	5000 5000 5100 5000
-Wire Wire Line
 	5000 4600 6100 4600
-Connection ~ 5000 5000
-Wire Wire Line
-	5100 4800 4750 4800
 Wire Wire Line
 	7650 5850 5800 5850
 Wire Wire Line
-	5800 5000 5700 5000
-Wire Wire Line
 	6050 5650 7650 5650
-Wire Wire Line
-	6050 4800 6050 5650
 Wire Wire Line
 	7650 5450 6100 5450
 Wire Wire Line
@@ -1465,8 +1435,6 @@ Wire Wire Line
 	6750 4150 6550 4150
 Wire Wire Line
 	7650 4650 7600 4650
-Wire Wire Line
-	7600 4650 7600 3150
 Wire Wire Line
 	7600 3150 7200 3150
 Text Label 5050 1950 2    60   ~ 0
@@ -1543,15 +1511,11 @@ Wire Wire Line
 Wire Wire Line
 	10900 3900 10750 3900
 Connection ~ 10750 3900
-Wire Wire Line
-	7650 4850 7200 4850
-Wire Wire Line
-	7200 4850 7200 3550
 NoConn ~ 7650 5050
 Wire Wire Line
-	7650 4950 6350 4950
+	6350 4950 7650 4950
 Wire Wire Line
-	6350 4950 6350 4050
+	6350 4050 6350 4950
 NoConn ~ 7650 5150
 $Comp
 L D_Zener D5
@@ -1612,8 +1576,6 @@ Wire Wire Line
 Wire Wire Line
 	5800 5850 5800 5300
 Wire Wire Line
-	5700 4800 6050 4800
-Wire Wire Line
 	6800 2050 6250 2050
 $Comp
 L G5LE-1 K1
@@ -1629,13 +1591,45 @@ $EndComp
 Wire Wire Line
 	9200 1800 9200 1000
 Wire Wire Line
-	8850 2400 9050 2400
+	9050 2400 8850 2400
 Wire Wire Line
-	9050 2400 9050 1300
+	9050 1300 9050 2400
 Wire Wire Line
 	9900 5000 9700 5000
 Wire Wire Line
 	9600 4400 10050 4400
 Wire Wire Line
 	10050 4400 10050 3600
+Wire Wire Line
+	4900 5000 5100 5000
+Wire Wire Line
+	5100 4800 5000 4800
+Connection ~ 5000 4800
+$Comp
+L Q_PMOS_GSD Q6
+U 1 1 5ACFAF39
+P 7100 3350
+F 0 "Q6" H 7300 3400 50  0000 L CNN
+F 1 "AO3407" H 7300 3300 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 7300 3450 50  0001 C CNN
+F 3 "" H 7100 3350 50  0001 C CNN
+	1    7100 3350
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	7200 4850 7200 3550
+Wire Wire Line
+	7650 4850 7200 4850
+Wire Wire Line
+	7600 4650 7600 3150
+Wire Wire Line
+	5800 5000 5800 4800
+Wire Wire Line
+	5800 4800 5700 4800
+Wire Wire Line
+	5700 5000 5700 4950
+Wire Wire Line
+	5700 4950 6050 4950
+Wire Wire Line
+	6050 4950 6050 5650
 $EndSCHEMATC

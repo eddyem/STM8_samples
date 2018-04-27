@@ -1,5 +1,5 @@
-update=Чт 20 июл 2017 17:24:21
-last_client=eeschema
+update=Чт 12 апр 2018 17:56:59
+last_client=kicad
 [eeschema]
 version=1
 LibDir=

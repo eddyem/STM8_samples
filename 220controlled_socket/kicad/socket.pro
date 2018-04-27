@@ -1,4 +1,4 @@
-update=Ср 07 фев 2018 19:18:01
+update=Чт 12 апр 2018 17:31:26
 version=1
 last_client=kicad
 [pcbnew]
@@ -25,6 +25,16 @@ version=1
 NetIExt=net
 [general]
 version=1
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
 [eeschema]
 version=1
 LibDir=
@@ -45,3 +55,4 @@ LibName13=Connector_Generic
 LibName14=power
 LibName15=acs712
 LibName16=Isolator
+LibName17=transistors
