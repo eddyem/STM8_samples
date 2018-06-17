@@ -20,19 +20,21 @@ indent_mode=3
 [project]
 name=220socket
 base_path=/Big/Data/00__Electronics/STM8/220controlled_socket/src
+description=
+file_patterns=
 
 [long line marker]
 long_line_behaviour=1
 long_line_column=100
 
 [files]
-current_page=0
+current_page=5
 FILE_NAME_0=333;Make;0;EUTF-8;1;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2FMakefile;0;4
-FILE_NAME_1=5695;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Finterrupts.c;0;4
-FILE_NAME_2=983;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Finterrupts.h;0;4
-FILE_NAME_3=977;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fhardware.c;0;4
-FILE_NAME_4=2172;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fhardware.h;0;4
-FILE_NAME_5=3759;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fmain.c;0;4
+FILE_NAME_1=6281;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Finterrupts.c;0;4
+FILE_NAME_2=953;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Finterrupts.h;0;4
+FILE_NAME_3=3048;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fhardware.c;0;4
+FILE_NAME_4=2353;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fhardware.h;0;4
+FILE_NAME_5=964;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fmain.c;0;4
 FILE_NAME_6=1897;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fuart.c;0;4
 FILE_NAME_7=1275;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fuart.h;0;4
 FILE_NAME_8=880;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fstm8s.h;0;4

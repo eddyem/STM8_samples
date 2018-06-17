@@ -56,6 +56,8 @@ void hw_init(){
     // auto-reload + interrupt on overflow + enable
     TIM4_CR1 = TIM_CR1_APRE | TIM_CR1_URS | TIM_CR1_CEN;
 
+    // default state
+    RESET_PKEY1();
     // PA: 1 - PU IN, 2,3 - PP OUT
     PA_DDR = GPIO_PIN2 | GPIO_PIN3;
     PA_CR1 = GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3;

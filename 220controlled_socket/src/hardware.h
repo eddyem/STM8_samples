@@ -52,10 +52,35 @@
 // getters: 1 active, 0 inactive
 #define CHK_IN0()       ((PB_IDR & GPIO_PIN4) == 0)
 #define CHK_IN1()       ((PA_IDR & GPIO_PIN1) == 0)
+// setters
 #define SET_OUT0()      PA_ODR |= GPIO_PIN3
 #define SET_OUT1()      PA_ODR |= GPIO_PIN2
 #define RESET_OUT0()    PA_ODR &= ~GPIO_PIN3
 #define RESET_OUT1()    PA_ODR &= ~GPIO_PIN2
+#define CHK_OUT0()      ((PA_ODR & GPIO_PIN3) != 0)
+#define CHK_OUT1()      ((PA_ODR & GPIO_PIN2) != 0)
+#define SET_PKEY1()     PB_ODR &= ~GPIO_PIN5
+#define RESET_PKEY1()   PB_ODR |= GPIO_PIN5
+#define CHK_PKEY1()     ((PB_ODR & GPIO_PIN5) == 0)
+#define SET_NKEY1()     PC_ODR |= GPIO_PIN5
+#define SET_NKEY2()     PC_ODR |= GPIO_PIN3
+#define RESET_NKEY1()   PC_ODR &= ~GPIO_PIN5
+#define RESET_NKEY2()   PC_ODR &= ~GPIO_PIN3
+#define CHK_NKEY1()     ((PC_ODR & GPIO_PIN5) != 0)
+#define CHK_NKEY2()     ((PC_ODR & GPIO_PIN3) != 0)
+#define SET_TRIAC0()    PD_ODR |= GPIO_PIN2
+#define RESET_TRIAC0()  PD_ODR &= ~GPIO_PIN2
+#define SET_TRIAC1()    PC_ODR |= GPIO_PIN6
+#define RESET_TRIAC1()  PC_ODR &= ~GPIO_PIN6
+#define SET_RELAY0()    PC_ODR |= GPIO_PIN7
+#define RESET_RELAY0()  PC_ODR &= ~GPIO_PIN7
+#define SET_RELAY1()    PC_ODR |= GPIO_PIN4
+#define RESET_RELAY1()  PC_ODR &= ~GPIO_PIN4
+#define CHK_TRIAC0()    ((PD_ODR & GPIO_PIN2) != 0)
+#define CHK_TRIAC1()    ((PC_ODR & GPIO_PIN6) != 0)
+#define CHK_RELAY0()    ((PC_ODR & GPIO_PIN7) != 0)
+#define CHK_RELAY1()    ((PC_ODR & GPIO_PIN4) != 0)
+
 
 // UART2_TX
 #define UART_PORT       PD
