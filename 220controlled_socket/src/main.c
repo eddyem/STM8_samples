@@ -26,7 +26,8 @@
 volatile unsigned long Global_time = 0L; // global time in ms
 unsigned long Relay0 = 0L, Relay1 = 0L; // timer for relay ON (after triac is on)
 unsigned long Triac0 = 0L, Triac1 = 0L; // timer for triac OFF (after relay is off)
-
+U16 lastMax = 0, lastMin = 0xffff; // min & max of current in ADU
+U16 npts = 0; // number of ADC measurement points
 
 U16 temp;
 U8 pidx;
@@ -43,42 +44,94 @@ U16 opt_med9(){
     PIX_SORT(p[4], p[2]) ; return(p[4]) ;
 }
 
-static void triac_ONOFF(U8 cmd){
+// show current values of in/out
+static void show_stat(U8 cmd){
     U8 ch;
-    uart_write("TRIAC");
-    switch (cmd){
-        case 'a': // turn ON triac0
-        case 'A': // turn OFF triac0
-            ch = (cmd == 'a') ? '1' : '0';
-            uart_write("0=");
-            uart_send_byte(ch);
-            if(cmd == 'a') SET_TRIAC0();
-            else RESET_TRIAC0();
+    switch(cmd){
+        case 'a':
+        case 'A':
+            uart_write("TRIAC0=");
+            ch = CHK_TRIAC0() ? '1' : '0';
         break;
-        case 'b': // turn ON triac1
-        case 'B': // turn OFF triac1
-            ch = (cmd == 'a') ? '1' : '0';
-            uart_write("1=");
-            uart_send_byte(ch);
-            if(cmd == 'b') SET_TRIAC1();
-            else RESET_TRIAC1();
+        case 'b':
+        case 'B':
+            uart_write("TRIAC1=");
+            ch = CHK_TRIAC1() ? '1' : '0';
         break;
+        case 'c':
+        case 'C':
+            uart_write("In");
+            ch = (cmd == 'c') ? '0' : '1';
+            uart_send_byte(ch);
+            uart_send_byte('=');
+            if(cmd == 'c') ch = CHK_IN0() ? '1' : '0';
+            else ch = CHK_IN1() ? '1' : '0';
+        break;
+        case 'i':
+        case 'I':
+            uart_write("ADCVALUE=");
+            printUint((U8*)&ADC_value, 2);
+            uart_write("ADCMAX=");
+            printUint((U8*)&lastMax, 2);
+            uart_write("ADCMIN=");
+            printUint((U8*)&lastMin, 2);
+            uart_write("NPTS=");
+            printUint((U8*)npts, 2);
+            return;
+        break;
+        case 'k':
+        case 'K':
+            uart_write("PKEY1=");
+            ch = CHK_PKEY1() ? '1' : '0';
+        break;
+        case 'l':
+        case 'L':
+            uart_write("NKEY1=");
+            ch = CHK_NKEY1() ? '1' : '0';
+        break;
+        case 'm':
+        case 'M':
+            uart_write("NKEY2=");
+            ch = CHK_NKEY2() ? '1' : '0';
+        break;
+        case 'n':
+        case 'N':
+            uart_write("OUT0=");
+            ch = CHK_OUT0() ? '1' : '0';
+        break;
+        case 'o':
+        case 'O':
+            uart_write("OUT1=");
+            ch = CHK_OUT1() ? '1' : '0';
+        break;
+        case 'y':
+        case 'Y':
+            uart_write("RELAY0=");
+            ch = CHK_RELAY0() ? '1' : '0';
+        break;
+        case 'z':
+        case 'Z':
+            uart_write("RELAY1=");
+            ch = CHK_RELAY1() ? '1' : '0';
+        break;
+        default:
+            return;
     }
+    uart_send_byte(ch);
     newline();
 }
 
 int main() {
     unsigned long Tmeas = 0L; // I measurement time
-    U16 curMin = 0xffff, curMax = 0, curRange = 0; // min, max & range measured of current in ADU
-    U8 rb, ch;
-    U16 curval, npts = 0, nmeas = 0;
+    U16 curMin = 0xffff, curMax = 0; // min & max of current in ADU
+    U8 rb;
+    U16 curval, nmeas = 0;
+    const char * const allstatcmds = "abcCiklmnoyz";
+    const char *ch;
     hw_init();
-
     uart_init();
-
     // enable all interrupts
     enableInterrupts();
-
     // Loop
     do{
         if(ADC_ready){
@@ -92,13 +145,14 @@ int main() {
                 if(curMin > curval) curMin = curval;
             }
             ADC_ready = 0;
-            ADC_CR1 = 0x71;
+            //ADC_CR1 = 0x71; // start measurement again
         }
         if(Global_time - Tmeas > 199){ // 10 periods past, make current measurement
             Tmeas = Global_time;
             npts = nmeas;
             nmeas = 0;
-            if(curMax) curRange = curMax - curMin;
+            lastMax = curMax;
+            lastMin = curMin;
             curMax = 0; curMin = 0xffff;
         }
         if(Relay0){
@@ -130,127 +184,120 @@ int main() {
             }
         }
 
-        if(uart_read_byte(&rb)){ // buffer isn't empty
+        if(uart_read_cmd(&rb)){ // buffer isn't empty
             switch(rb){
                 case 'a': // turn ON triac0
+                    SET_TRIAC0();
+                break;
                 case 'A': // turn OFF triac0
+                    RESET_TRIAC0();
+                break;
                 case 'b': // turn ON triac1
+                    SET_TRIAC1();
+                break;
                 case 'B': // turn OFF triac1
-                    triac_ONOFF(rb);
-                break;
-                case 'h': // help
-                case 'H':
-                    uart_write( "\nPROTO:\n"
-                                "a/A - turn on/off triac0\n"
-                                "b/B - turn on/off triac1\n"
-                                "c/C - check in0/1\n"
-                                "I   - show current ampl. (ADU)\n"
-                                "k/K - set/reset PKEY1\n"
-                                "l/L - set/reset NKEY1\n"
-                                "m/M - set/reset NKEY2\n"
-                                "r/R - deactivate out0/1\n"
-                                "s/S - activate out0/1\n"
-                                "y/Y - turn on/off relay0\n"
-                                "z/Z - turn on/off relay1\n"
-                    );
-                break;
-                case 'I': // current amplitude in ADU
-                    curval = curRange / 2;
-                    uart_write("Imax(ADU)=");
-                    printUint((U8*)&curval, 2);
-                    uart_write(", Npts=");
-                    printUint((U8*)npts, 2);
-                    newline();
+                    RESET_TRIAC1();
                 break;
                 case 'c': // check IN0
                 case 'C': // check IN1
-                    uart_write("In");
-                    ch = (rb == 'c') ? '0' : '1';
-                    uart_send_byte(ch);
-                    uart_send_byte('=');
-                    if(rb == 'c') ch = CHK_IN0() ? '1' : '0';
-                    else ch = CHK_IN1() ? '1' : '0';
-                    uart_send_byte(ch);
-                    newline();
-                break;
-                case 's': // activate OUT0
-                case 'r': // activate OUT1
-                    ch = (rb == 's') ? '0' : '1';
-                    uart_write("Out");
-                    uart_send_byte(ch);
-                    uart_write("=1\n");
-                    if(rb == 's') SET_OUT0();
-                    else SET_OUT1();
-                break;
-                case 'S': // deactivate OUT0
-                case 'R': // deactivate OUT1
-                    ch = (rb == 'S') ? '0' : '1';
-                    uart_write("Out");
-                    uart_send_byte(ch);
-                    uart_write("=0\n");
-                    if(rb == 'S') RESET_OUT0();
-                    else RESET_OUT1();
-                break;
+                case 'I': // current amplitude in ADU
+                case 'i': // --//--
+                break; // this is OK: show later
                 case 'k': // activate PKEY1
+                    SET_PKEY1();
                 case 'K': // deactivate PKEY1
-                    uart_write("PKEY1=");
-                    ch = (rb == 'k') ? '1' : '0';
-                    uart_send_byte(ch);
-                    if(rb == 'k') SET_PKEY1();
-                    else RESET_PKEY1();
-                    newline();
+                    RESET_PKEY1();
                 break;
                 case 'l': // activate NKEY1
+                    SET_NKEY1();
+                break;
                 case 'L': // deactivate NKEY1
-                    uart_write("NKEY1=");
-                    ch = (rb == 'l') ? '1' : '0';
-                    uart_send_byte(ch);
-                    if(rb == 'l') SET_NKEY1();
-                    else RESET_NKEY1();
-                    newline();
+                    RESET_NKEY1();
                 break;
                 case 'm': // activate NKEY2
+                    SET_NKEY2();
+                break;
                 case 'M': // deactivate NKEY2
-                    uart_write("NKEY2=");
-                    ch = (rb == 'm') ? '1' : '0';
-                    uart_send_byte(ch);
-                    if(rb == 'm') SET_NKEY2();
-                    else RESET_NKEY2();
-                    newline();
+                    RESET_NKEY2();
+                break;
+                case 'n': // activate OUT0
+                    SET_OUT0();
+                break;
+                case 'N': // deactivate OUT0
+                    RESET_OUT0();
+                break;
+                case 'o': // activate OUT1
+                    SET_OUT1();
+                break;
+                case 'O': // deactivate OUT1
+                    RESET_OUT1();
+                break;
+                case 's': // all statistics
+                case 'S':
+                    ch = allstatcmds;
+                    while(*ch){
+                        show_stat(*ch++);
+                    }
                 break;
                 case 'y': // relay 0 ON
                     if(CHK_TRIAC0()) SET_RELAY0();
                     else{
-                        triac_ONOFF('a');
+                        SET_TRIAC0();
                         Relay0 = Global_time;
                         if(!Relay0) Relay0 = 1;
+                        rb = 'a'; // change value to display triac state
                     }
                 break;
                 case 'Y': // relay 0 OFF
-                    SET_TRIAC0();
-                    Triac0 = Global_time;
-                    if(!Triac0) Triac0 = 1;
+                    if(CHK_TRIAC0()){ // triac ON - turn it off after small delay
+                        Triac0 = Global_time;
+                        if(!Triac0) Triac0 = 1;
+                    }
                     RESET_RELAY0();
-                    uart_write("RELAY0=0\n");
                 break;
                 case 'z': // relay 1 ON
                     if(CHK_TRIAC1()) SET_RELAY1();
                     else{
-                        triac_ONOFF('b');
+                        SET_TRIAC1();
                         Relay1 = Global_time;
                         if(!Relay1) Relay1 = 1;
+                        rb = 'b';
                     }
                 break;
                 case 'Z': // relay 1 OFF
-                    SET_TRIAC1();
-                    Triac1 = Global_time;
-                    if(!Triac1) Triac1 = 1;
+                    if(CHK_TRIAC1()){
+                        Triac1 = Global_time;
+                        if(!Triac1) Triac1 = 1;
+                    }
                     RESET_RELAY1();
-                    uart_write("RELAY1=0\n");
                 break;
+                default:
+                    uart_write( "\nPROTO:\n"
+                                "a/A - turn on/off triac0\n"
+                                "b/B - turn on/off triac1\n"
+                                "c/C - check in0/1\n"
+                                "i/I - show current ampl. (ADU)\n"
+                                "k/K - set/reset PKEY1\n"
+                                "l/L - set/reset NKEY1\n"
+                                "m/M - set/reset NKEY2\n"
+                                "n/o - activate out0/1\n"
+                                "N/O - deactivate out0/1\n"
+                                "s/S - show all statistic\n"
+                                "y/Y - turn on/off relay0\n"
+                                "z/Z - turn on/off relay1\n"
+                    );
+                    continue;
             }
+            show_stat(rb);
         }
     }while(1);
 }
 
 
+
+/*
+ * errors:
+ * IN1 = 0 - need 2 add ext.PU (no int)
+ * ADCMAX=99, ADCMIN=99, NPTS=25706
+ * k/K pkey1=0 - need 2 add ext.PU (true opendrain)
+  */

@@ -28,10 +28,8 @@ extern volatile unsigned long Global_time; // global time in ms
 
 #define UART_BUF_LEN 8          // max 7 bytes transmited in on operation
 
-extern U8 UART_rx[];
-extern U8 UART_rx_start_i;
-extern U8 UART_rx_cur_i;
-
+extern U8 UART_rx_cmd;
+extern volatile U8 uart_ready;
 
 void uart_send_byte(U8 byte);
 void uart_write(char *str);
@@ -40,7 +38,7 @@ void printUint(U8 *val, U8 len);
 void print_long(long Number);
 void error_msg(char *msg);
 void uart_init();
-U8 uart_read_byte(U8 *byte);
+U8 uart_read_cmd(U8 *byte);
 void printUHEX(U8 val);
 
 #define check_UART_pointer(x)  do{if(x == UART_BUF_LEN) x = 0;}while(0)

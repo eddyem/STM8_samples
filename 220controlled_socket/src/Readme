@@ -1,0 +1,22 @@
+Protocol: 
+:B#
+where B is a command
+Commands:
+a/A - turn on/off triac0
+b/B - turn on/off triac1
+c/C - check in0/1
+i/I - show current ampl. (ADU)
+k/K - set/reset PKEY1
+l/L - set/reset NKEY1
+m/M - set/reset NKEY2
+n/o - activate out0/1
+N/O - deactivate out0/1
+s/S - show all statistic
+y/Y - turn on/off relay0
+z/Z - turn on/off relay1
+
+
+
+
+Current sense: near 38ADU per 1A
+Current error: near 20ADU @0A (difference between max & min ADU value)

@@ -28,20 +28,23 @@ long_line_behaviour=1
 long_line_column=100
 
 [files]
-current_page=5
-FILE_NAME_0=333;Make;0;EUTF-8;1;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2FMakefile;0;4
-FILE_NAME_1=6281;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Finterrupts.c;0;4
-FILE_NAME_2=953;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Finterrupts.h;0;4
-FILE_NAME_3=3048;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fhardware.c;0;4
-FILE_NAME_4=2353;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fhardware.h;0;4
-FILE_NAME_5=964;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fmain.c;0;4
-FILE_NAME_6=1897;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fuart.c;0;4
-FILE_NAME_7=1275;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fuart.h;0;4
-FILE_NAME_8=880;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fstm8s.h;0;4
-FILE_NAME_9=2641;C;0;EUTF-8;0;1;0;%2Fhome%2Feddy%2FDropbox%2FProjects%2FSTM8_samples%2Fvoltmeters%2Fsrc%2F3-digit%2Fmain.c;0;4
-FILE_NAME_10=1285;C;0;EUTF-8;0;1;0;%2Fhome%2Feddy%2FDropbox%2FProjects%2FSTM8_samples%2Fvoltmeters%2Fsrc%2F3-digit%2Finterrupts.c;0;4
-FILE_NAME_11=887;C;0;EUTF-8;0;1;0;%2Fhome%2Feddy%2FDropbox%2FProjects%2FSTM8_samples%2Fvoltmeters%2Fsrc%2F3-digit%2Finterrupts.h;0;4
-FILE_NAME_12=1968;C;0;EUTF-8;0;1;0;%2Fhome%2Feddy%2FDropbox%2FProjects%2FSTM8_samples%2Fstepper_independent_bin%2Fmain.c;0;4
+current_page=3
+FILE_NAME_0=743;Make;0;EUTF-8;1;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2FMakefile;0;4
+FILE_NAME_1=5974;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Finterrupts.c;0;4
+FILE_NAME_2=4438;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Finterrupts.h;0;4
+FILE_NAME_3=3065;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fhardware.c;0;4
+FILE_NAME_4=2430;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fhardware.h;0;4
+FILE_NAME_5=4806;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fmain.c;0;4
+FILE_NAME_6=4205;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fuart.c;0;4
+FILE_NAME_7=1322;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fuart.h;0;4
+FILE_NAME_8=8347;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2F220controlled_socket%2Fsrc%2Fstm8s.h;0;4
+FILE_NAME_9=4012;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2Fmicrodrill%2Finterrupts.c;0;4
+FILE_NAME_10=5430;C;0;EUTF-8;0;1;0;%2FBig%2FData%2F00__Electronics%2FSTM8%2Fmicrodrill%2Fmain.c;0;4
+FILE_NAME_11=4138;C;0;EUTF-8;0;1;0;%2Ftmp%2Fuart_SPI%2Fuart.c;0;4
+FILE_NAME_12=1237;C;0;EUTF-8;0;1;0;%2Ftmp%2Fuart_SPI%2Fports_definition.h;0;4
+FILE_NAME_13=1552;C;0;EUTF-8;0;1;0;%2Ftmp%2Fuart_SPI%2Fmain.c;0;4
+FILE_NAME_14=43;Make;0;EUTF-8;1;1;0;%2Ftmp%2Fuart_SPI%2FMakefile;0;4
+FILE_NAME_15=3619;C;0;EUTF-8;0;1;0;%2Ftmp%2Fuart_SPI%2Finterrupts.c;0;4
 
 [VTE]
 last_dir=/home/eddy/Docs/SAO/Cameras/FLI_camera/my/Mytakepic

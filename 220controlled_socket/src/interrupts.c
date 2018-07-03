@@ -85,34 +85,7 @@ INTERRUPT_HANDLER(TIM2_UPD_OVF_BRK_IRQHandler, 13){
 }
 
 // Timer2 Capture/Compare Interrupt
-// manage with sending/receiving
 INTERRUPT_HANDLER(TIM2_CAP_COM_IRQHandler, 14){
-/*  TIM2_SR1 &= ~TIM_SR1_CC1IF;
-    onewire_gotlen = TIM2_CCR1H << 8;
-    onewire_gotlen |= TIM2_CCR1L;
-    if(onewire_tick_ctr){ // there's some more data to transmit / receive
-        --onewire_tick_ctr;
-        if(is_receiver){// receive bits
-            ow_data >>= 1;
-            if(onewire_gotlen < ONE_ZERO_BARRIER){ // this is 1
-                ow_data |= 0x80; // LSbit first!
-            }
-            // in receiver mode we don't need to send byte after ctr is zero!
-            if(onewire_tick_ctr == 0){
-                TIM2_CR1 &= ~TIM_CR1_CEN;
-            }
-        }else{// transmit bits
-            // update CCR2 registers with new values
-            if(ow_data & 1){ // transmit 1
-                TIM2REG(CCR2, BIT_ONE_P);
-            }else{ // transmit 0
-                TIM2REG(CCR2, BIT_ZERO_P);
-            }
-            ow_data >>= 1;
-        }
-    }else{ // end: turn off timer
-        TIM2_CR1 &= ~TIM_CR1_CEN;
-    }*/
 }
 #endif // STM8S903
 
@@ -133,16 +106,19 @@ INTERRUPT_HANDLER(UART1_TX_IRQHandler, 17){}
 // UART1 RX Interrupt
 INTERRUPT_HANDLER(UART1_RX_IRQHandler, 18){
     U8 rb;
+    static U8 cmd_begin = 0;
     if(UART1_SR & UART_SR_RXNE){ // data received
         rb = UART1_DR; // read received byte & clear RXNE flag
-        while(!(UART1_SR & UART_SR_TXE));
-        UART1_DR = rb; // echo received symbol
-        UART_rx[UART_rx_cur_i++] = rb; // put received byte into cycled buffer
-        if(UART_rx_cur_i == UART_rx_start_i){ // Oops: buffer overflow! Just forget old data
-            UART_rx_start_i++;
-            check_UART_pointer(UART_rx_start_i);
+        if(uart_ready) return; // omit everything before command read
+        if(!cmd_begin){
+            if(rb == ':') cmd_begin = 1;
+            return;
         }
-        check_UART_pointer(UART_rx_cur_i);
+        if(rb != '#') UART_rx_cmd = rb; // put received byte into cycled buffer
+        else{
+            cmd_begin = 0;
+            uart_ready = 1;
+        }
     }
 }
 #endif // STM8S208 or STM8S207 or STM8S103 or STM8S903 or STM8AF62Ax or STM8AF52Ax
@@ -173,12 +149,12 @@ INTERRUPT_HANDLER(ADC2_IRQHandler, 22){}
 #else
 // ADC1 interrupt
 volatile U8 ADC_ready = 0;
-volatile U8 ADC_value;
-INTERRUPT_HANDLER(ADC1_IRQHandler, 22){ // fill circular buffer
-    int ADC_value = ADC_DRL; // in right-alignment mode we should first read LSB
+volatile int ADC_value;
+INTERRUPT_HANDLER(ADC1_IRQHandler, 22){ // read ADC value
+    ADC_value = ADC_DRL; // in right-alignment mode we should first read LSB
     ADC_value |= ADC_DRH << 8;
     ADC_ready = 1;
-    ADC_CSR &= 0x3f; // clear EOC & AWD flags
+    ADC_CSR &= 0x3f; // clear EOC flag
 }
 #endif // STM8S208 or STM8S207 or STM8AF52Ax or STM8AF62Ax
 

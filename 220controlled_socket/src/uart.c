@@ -22,9 +22,8 @@
 #include "uart.h"
 #include "interrupts.h"
 
-U8 UART_rx[UART_BUF_LEN]; // cycle buffer for received data
-U8 UART_rx_start_i = 0;   // started index of received data (from which reading starts)
-U8 UART_rx_cur_i = 0;     // index of current first byte in rx array (to which data will be written)
+U8 UART_rx_cmd; // command received
+volatile U8 uart_ready = 0;// command ready flag
 
 /**
  * Send one byte through UART
@@ -53,11 +52,11 @@ void uart_write(char *str){
  * @param byte - where to store data read
  * @return 1 in case of non-empty buffer
  */
-U8 uart_read_byte(U8 *byte){
-    if(UART_rx_start_i == UART_rx_cur_i) // buffer is empty
+U8 uart_read_cmd(U8 *byte){
+    if(!uart_ready) // buffer is empty
         return 0;
-    *byte = UART_rx[UART_rx_start_i++];
-    check_UART_pointer(UART_rx_start_i);
+    *byte = UART_rx_cmd;
+    uart_ready = 0;
     return 1;
 }
 
@@ -93,7 +92,7 @@ void printUint(U8 *val, U8 len){
 /**
  * print signed long onto terminal
  * max len = 10 symbols + 1 for "-" + 1 for '\n' + 1 for 0 = 13
- */
+ *
 void print_long(long Number){
     U8 i, L = 0;
     char ch;
@@ -156,7 +155,7 @@ void printUHEX(U8 val){
     uart_write("0x");
     uart_send_byte(U8toHEX(val>>4)); // MSB
     uart_send_byte(U8toHEX(val));    // LSB
-}
+}*/
 
 void uart_init(){
     // PD5 - UART1_TX

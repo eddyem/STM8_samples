@@ -58,12 +58,12 @@ void hw_init(){
 
     // default state
     RESET_PKEY1();
+
     // PA: 1 - PU IN, 2,3 - PP OUT
     PA_DDR = GPIO_PIN2 | GPIO_PIN3;
     PA_CR1 = GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3;
-    // PB: 4 - PU IN, 5 - PP OUT with 1 in default state
+    // PB: 4 - IN with external pullup (have no int. PU), 5 - [true opendrain] OUT with 1 in default state
     PB_DDR = GPIO_PIN5;
-    PB_CR1 = GPIO_PIN4 | GPIO_PIN5;
     // PC: 3-7 - PP OUT
     PC_DDR = GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7;
     PC_CR1 = GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7;
@@ -72,11 +72,11 @@ void hw_init(){
     PD_CR1 = GPIO_PIN2;
     // configure ADC
     // select PD3[AIN4] & enable interrupt for EOC
-    ADC_CSR = 0x24; // 0x24 - AIN4
+    ADC_CSR = 0x24; // EOCIE = 1; CH[3:0] = 4 - AIN4
     ADC_TDRL = 0x10; // disable Schmitt triger for AIN4
     // right alignment
     ADC_CR2 = 0x08; // don't forget: first read ADC_DRL!
     // f_{ADC} = f/18 & continuous non-buffered conversion & wake it up
-    ADC_CR1 = 0x71; // 0x71 - single, 0x73 - continuous
-    ADC_CR1 = 0x71; // turn on ADC (this needs second write operation)
+    ADC_CR1 = 0x73; // 0x71 - single, 0x73 - continuous
+    ADC_CR1 = 0x73; // turn on ADC (this needs second write operation)
 }
