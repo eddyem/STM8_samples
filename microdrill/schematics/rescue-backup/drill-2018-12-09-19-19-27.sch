@@ -1,0 +1,204 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:stm8s105k4t6c
+LIBS:L9110
+LIBS:LM1117
+LIBS:s8205a
+LIBS:MCU_module-cache
+EELAYER 24 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 2
+Title ""
+Date "14 nov 2014"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Notes 5525 3150 0    60   ~ 0
+Motor
+$Comp
+L GND #PWR016
+U 1 1 53E67E30
+P 4700 5700
+F 0 "#PWR016" H 4700 5700 30  0001 C CNN
+F 1 "GND" H 4700 5630 30  0001 C CNN
+F 2 "" H 4700 5700 60  0000 C CNN
+F 3 "" H 4700 5700 60  0000 C CNN
+	1    4700 5700
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R5
+U 1 1 53E67E8A
+P 4700 5350
+F 0 "R5" V 4780 5350 50  0000 C CNN
+F 1 "0.33R" V 4700 5350 50  0000 C CNN
+F 2 "SM2512" H 4700 5350 60  0001 C CNN
+F 3 "" H 4700 5350 60  0000 C CNN
+	1    4700 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L +12V #PWR017
+U 1 1 53E67FAE
+P 5375 3200
+F 0 "#PWR017" H 5375 3150 20  0001 C CNN
+F 1 "+12V" H 5375 3300 30  0000 C CNN
+F 2 "" H 5375 3200 60  0000 C CNN
+F 3 "" H 5375 3200 60  0000 C CNN
+	1    5375 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R4
+U 1 1 53E680EF
+P 4350 5100
+F 0 "R4" V 4430 5100 50  0000 C CNN
+F 1 "47k" V 4350 5100 50  0000 C CNN
+F 2 "" H 4350 5100 60  0000 C CNN
+F 3 "" H 4350 5100 60  0000 C CNN
+	1    4350 5100
+	0    -1   -1   0   
+$EndComp
+$Comp
+L DIODESCH D3
+U 1 1 53E68EA1
+P 5600 3400
+F 0 "D3" H 5600 3500 40  0000 C CNN
+F 1 "DIODESCH" H 5600 3300 40  0000 C CNN
+F 2 "" H 5600 3400 60  0000 C CNN
+F 3 "" H 5600 3400 60  0000 C CNN
+	1    5600 3400
+	0    -1   -1   0   
+$EndComp
+Text HLabel 3200 4350 0    60   Input ~ 0
+PWM_in
+Text HLabel 3150 5100 0    60   Output ~ 0
+Sence
+$Comp
+L S8205A VT1
+U 1 1 53F123C0
+P 5300 4150
+F 0 "VT1" H 5375 3775 60  0000 R CNN
+F 1 "S8205A" H 5450 4500 60  0000 R CNN
+F 2 "TSSOP-8" H 5250 3850 60  0001 C CNN
+F 3 "~" H 5450 4150 60  0000 C CNN
+	1    5300 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR018
+U 1 1 53F35910
+P 4000 5700
+F 0 "#PWR018" H 4000 5700 30  0001 C CNN
+F 1 "GND" H 4000 5630 30  0001 C CNN
+F 2 "" H 4000 5700 60  0000 C CNN
+F 3 "" H 4000 5700 60  0000 C CNN
+	1    4000 5700
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP1 C6
+U 1 1 53F36070
+P 4000 5400
+F 0 "C6" H 4050 5500 50  0000 L CNN
+F 1 "0.1u" H 4050 5300 50  0000 L CNN
+F 2 "SM0603" H 4000 5400 60  0001 C CNN
+F 3 "" H 4000 5400 60  0000 C CNN
+	1    4000 5400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3200 3200 5600 3200
+Connection ~ 5375 3200
+Wire Wire Line
+	3200 3600 5600 3600
+Connection ~ 5375 3600
+Wire Wire Line
+	3150 5100 4100 5100
+Wire Wire Line
+	4550 4350 3200 4350
+Connection ~ 4550 4350
+Wire Wire Line
+	4550 4350 4550 4600
+Wire Wire Line
+	4550 4600 6050 4600
+Wire Wire Line
+	6050 4600 6050 4350
+Wire Wire Line
+	4550 4075 4550 4225
+Wire Wire Line
+	6050 4225 6050 4075
+Wire Wire Line
+	4475 5000 6175 5000
+Wire Wire Line
+	4475 5000 4475 4225
+Wire Wire Line
+	4475 4225 4550 4225
+Wire Wire Line
+	6175 5000 6175 4225
+Wire Wire Line
+	6175 4225 6050 4225
+Connection ~ 6050 4225
+Connection ~ 4550 4225
+Wire Wire Line
+	4550 3950 4550 3700
+Wire Wire Line
+	4550 3700 6050 3700
+Wire Wire Line
+	6050 3700 6050 3950
+Connection ~ 5375 3700
+Wire Wire Line
+	4000 5700 4000 5600
+Wire Wire Line
+	4000 5200 4000 5100
+Connection ~ 4000 5100
+Wire Wire Line
+	4700 5700 4700 5600
+Wire Wire Line
+	4700 5100 4600 5100
+Wire Wire Line
+	4650 5100 4650 5000
+Connection ~ 4650 5000
+Connection ~ 4650 5100
+Wire Wire Line
+	5375 3700 5375 3600
+Text HLabel 3200 3200 0    60   Output ~ 0
+DRILL+
+Text HLabel 3200 3600 0    60   Output ~ 0
+DRILL-
+$EndSCHEMATC

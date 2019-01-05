@@ -27,14 +27,15 @@
 #include "main.h"
 
 extern volatile long Nsteps;
-extern U16 Stepper_speed;
+extern U8 Stepper_speed;
 extern volatile char Dir;
 
 void setup_stepper_pins();
-void set_stepper_speed(U16 SpS);
+void set_stepper_speed(U8 SpS);
 void move_motor(int Steps);
+void move_fast(int Steps);
 void stop_motor();
-void pause_resume();
+void stp_pause_resume();
 void add_steps(int Steps);
 
 #endif // __STEPPER_H__

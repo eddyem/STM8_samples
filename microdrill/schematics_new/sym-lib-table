@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name MCU_module-rescue)(type Legacy)(uri ${KIPRJMOD}/MCU_module-rescue.lib)(options "")(descr ""))
+  (lib (name stm8s105k4t6c)(type Legacy)(uri ${KIPRJMOD}/stm8s105k4t6c.lib)(options "")(descr ""))
+)

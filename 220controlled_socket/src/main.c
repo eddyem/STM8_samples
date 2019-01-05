@@ -132,6 +132,7 @@ int main() {
     uart_init();
     // enable all interrupts
     enableInterrupts();
+    uart_write("I'm alive!!!\nCommands looks like ':symbol#'\n");
     // Loop
     do{
         if(ADC_ready){
@@ -186,18 +187,14 @@ int main() {
 
         if(uart_read_cmd(&rb)){ // buffer isn't empty
             switch(rb){
-                case 'a': // turn ON triac0
-                    SET_TRIAC0();
-                break;
                 case 'A': // turn OFF triac0
                     RESET_TRIAC0();
-                break;
-                case 'b': // turn ON triac1
-                    SET_TRIAC1();
                 break;
                 case 'B': // turn OFF triac1
                     RESET_TRIAC1();
                 break;
+                case 'a': // check TRIAC0
+                case 'b': // check TRIAC1
                 case 'c': // check IN0
                 case 'C': // check IN1
                 case 'I': // current amplitude in ADU
@@ -273,8 +270,8 @@ int main() {
                 break;
                 default:
                     uart_write( "\nPROTO:\n"
-                                "a/A - turn on/off triac0\n"
-                                "b/B - turn on/off triac1\n"
+                                "A   - turn off triac0\n"
+                                "B   - turn off triac1\n"
                                 "c/C - check in0/1\n"
                                 "i/I - show current ampl. (ADU)\n"
                                 "k/K - set/reset PKEY1\n"

@@ -21,10 +21,11 @@
 
 #include "ports_definition.h"
 #include "stepper.h"
+#include "statemachine.h"
 
 volatile long Nsteps = 0;  // Number of steps
 volatile char Dir = 0;     // direction of moving: 0/1
-U16 Stepper_speed = 0;     // length of one MICROstep in us
+U8 Stepper_speed = 95;     // length of one MICROstep in %
 
 /**
  * Setup pins of stepper motor (all - PP out)
@@ -37,19 +38,35 @@ void setup_stepper_pins(){
 
 /**
  * Set speed of stepper motor
- * @param Sps - period (in us) of one MICROstep
+ * @param Sps - speed in %%
  */
-void set_stepper_speed(U16 SpS){
-	Stepper_speed = SpS;
-	// Configure timer 2 to generate signals for CLK
-	TIM2_PSCR = 4; // 1MHz
-	TIM2_ARRH = SpS >> 8; // set speed
-	TIM2_ARRL = SpS & 0xff;
-	TIM2_IER = TIM_IER_UIE; // update interrupt enable
-	TIM2_CR1 |= TIM_CR1_APRE | TIM_CR1_URS; // auto reload + interrupt on overflow & RUN
+void set_stepper_speed(U8 SpS){
+    U16 tmp;
+    if(SpS > 100) return;
+    Stepper_speed = SpS;
+    SpS = 100 - SpS; // reverse (convert period into speed)
+    tmp = SpS * (U16)(MAX_STEPPER_PERIOD - MIN_STEPPER_PERIOD);
+    tmp /= 100;
+    tmp += MIN_STEPPER_PERIOD;
+    if(tmp > MAX_STEPPER_PERIOD) tmp = MAX_STEPPER_PERIOD;
+    else if(tmp < MIN_STEPPER_PERIOD) tmp = MIN_STEPPER_PERIOD;
+	TIM2_ARRH = tmp >> 8; // set speed
+	TIM2_ARRL = tmp & 0xff;
+}
+
+void move_fast(int Steps){
+    stpstate = STPR_FAST;
+    TIM2_ARRH = 0;
+    TIM2_ARRL = MIN_STEPPER_PERIOD;
+    move_motor(Steps);
 }
 
 void move_motor(int Steps){
+    if(stpstate != STPR_FAST){ // !fast -> check speed & set state
+        stpstate = STPR_NORMAL;
+        if(TIM2_ARRH == 0 && TIM2_ARRL == MIN_STEPPER_PERIOD && Stepper_speed != 100)
+            set_stepper_speed(Stepper_speed); // change speed to previous after max speed moving
+    }
 	if(Steps < 0){
 		Dir = 1;
 		Steps *= -1;
@@ -60,20 +77,24 @@ void move_motor(int Steps){
 }
 
 void stop_motor(){
+    stpstate = STPR_STOPPED;
 	TIM2_CR1 &= ~TIM_CR1_CEN; // Turn off timer
 	Nsteps = 0;
 	PORT(STP_PORT, ODR) &= 0xf0; // turn off power
 	uart_write("stop\n");
 }
 
-void pause_resume(){
-	if(Nsteps == 0) return; // motor is stopped
-	if(TIM2_CR1 & TIM_CR1_CEN){ // pause
+void stp_pause_resume(){
+	if(stpstate == STPR_STOPPED) return; // motor is stopped
+    DBG("Stepper ");
+	if(stpstate != STPR_PAUSED){ // pause
+        stpstate = STPR_PAUSED;
 		TIM2_CR1 &= ~TIM_CR1_CEN;
-		uart_write("pause\n");
+		DBG("pause\n");
 	}else{ // resume
+        stpstate = STPR_NORMAL;
 		TIM2_CR1 |= TIM_CR1_CEN;
-		uart_write("resume\n");
+		DBG("resume\n");
 	}
 }
 
@@ -89,7 +110,7 @@ void add_steps(int Steps){
 	Nsteps += S;
 	// now change direction
 	if(Nsteps < 0){
-		uart_write("reverce\n");
+		uart_write("reverse\n");
 		Dir = !Dir; // invert direction
 		Nsteps *= -1L;
 	}

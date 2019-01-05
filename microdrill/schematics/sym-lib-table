@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name MCU_module-rescue)(type Legacy)(uri ${KIPRJMOD}/MCU_module-rescue.lib)(options "")(descr ""))
+)

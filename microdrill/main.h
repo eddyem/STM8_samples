@@ -22,7 +22,7 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
-#include "stm8l.h"
+#include "stm8s.h"
 
 extern unsigned long Global_time; // global time in ms
 
@@ -38,16 +38,17 @@ extern U8 UART_rx_start_i;
 extern U8 UART_rx_cur_i;
 
 //extern U16 ADC_values[];
-extern volatile U16 ADC_value; // value of last ADC measurement
-extern U8 drill_works;
-extern U8 auto_speed; // == 1 to automatic speed regulation
-extern U8 drill_spd_regul;
-extern volatile U16 Stp_speed;
+extern volatile U16 Vpot, Vcap, Vshunt; // value of last ADC measurements: Rpot, Vcap, Shunt
+extern U8 drill_maxspeed;
 
 void UART_send_byte(U8 byte);
 void uart_write(char *str);
 void printUint(U8 *val, U8 len);
 void error_msg(char *msg);
+
+#ifdef EBUG
+#define DBG(x) uart_write(x)
+#endif
 
 #define check_UART_pointer(x) if(x == UART_BUF_LEN) x = 0;
 

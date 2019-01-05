@@ -1,0 +1,12 @@
+(module Via locked (layer F.Cu) (tedit 5C117865)
+  (fp_text reference REF** (at 0 2.25) (layer F.SilkS) hide
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_text value Via (at 0 -2.75) (layer F.Fab) hide
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_line (start -2.5 -2) (end 3.25 -2) (layer F.SilkS) (width 0.15))
+  (fp_line (start 3.25 -2) (end 3.25 1.25) (layer F.SilkS) (width 0.15))
+  (pad 1 thru_hole circle (at 0 0) (size 1.5 1.5) (drill 0.8) (layers *.Cu)
+    (zone_connect 1))
+)

@@ -1,4 +1,4 @@
-update=Вт 05 июн 2018 21:04:24
+update=Вт 01 янв 2019 14:06:16
 version=1
 last_client=kicad
 [pcbnew]
@@ -25,26 +25,6 @@ version=1
 NetIExt=net
 [general]
 version=1
-[eeschema]
-version=1
-LibDir=
-[eeschema/libraries]
-LibName1=socket-rescue
-LibName2=ch34x
-LibName3=bt137
-LibName4=MCU_ST_STM8
-LibName5=Relay_SolidState
-LibName6=Device
-LibName7=Diode
-LibName8=Relay
-LibName9=Triac_Thyristor
-LibName10=Interface_UART
-LibName11=Power_Protection
-LibName12=Connector_Specialized
-LibName13=Connector_Generic
-LibName14=power
-LibName15=acs712
-LibName16=Isolator
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
@@ -55,3 +35,6 @@ NetFmtName=
 SpiceForceRefPrefix=0
 SpiceUseNetNumbers=0
 LabSize=60
+[eeschema]
+version=1
+LibDir=

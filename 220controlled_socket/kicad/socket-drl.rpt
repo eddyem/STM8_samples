@@ -1,0 +1,30 @@
+Drill report for /home/eddy/Dropbox/Projects/STM8_samples/220controlled_socket/kicad/socket.kicad_pcb
+Created on Вт 04 дек 2018 18:07:08
+
+Copper Layer Stackup:
+    =============================================================
+    L1 :  F.Cu                      front
+    L2 :  B.Cu                      back
+
+
+Drill file 'socket.drl' contains
+    plated through holes:
+    =============================================================
+    T1  0.80mm  0.031"  (59 holes)
+    T2  0.81mm  0.032"  (4 holes)
+    T3  1.00mm  0.039"  (24 holes)
+    T4  1.20mm  0.047"  (4 holes)
+    T5  1.30mm  0.051"  (6 holes)
+    T6  1.32mm  0.052"  (6 holes)
+    T7  2.30mm  0.091"  (2 holes)
+    T8  3.20mm  0.126"  (2 holes)
+
+    Total plated holes count 107
+
+
+Not plated through holes are merged with plated holes
+    unplated through holes:
+    =============================================================
+    T9  0.80mm  0.031"  (4 holes)
+
+    Total unplated holes count 4

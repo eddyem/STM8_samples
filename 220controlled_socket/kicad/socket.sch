@@ -1,22 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:socket-rescue
-LIBS:ch34x
-LIBS:bt137
-LIBS:MCU_ST_STM8
-LIBS:Relay_SolidState
-LIBS:Device
-LIBS:Diode
-LIBS:Relay
-LIBS:Triac_Thyristor
-LIBS:Interface_UART
-LIBS:Power_Protection
-LIBS:Connector_Specialized
-LIBS:Connector_Generic
-LIBS:power
-LIBS:acs712
-LIBS:Isolator
+EESchema Schematic File Version 4
 LIBS:socket-cache
-EELAYER 25 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -31,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L STM8S003F3P-RESCUE-socket U3
+L socket-rescue:STM8S003F3P-RESCUE-socket U3
 U 1 1 5A632CF7
 P 5650 2150
 F 0 "U3" H 5200 3200 50  0000 L CNN
@@ -42,7 +26,7 @@ F 3 "" H 5600 1750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MAX3232 U1
+L socket-rescue:MAX3232 U1
 U 1 1 5A632ED9
 P 3050 2600
 F 0 "U1" H 2950 3725 50  0000 R CNN
@@ -53,7 +37,7 @@ F 3 "" H 3050 2700 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L C C7
+L socket-rescue:C C7
 U 1 1 5A633096
 P 3950 1850
 F 0 "C7" H 3975 1950 50  0000 L CNN
@@ -64,7 +48,7 @@ F 3 "" H 3950 1850 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L C C4
+L socket-rescue:C C4
 U 1 1 5A63312F
 P 2150 1850
 F 0 "C4" H 2175 1950 50  0000 L CNN
@@ -75,7 +59,7 @@ F 3 "" H 2150 1850 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L C C1
+L socket-rescue:C C1
 U 1 1 5A63318D
 P 2050 2200
 F 0 "C1" H 2075 2300 50  0000 L CNN
@@ -86,7 +70,7 @@ F 3 "" H 2050 2200 50  0001 C CNN
 	0    -1   1    0   
 $EndComp
 $Comp
-L C C2
+L socket-rescue:C C2
 U 1 1 5A6331E2
 P 2050 2500
 F 0 "C2" H 2075 2600 50  0000 L CNN
@@ -97,7 +81,7 @@ F 3 "" H 2050 2500 50  0001 C CNN
 	0    -1   1    0   
 $EndComp
 $Comp
-L GND #PWR01
+L socket-rescue:GND #PWR01
 U 1 1 5A633227
 P 1800 2350
 F 0 "#PWR01" H 1800 2100 50  0001 C CNN
@@ -108,7 +92,7 @@ F 3 "" H 1800 2350 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR02
+L socket-rescue:VCC #PWR02
 U 1 1 5A633441
 P 3050 1350
 F 0 "#PWR02" H 3050 1200 50  0001 C CNN
@@ -119,7 +103,7 @@ F 3 "" H 3050 1350 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L GND #PWR03
+L socket-rescue:GND #PWR03
 U 1 1 5A6335C6
 P 3050 3850
 F 0 "#PWR03" H 3050 3600 50  0001 C CNN
@@ -142,7 +126,7 @@ Tx
 Text Label 4300 3100 0    60   ~ 0
 Rx
 $Comp
-L DB9_Female J1
+L socket-rescue:DB9_Female J1
 U 1 1 5A633A5D
 P 1200 2900
 F 0 "J1" H 1200 3450 50  0000 C CNN
@@ -157,7 +141,7 @@ RXD
 Text Label 1600 2900 0    60   ~ 0
 TXD
 $Comp
-L GND #PWR04
+L socket-rescue:GND #PWR04
 U 1 1 5A633F44
 P 1600 3400
 F 0 "#PWR04" H 1600 3150 50  0001 C CNN
@@ -174,7 +158,7 @@ NoConn ~ 1500 2800
 NoConn ~ 1500 2600
 NoConn ~ 1500 2500
 $Comp
-L SP0504BAHT D1
+L socket-rescue:SP0504BAHT D1
 U 1 1 5A6340F1
 P 1850 4000
 F 0 "D1" H 1950 3850 50  0000 L CNN
@@ -185,7 +169,7 @@ F 3 "" H 1975 4125 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CH340G U2
+L ch34x:CH340G U2
 U 1 1 5A63435A
 P 3300 4800
 F 0 "U2" H 3325 5275 60  0000 C CNN
@@ -196,7 +180,7 @@ F 3 "" H 3400 4600 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Crystal Y1
+L socket-rescue:Crystal Y1
 U 1 1 5A6346A7
 P 2200 5350
 F 0 "Y1" H 2200 5500 50  0000 C CNN
@@ -207,7 +191,7 @@ F 3 "" H 2200 5350 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L C C3
+L socket-rescue:C C3
 U 1 1 5A634730
 P 2050 5600
 F 0 "C3" H 2075 5700 50  0000 L CNN
@@ -218,7 +202,7 @@ F 3 "" H 2050 5600 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L C C5
+L socket-rescue:C C5
 U 1 1 5A634AB8
 P 2350 5600
 F 0 "C5" H 2375 5700 50  0000 L CNN
@@ -229,7 +213,7 @@ F 3 "" H 2350 5600 50  0001 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L GND #PWR05
+L socket-rescue:GND #PWR05
 U 1 1 5A634C6C
 P 1850 4250
 F 0 "#PWR05" H 1850 4000 50  0001 C CNN
@@ -240,7 +224,7 @@ F 3 "" H 1850 4250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR06
+L socket-rescue:GND #PWR06
 U 1 1 5A634CC1
 P 2200 5850
 F 0 "#PWR06" H 2200 5600 50  0001 C CNN
@@ -251,7 +235,7 @@ F 3 "" H 2200 5850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR07
+L socket-rescue:VCC #PWR07
 U 1 1 5A635382
 P 3750 4400
 F 0 "#PWR07" H 3750 4250 50  0001 C CNN
@@ -262,7 +246,7 @@ F 3 "" H 3750 4400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR08
+L socket-rescue:GND #PWR08
 U 1 1 5A635482
 P 2850 4350
 F 0 "#PWR08" H 2850 4100 50  0001 C CNN
@@ -273,7 +257,7 @@ F 3 "" H 2850 4350 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L USB_B J2
+L socket-rescue:USB_B J2
 U 1 1 5A6355E2
 P 1300 4850
 F 0 "J2" H 1100 5300 50  0000 L CNN
@@ -284,7 +268,7 @@ F 3 "" H 1450 4800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R1
+L socket-rescue:R R1
 U 1 1 5A6379FA
 P 1900 4850
 F 0 "R1" V 1980 4850 50  0000 C CNN
@@ -295,7 +279,7 @@ F 3 "" H 1900 4850 50  0001 C CNN
 	0    1    -1   0   
 $EndComp
 $Comp
-L R R2
+L socket-rescue:R R2
 U 1 1 5A637D15
 P 2150 4950
 F 0 "R2" V 2230 4950 50  0000 C CNN
@@ -306,7 +290,7 @@ F 3 "" H 2150 4950 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR09
+L socket-rescue:GND #PWR09
 U 1 1 5A638D25
 P 1300 5300
 F 0 "#PWR09" H 1300 5050 50  0001 C CNN
@@ -317,7 +301,7 @@ F 3 "" H 1300 5300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C6
+L socket-rescue:C C6
 U 1 1 5A639FC7
 P 2550 4600
 F 0 "C6" H 2575 4700 50  0000 L CNN
@@ -339,7 +323,7 @@ NoConn ~ 3750 4950
 NoConn ~ 3750 5050
 NoConn ~ 3750 5150
 $Comp
-L Conn_01x02 J3
+L socket-rescue:Conn_01x02 J3
 U 1 1 5A649591
 P 1500 800
 F 0 "J3" H 1500 900 50  0000 C CNN
@@ -350,7 +334,7 @@ F 3 "" H 1500 800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR010
+L socket-rescue:GND #PWR010
 U 1 1 5A64A5F7
 P 1150 950
 F 0 "#PWR010" H 1150 700 50  0001 C CNN
@@ -361,7 +345,7 @@ F 3 "" H 1150 950 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR011
+L socket-rescue:VCC #PWR011
 U 1 1 5A64A899
 P 1150 750
 F 0 "#PWR011" H 1150 600 50  0001 C CNN
@@ -372,7 +356,7 @@ F 3 "" H 1150 750 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L PWR_FLAG #FLG012
+L socket-rescue:PWR_FLAG #FLG012
 U 1 1 5A64AA8D
 P 1150 800
 F 0 "#FLG012" H 1150 875 50  0001 C CNN
@@ -383,7 +367,7 @@ F 3 "" H 1150 800 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L VCC #PWR013
+L socket-rescue:VCC #PWR013
 U 1 1 5A64AF04
 P 5650 1100
 F 0 "#PWR013" H 5650 950 50  0001 C CNN
@@ -394,7 +378,7 @@ F 3 "" H 5650 1100 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L GND #PWR014
+L socket-rescue:GND #PWR014
 U 1 1 5A64AFC1
 P 5650 3200
 F 0 "#PWR014" H 5650 2950 50  0001 C CNN
@@ -405,7 +389,7 @@ F 3 "" H 5650 3200 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L C C8
+L socket-rescue:C C8
 U 1 1 5A64B889
 P 4700 2900
 F 0 "C8" H 4725 3000 50  0000 L CNN
@@ -416,7 +400,7 @@ F 3 "" H 4700 2900 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L GND #PWR015
+L socket-rescue:GND #PWR015
 U 1 1 5A64B966
 P 4700 3100
 F 0 "#PWR015" H 4700 2850 50  0001 C CNN
@@ -431,7 +415,7 @@ SWIM
 Text Label 1300 1900 2    60   ~ 0
 NRST
 $Comp
-L GND #PWR016
+L socket-rescue:GND #PWR016
 U 1 1 5A64CC2E
 P 900 1800
 F 0 "#PWR016" H 900 1550 50  0001 C CNN
@@ -446,7 +430,7 @@ NRST
 Text Label 6250 1850 0    60   ~ 0
 SWIM
 $Comp
-L Conn_01x03 J4
+L socket-rescue:Conn_01x03 J4
 U 1 1 5A64FDB7
 P 1500 1900
 F 0 "J4" H 1500 2100 50  0000 C CNN
@@ -457,7 +441,7 @@ F 3 "" H 1500 1900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L D_Schottky D2
+L socket-rescue:D_Schottky D2
 U 1 1 5A650205
 P 1800 4650
 F 0 "D2" H 1800 4750 50  0000 C CNN
@@ -468,7 +452,7 @@ F 3 "" H 1800 4650 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L VCC #PWR017
+L socket-rescue:VCC #PWR017
 U 1 1 5A650C62
 P 2050 4650
 F 0 "#PWR017" H 2050 4500 50  0001 C CNN
@@ -479,7 +463,7 @@ F 3 "" H 2050 4650 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L C C10
+L socket-rescue:C C10
 U 1 1 5A652B90
 P 5950 1100
 F 0 "C10" H 5975 1200 50  0000 L CNN
@@ -490,7 +474,7 @@ F 3 "" H 5950 1100 50  0001 C CNN
 	0    1    -1   0   
 $EndComp
 $Comp
-L GND #PWR018
+L socket-rescue:GND #PWR018
 U 1 1 5A652C89
 P 6150 1100
 F 0 "#PWR018" H 6150 850 50  0001 C CNN
@@ -501,7 +485,7 @@ F 3 "" H 6150 1100 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L C C9
+L socket-rescue:C C9
 U 1 1 5A653BA1
 P 4950 3000
 F 0 "C9" H 4975 3100 50  0000 L CNN
@@ -512,7 +496,7 @@ F 3 "" H 4950 3000 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L GND #PWR019
+L socket-rescue:GND #PWR019
 U 1 1 5A653BA7
 P 4950 3200
 F 0 "#PWR019" H 4950 2950 50  0001 C CNN
@@ -523,7 +507,7 @@ F 3 "" H 4950 3200 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L MOC3063M U8
+L socket-rescue:MOC3063M U8
 U 1 1 5A654A52
 P 8200 1250
 F 0 "U8" H 8000 1450 50  0000 L CNN
@@ -534,40 +518,40 @@ F 3 "" H 8165 1250 50  0001 L CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L BT137-600E D3
+L bt137:BT137-600E D3
 U 1 1 5A6663E2
 P 9050 1150
-F 0 "D3" H 9350 1200 50  0000 L CNN
-F 1 "BT137-600E" H 9250 1100 50  0000 L CNN
+F 0 "D3" H 9100 1000 50  0000 L CNN
+F 1 "BT137-600E" H 8950 1400 50  0000 L CNN
 F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" V 9125 1175 50  0001 C CNN
 F 3 "" V 9050 1150 50  0001 C CNN
 	1    9050 1150
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R19
+L socket-rescue:R R19
 U 1 1 5A666603
 P 8750 1350
 F 0 "R19" V 8830 1350 50  0000 C CNN
 F 1 "330" V 8750 1350 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 8680 1350 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_HandSoldering" V 8680 1350 50  0001 C CNN
 F 3 "" H 8750 1350 50  0001 C CNN
 	1    8750 1350
 	0    1    1    0   
 $EndComp
 $Comp
-L R R20
+L socket-rescue:R R20
 U 1 1 5A6668C8
 P 8800 1000
 F 0 "R20" V 8880 1000 50  0000 C CNN
 F 1 "330" V 8800 1000 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.24x1.80mm_HandSolder" V 8730 1000 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_HandSoldering" V 8730 1000 50  0001 C CNN
 F 3 "" H 8800 1000 50  0001 C CNN
 	1    8800 1000
 	0    1    1    0   
 $EndComp
 $Comp
-L R R15
+L socket-rescue:R R15
 U 1 1 5A666D5B
 P 7850 950
 F 0 "R15" V 7930 950 50  0000 C CNN
@@ -578,7 +562,7 @@ F 3 "" H 7850 950 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR020
+L socket-rescue:GND #PWR020
 U 1 1 5A667568
 P 7700 1950
 F 0 "#PWR020" H 7700 1700 50  0001 C CNN
@@ -589,7 +573,7 @@ F 3 "" H 7700 1950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR021
+L socket-rescue:VCC #PWR021
 U 1 1 5A668A7A
 P 8350 1750
 F 0 "#PWR021" H 8350 1600 50  0001 C CNN
@@ -600,7 +584,7 @@ F 3 "" H 8350 1750 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Q_NMOS_GSD Q8
+L socket-rescue:Q_NMOS_GSD Q8
 U 1 1 5A668F1E
 P 8250 2650
 F 0 "Q8" H 8450 2700 50  0000 L CNN
@@ -611,7 +595,7 @@ F 3 "" H 8250 2650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR022
+L socket-rescue:GND #PWR022
 U 1 1 5A669258
 P 8350 3100
 F 0 "#PWR022" H 8350 2850 50  0001 C CNN
@@ -622,7 +606,7 @@ F 3 "" H 8350 3100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R16
+L socket-rescue:R R16
 U 1 1 5A66984A
 P 7850 2650
 F 0 "R16" V 7930 2650 50  0000 C CNN
@@ -633,7 +617,7 @@ F 3 "" H 7850 2650 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Screw_Terminal_01x03 J6
+L socket-rescue:Screw_Terminal_01x03 J6
 U 1 1 5A66B8C0
 P 10200 1150
 F 0 "J6" H 10200 1350 50  0000 C CNN
@@ -643,23 +627,12 @@ F 3 "" H 10200 1150 50  0001 C CNN
 	1    10200 1150
 	1    0    0    -1  
 $EndComp
-$Comp
-L GNDREF #PWR023
-U 1 1 5A66E10F
-P 9900 1350
-F 0 "#PWR023" H 9900 1100 50  0001 C CNN
-F 1 "GNDREF" H 9900 1200 50  0001 C CNN
-F 2 "" H 9900 1350 50  0001 C CNN
-F 3 "" H 9900 1350 50  0001 C CNN
-	1    9900 1350
-	-1   0    0    -1  
-$EndComp
 Text Label 7400 1200 2    60   ~ 0
 Triac0
 Text Label 7700 2650 2    60   ~ 0
 Relay0
 $Comp
-L ACS712 U10
+L acs712:ACS712 U10
 U 1 1 5A671829
 P 10150 2000
 F 0 "U10" H 10150 2300 60  0000 C CNN
@@ -670,7 +643,7 @@ F 3 "" H 10150 2000 60  0001 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L C C11
+L socket-rescue:C C11
 U 1 1 5A674128
 P 10800 2350
 F 0 "C11" H 10825 2450 50  0000 L CNN
@@ -681,10 +654,10 @@ F 3 "" H 10800 2350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR024
+L socket-rescue:GND #PWR023
 U 1 1 5A674DB0
 P 10800 2550
-F 0 "#PWR024" H 10800 2300 50  0001 C CNN
+F 0 "#PWR023" H 10800 2300 50  0001 C CNN
 F 1 "GND" H 10800 2400 50  0000 C CNN
 F 2 "" H 10800 2550 50  0001 C CNN
 F 3 "" H 10800 2550 50  0001 C CNN
@@ -692,10 +665,10 @@ F 3 "" H 10800 2550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR025
+L socket-rescue:VCC #PWR024
 U 1 1 5A6751E1
 P 11100 2150
-F 0 "#PWR025" H 11100 2000 50  0001 C CNN
+F 0 "#PWR024" H 11100 2000 50  0001 C CNN
 F 1 "VCC" H 11100 2300 50  0000 C CNN
 F 2 "" H 11100 2150 50  0001 C CNN
 F 3 "" H 11100 2150 50  0001 C CNN
@@ -705,7 +678,7 @@ $EndComp
 Text Label 10700 2050 0    60   ~ 0
 Cur0
 $Comp
-L C C12
+L socket-rescue:C C12
 U 1 1 5A67650B
 P 10950 1750
 F 0 "C12" H 10975 1850 50  0000 L CNN
@@ -716,10 +689,10 @@ F 3 "" H 10950 1750 50  0001 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L GND #PWR026
+L socket-rescue:GND #PWR025
 U 1 1 5A676B3B
 P 10700 1600
-F 0 "#PWR026" H 10700 1350 50  0001 C CNN
+F 0 "#PWR025" H 10700 1350 50  0001 C CNN
 F 1 "GND" H 10700 1450 50  0000 C CNN
 F 2 "" H 10700 1600 50  0001 C CNN
 F 3 "" H 10700 1600 50  0001 C CNN
@@ -729,7 +702,7 @@ $EndComp
 Text Label 6800 1700 2    60   ~ 0
 Cur0
 $Comp
-L R R5
+L socket-rescue:R R5
 U 1 1 5A677EBD
 P 6800 1900
 F 0 "R5" V 6880 1900 50  0000 C CNN
@@ -740,10 +713,10 @@ F 3 "" H 6800 1900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR027
+L socket-rescue:GND #PWR026
 U 1 1 5A67853C
 P 6800 2450
-F 0 "#PWR027" H 6800 2200 50  0001 C CNN
+F 0 "#PWR026" H 6800 2200 50  0001 C CNN
 F 1 "GND" H 6800 2300 50  0000 C CNN
 F 2 "" H 6800 2450 50  0001 C CNN
 F 3 "" H 6800 2450 50  0001 C CNN
@@ -755,7 +728,7 @@ Triac0
 Text Label 5050 2550 2    60   ~ 0
 Relay0
 $Comp
-L MOC3063M U9
+L socket-rescue:MOC3063M U9
 U 1 1 5A67BDE1
 P 9050 3850
 F 0 "U9" H 8850 4050 50  0000 L CNN
@@ -766,40 +739,40 @@ F 3 "" H 9015 3850 50  0001 L CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L BT137-600E D4
+L bt137:BT137-600E D4
 U 1 1 5A67BDE7
 P 9900 3750
-F 0 "D4" H 10200 3800 50  0000 L CNN
-F 1 "BT137-600E" H 10100 3700 50  0000 L CNN
+F 0 "D4" H 9950 3600 50  0000 L CNN
+F 1 "BT137-600E" H 9775 3975 50  0000 L CNN
 F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" V 9975 3775 50  0001 C CNN
 F 3 "" V 9900 3750 50  0001 C CNN
 	1    9900 3750
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R21
+L socket-rescue:R R21
 U 1 1 5A67BDED
 P 9600 3950
 F 0 "R21" V 9680 3950 50  0000 C CNN
 F 1 "330" V 9600 3950 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 9530 3950 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_HandSoldering" V 9530 3950 50  0001 C CNN
 F 3 "" H 9600 3950 50  0001 C CNN
 	1    9600 3950
 	0    1    1    0   
 $EndComp
 $Comp
-L R R22
+L socket-rescue:R R22
 U 1 1 5A67BDF3
 P 9650 3600
 F 0 "R22" V 9730 3600 50  0000 C CNN
 F 1 "330" V 9650 3600 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.24x1.80mm_HandSolder" V 9580 3600 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_HandSoldering" V 9580 3600 50  0001 C CNN
 F 3 "" H 9650 3600 50  0001 C CNN
 	1    9650 3600
 	0    1    1    0   
 $EndComp
 $Comp
-L R R17
+L socket-rescue:R R17
 U 1 1 5A67BDF9
 P 8700 3550
 F 0 "R17" V 8780 3550 50  0000 C CNN
@@ -810,10 +783,10 @@ F 3 "" H 8700 3550 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L VCC #PWR028
+L socket-rescue:VCC #PWR027
 U 1 1 5A67BE05
 P 9200 4350
-F 0 "#PWR028" H 9200 4200 50  0001 C CNN
+F 0 "#PWR027" H 9200 4200 50  0001 C CNN
 F 1 "VCC" H 9200 4500 50  0000 C CNN
 F 2 "" H 9200 4350 50  0001 C CNN
 F 3 "" H 9200 4350 50  0001 C CNN
@@ -821,7 +794,7 @@ F 3 "" H 9200 4350 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Q_NMOS_GSD Q9
+L socket-rescue:Q_NMOS_GSD Q9
 U 1 1 5A67BE0B
 P 9100 5250
 F 0 "Q9" H 9300 5300 50  0000 L CNN
@@ -832,10 +805,10 @@ F 3 "" H 9100 5250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR029
+L socket-rescue:GND #PWR028
 U 1 1 5A67BE11
 P 9200 5700
-F 0 "#PWR029" H 9200 5450 50  0001 C CNN
+F 0 "#PWR028" H 9200 5450 50  0001 C CNN
 F 1 "GND" H 9200 5550 50  0000 C CNN
 F 2 "" H 9200 5700 50  0001 C CNN
 F 3 "" H 9200 5700 50  0001 C CNN
@@ -843,7 +816,7 @@ F 3 "" H 9200 5700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R18
+L socket-rescue:R R18
 U 1 1 5A67BE17
 P 8700 5250
 F 0 "R18" V 8780 5250 50  0000 C CNN
@@ -854,7 +827,7 @@ F 3 "" H 8700 5250 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L G5LE-1 K2
+L socket-rescue:G5LE-1 K2
 U 1 1 5A67BE1D
 P 9400 4700
 F 0 "K2" H 8850 4700 50  0000 L CNN
@@ -865,7 +838,7 @@ F 3 "" H 9400 4700 50  0001 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L Screw_Terminal_01x03 J7
+L socket-rescue:Screw_Terminal_01x03 J7
 U 1 1 5A67BE23
 P 11050 3750
 F 0 "J7" H 11050 3950 50  0000 C CNN
@@ -873,17 +846,6 @@ F 1 "Power" H 11050 3550 50  0000 C CNN
 F 2 "TerminalBlock:TerminalBlock_Altech_AK300-3_P5.00mm" H 11050 3750 50  0001 C CNN
 F 3 "" H 11050 3750 50  0001 C CNN
 	1    11050 3750
-	1    0    0    -1  
-$EndComp
-$Comp
-L GNDREF #PWR030
-U 1 1 5A67BE29
-P 10750 3950
-F 0 "#PWR030" H 10750 3700 50  0001 C CNN
-F 1 "GNDREF" H 10750 3800 50  0001 C CNN
-F 2 "" H 10750 3950 50  0001 C CNN
-F 3 "" H 10750 3950 50  0001 C CNN
-	1    10750 3950
 	1    0    0    -1  
 $EndComp
 Text Label 8250 3800 2    60   ~ 0
@@ -899,7 +861,7 @@ Triac1
 Text Label 5050 2250 2    60   ~ 0
 Relay1
 $Comp
-L PC817 U6
+L socket-rescue:PC817 U6
 U 1 1 5A67FC76
 P 5400 5450
 F 0 "U6" H 5200 5650 50  0000 L CNN
@@ -910,7 +872,7 @@ F 3 "" H 5400 5450 50  0001 L CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L PC817 U7
+L socket-rescue:PC817 U7
 U 1 1 5A68037B
 P 5400 5850
 F 0 "U7" H 5200 6050 50  0000 L CNN
@@ -921,7 +883,7 @@ F 3 "" H 5400 5850 50  0001 L CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L PC817 U5
+L socket-rescue:PC817 U5
 U 1 1 5A68120F
 P 5400 4900
 F 0 "U5" H 5200 5100 50  0000 L CNN
@@ -934,7 +896,7 @@ $EndComp
 Text Notes 4500 4150 0    60   ~ 0
 Inout
 $Comp
-L R R10
+L socket-rescue:R R10
 U 1 1 5A683C5D
 P 5800 5150
 F 0 "R10" V 5880 5150 50  0000 C CNN
@@ -945,7 +907,7 @@ F 3 "" H 5800 5150 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L R R9
+L socket-rescue:R R9
 U 1 1 5A6842AC
 P 5900 4400
 F 0 "R9" V 5980 4400 50  0000 C CNN
@@ -956,7 +918,7 @@ F 3 "" H 5900 4400 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R7
+L socket-rescue:R R7
 U 1 1 5A685FA8
 P 4900 5550
 F 0 "R7" V 4980 5550 50  0000 C CNN
@@ -967,7 +929,7 @@ F 3 "" H 4900 5550 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R8
+L socket-rescue:R R8
 U 1 1 5A6887AD
 P 4900 5950
 F 0 "R8" V 4980 5950 50  0000 C CNN
@@ -978,7 +940,7 @@ F 3 "" H 4900 5950 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Q_NMOS_GSD Q1
+L socket-rescue:Q_NMOS_GSD Q1
 U 1 1 5A688863
 P 3850 6100
 F 0 "Q1" H 4050 6150 50  0000 L CNN
@@ -989,7 +951,7 @@ F 3 "" H 3850 6100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q_NMOS_GSD Q2
+L socket-rescue:Q_NMOS_GSD Q2
 U 1 1 5A688E43
 P 4450 6100
 F 0 "Q2" H 4650 6150 50  0000 L CNN
@@ -1000,10 +962,10 @@ F 3 "" H 4450 6100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR031
+L socket-rescue:GND #PWR029
 U 1 1 5A689598
 P 4250 6350
-F 0 "#PWR031" H 4250 6100 50  0001 C CNN
+F 0 "#PWR029" H 4250 6100 50  0001 C CNN
 F 1 "GND" H 4250 6200 50  0000 C CNN
 F 2 "" H 4250 6350 50  0001 C CNN
 F 3 "" H 4250 6350 50  0001 C CNN
@@ -1011,7 +973,7 @@ F 3 "" H 4250 6350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R4
+L socket-rescue:R R4
 U 1 1 5A689B60
 P 3450 6100
 F 0 "R4" V 3530 6100 50  0000 C CNN
@@ -1022,7 +984,7 @@ F 3 "" H 3450 6100 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R3
+L socket-rescue:R R3
 U 1 1 5A689C9C
 P 3450 5800
 F 0 "R3" V 3530 5800 50  0000 C CNN
@@ -1033,10 +995,10 @@ F 3 "" H 3450 5800 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L VCC #PWR032
+L socket-rescue:VCC #PWR030
 U 1 1 5A68A310
 P 4750 5300
-F 0 "#PWR032" H 4750 5150 50  0001 C CNN
+F 0 "#PWR030" H 4750 5150 50  0001 C CNN
 F 1 "VCC" H 4750 5450 50  0000 C CNN
 F 2 "" H 4750 5300 50  0001 C CNN
 F 3 "" H 4750 5300 50  0001 C CNN
@@ -1044,10 +1006,10 @@ F 3 "" H 4750 5300 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L GND #PWR033
+L socket-rescue:GND #PWR031
 U 1 1 5A68CA9A
 P 5000 5050
-F 0 "#PWR033" H 5000 4800 50  0001 C CNN
+F 0 "#PWR031" H 5000 4800 50  0001 C CNN
 F 1 "GND" H 5000 4900 50  0000 C CNN
 F 2 "" H 5000 5050 50  0001 C CNN
 F 3 "" H 5000 5050 50  0001 C CNN
@@ -1071,7 +1033,7 @@ Out0
 Text Label 5050 1550 2    60   ~ 0
 Out1
 $Comp
-L DB15_Male J5
+L socket-rescue:DB15_Male J5
 U 1 1 5A79F666
 P 7950 5250
 F 0 "J5" H 7970 6100 50  0000 C CNN
@@ -1082,7 +1044,7 @@ F 3 "" H 7950 5250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q_NMOS_GSD Q3
+L socket-rescue:Q_NMOS_GSD Q3
 U 1 1 5A7A8D09
 P 6450 3850
 F 0 "Q3" H 6650 3900 50  0000 L CNN
@@ -1093,7 +1055,7 @@ F 3 "" H 6450 3850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q_NMOS_GSD Q4
+L socket-rescue:Q_NMOS_GSD Q4
 U 1 1 5A7AA80B
 P 6450 4350
 F 0 "Q4" H 6650 4400 50  0000 L CNN
@@ -1104,7 +1066,7 @@ F 3 "" H 6450 4350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R11
+L socket-rescue:R R11
 U 1 1 5A7AC3F3
 P 6050 3800
 F 0 "R11" V 6130 3800 50  0000 C CNN
@@ -1115,7 +1077,7 @@ F 3 "" H 6050 3800 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R12
+L socket-rescue:R R12
 U 1 1 5A7AC8CB
 P 6050 4200
 F 0 "R12" V 6130 4200 50  0000 C CNN
@@ -1126,7 +1088,7 @@ F 3 "" H 6050 4200 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R14
+L socket-rescue:R R14
 U 1 1 5A7ACCA5
 P 6700 3350
 F 0 "R14" V 6780 3350 50  0000 C CNN
@@ -1148,21 +1110,10 @@ Text Label 5050 2150 2    60   ~ 0
 NKEY2
 Text Label 5050 2350 2    60   ~ 0
 NKEY1
-$Comp
-L PWR_FLAG #FLG034
-U 1 1 5A7AD9A0
-P 10900 4100
-F 0 "#FLG034" H 10900 4175 50  0001 C CNN
-F 1 "PWR_FLAG" H 10900 4250 50  0000 C CNN
-F 2 "" H 10900 4100 50  0001 C CNN
-F 3 "" H 10900 4100 50  0001 C CNN
-	1    10900 4100
-	-1   0    0    1   
-$EndComp
 NoConn ~ 7650 5050
 NoConn ~ 7650 5150
 $Comp
-L D_Zener D5
+L socket-rescue:D_Zener D5
 U 1 1 5A7C171C
 P 5400 4450
 F 0 "D5" H 5400 4550 50  0000 C CNN
@@ -1174,7 +1125,7 @@ F 3 "" H 5400 4450 50  0001 C CNN
 $EndComp
 NoConn ~ 6250 2150
 $Comp
-L C C13
+L socket-rescue:C C13
 U 1 1 5A7CF343
 P 6800 2250
 F 0 "C13" H 6825 2350 50  0000 L CNN
@@ -1185,7 +1136,7 @@ F 3 "" H 6800 2250 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L G5LE-1 K1
+L socket-rescue:G5LE-1 K1
 U 1 1 5A66AAE1
 P 8550 2100
 F 0 "K1" H 8000 2100 50  0000 L CNN
@@ -1196,7 +1147,7 @@ F 3 "" H 8550 2100 50  0001 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L R R33
+L socket-rescue:R R33
 U 1 1 5B171912
 P 8900 5450
 F 0 "R33" V 8980 5450 50  0000 C CNN
@@ -1207,7 +1158,7 @@ F 3 "" H 8900 5450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R27
+L socket-rescue:R R27
 U 1 1 5B171C65
 P 6550 3100
 F 0 "R27" V 6630 3100 50  0000 C CNN
@@ -1218,10 +1169,10 @@ F 3 "" H 6550 3100 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR035
+L socket-rescue:GND #PWR032
 U 1 1 5B1733DD
 P 6350 5000
-F 0 "#PWR035" H 6350 4750 50  0001 C CNN
+F 0 "#PWR032" H 6350 4750 50  0001 C CNN
 F 1 "GND" H 6350 4850 50  0000 C CNN
 F 2 "" H 6350 5000 50  0001 C CNN
 F 3 "" H 6350 5000 50  0001 C CNN
@@ -1229,7 +1180,7 @@ F 3 "" H 6350 5000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R25
+L socket-rescue:R R25
 U 1 1 5B173BDC
 P 6200 4000
 F 0 "R25" V 6280 4000 50  0000 C CNN
@@ -1240,7 +1191,7 @@ F 3 "" H 6200 4000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R26
+L socket-rescue:R R26
 U 1 1 5B173ECD
 P 6200 4650
 F 0 "R26" V 6280 4650 50  0000 C CNN
@@ -1251,7 +1202,7 @@ F 3 "" H 6200 4650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R6
+L socket-rescue:R R6
 U 1 1 5B177690
 P 3650 6300
 F 0 "R6" V 3730 6300 50  0000 C CNN
@@ -1262,7 +1213,7 @@ F 3 "" H 3650 6300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1900 2200 1900 2500
+	1900 2200 1900 2350
 Wire Wire Line
 	1900 2350 1800 2350
 Connection ~ 1900 2350
@@ -1283,25 +1234,25 @@ Wire Wire Line
 Wire Wire Line
 	3050 3850 3050 3800
 Wire Wire Line
-	1500 2700 2250 2700
+	1500 2700 1850 2700
 Wire Wire Line
 	1750 2900 1500 2900
 Wire Wire Line
 	2250 3100 1750 3100
 Wire Wire Line
-	1750 2900 1750 3800
+	1750 2900 1750 3100
 Wire Wire Line
 	1600 3400 1600 3300
 Wire Wire Line
 	1600 3300 1500 3300
 Wire Wire Line
-	2350 5150 2350 5450
+	2350 5150 2350 5350
 Wire Wire Line
 	2350 5150 2850 5150
 Connection ~ 2350 5350
 Connection ~ 2050 5350
 Wire Wire Line
-	2050 5750 2350 5750
+	2050 5750 2200 5750
 Wire Wire Line
 	1850 4250 1850 4200
 Wire Wire Line
@@ -1312,7 +1263,7 @@ Wire Wire Line
 Wire Wire Line
 	2850 4450 2850 4350
 Wire Wire Line
-	2050 5100 2050 5450
+	2050 5100 2050 5350
 Wire Wire Line
 	2050 5100 2300 5100
 Wire Wire Line
@@ -1320,9 +1271,9 @@ Wire Wire Line
 Wire Wire Line
 	2300 5050 2850 5050
 Wire Wire Line
-	2300 4950 2850 4950
+	2300 4950 2350 4950
 Wire Wire Line
-	2050 4850 2850 4850
+	2050 4850 2200 4850
 Wire Wire Line
 	1600 4850 1750 4850
 Wire Wire Line
@@ -1388,9 +1339,9 @@ Wire Wire Line
 Wire Wire Line
 	8650 1150 8650 1000
 Wire Wire Line
-	8950 1000 10000 1000
+	8950 1000 9050 1000
 Wire Wire Line
-	8500 1350 8600 1350
+	8500 1350 8550 1350
 Wire Wire Line
 	7700 1350 7900 1350
 Wire Wire Line
@@ -1400,7 +1351,7 @@ Wire Wire Line
 Wire Wire Line
 	8350 2450 8350 2400
 Wire Wire Line
-	8350 2850 8350 3100
+	8350 2850 8350 3000
 Wire Wire Line
 	8000 2650 8050 2650
 Connection ~ 9050 1000
@@ -1410,8 +1361,6 @@ Wire Wire Line
 Wire Wire Line
 	5650 3200 5650 3150
 Wire Wire Line
-	9900 1350 9900 1150
-Wire Wire Line
 	9900 1150 10000 1150
 Wire Wire Line
 	10000 1000 10000 1050
@@ -1419,19 +1368,13 @@ Wire Wire Line
 	9600 1250 10000 1250
 Connection ~ 9200 1000
 Wire Wire Line
-	8900 1350 9400 1350
-Wire Wire Line
-	9400 1350 9400 2100
-Wire Wire Line
-	9400 2100 9600 2100
-Wire Wire Line
-	9600 2050 9600 2150
+	9600 2050 9600 2100
 Connection ~ 9600 2100
 Wire Wire Line
-	9600 1250 9600 1900
+	9600 1250 9600 1800
 Connection ~ 9600 1800
 Wire Wire Line
-	10700 2150 11100 2150
+	10700 2150 10800 2150
 Wire Wire Line
 	10800 2150 10800 2200
 Wire Wire Line
@@ -1454,9 +1397,9 @@ Wire Wire Line
 Wire Wire Line
 	9500 3750 9500 3600
 Wire Wire Line
-	9800 3600 10850 3600
+	9800 3600 9900 3600
 Wire Wire Line
-	9350 3950 9450 3950
+	9350 3950 9400 3950
 Wire Wire Line
 	8750 3750 8700 3750
 Wire Wire Line
@@ -1464,34 +1407,25 @@ Wire Wire Line
 Wire Wire Line
 	9200 5050 9200 5000
 Wire Wire Line
-	9200 5450 9200 5700
+	9200 5450 9200 5600
 Wire Wire Line
 	8850 5250 8900 5250
 Connection ~ 9900 3600
-Connection ~ 9900 3950
 Wire Wire Line
-	9900 3900 9900 5000
-Wire Wire Line
-	10750 3750 10750 3950
+	9900 3900 9900 3950
 Wire Wire Line
 	10750 3750 10850 3750
 Wire Wire Line
 	10850 3600 10850 3650
-Wire Wire Line
-	10450 3850 10850 3850
 Connection ~ 10050 3600
-Wire Wire Line
-	9750 3950 10450 3950
-Wire Wire Line
-	10450 3950 10450 3850
 Wire Wire Line
 	5700 5550 7650 5550
 Wire Wire Line
-	4750 4400 5750 4400
+	4750 4400 5250 4400
 Wire Wire Line
 	5700 5350 7650 5350
 Wire Wire Line
-	3950 6300 4550 6300
+	3950 6300 4050 6300
 Wire Wire Line
 	4250 6350 4250 6300
 Connection ~ 4250 6300
@@ -1504,12 +1438,12 @@ Wire Wire Line
 Wire Wire Line
 	3600 6100 3650 6100
 Wire Wire Line
-	4750 5300 4750 5950
+	4750 5300 4750 5550
 Connection ~ 4750 5550
 Wire Wire Line
-	5000 4600 5000 5050
+	5000 4600 5000 4800
 Wire Wire Line
-	5000 4600 6100 4600
+	5000 4600 5550 4600
 Wire Wire Line
 	7650 5850 5800 5850
 Wire Wire Line
@@ -1560,16 +1494,11 @@ Wire Wire Line
 Wire Wire Line
 	2700 4550 2700 4300
 Wire Wire Line
-	10900 4100 10900 3900
-Wire Wire Line
-	10900 3900 10750 3900
-Connection ~ 10750 3900
-Wire Wire Line
 	6350 4950 7650 4950
 Wire Wire Line
-	6350 4050 6350 5000
+	6350 4050 6350 4150
 Wire Wire Line
-	5250 4350 5250 4450
+	5250 4350 5250 4400
 Connection ~ 5250 4400
 Wire Wire Line
 	5550 4450 5550 4600
@@ -1599,7 +1528,7 @@ Wire Wire Line
 Wire Wire Line
 	9050 2400 8850 2400
 Wire Wire Line
-	9050 1300 9050 2400
+	9050 1300 9050 1350
 Wire Wire Line
 	9900 5000 9700 5000
 Wire Wire Line
@@ -1636,7 +1565,7 @@ Wire Wire Line
 	6200 4800 6350 4800
 Connection ~ 6350 4800
 Wire Wire Line
-	6200 4200 6200 4500
+	6200 4200 6200 4350
 Wire Wire Line
 	6200 4350 6250 4350
 Connection ~ 6200 4350
@@ -1646,11 +1575,10 @@ Wire Wire Line
 	3950 6450 3950 6300
 Wire Wire Line
 	3650 6100 3650 6150
-Connection ~ 3650 6450
 Connection ~ 3950 6300
 Connection ~ 3650 6100
 $Comp
-L R R13
+L socket-rescue:R R13
 U 1 1 5B1781E2
 P 3900 5800
 F 0 "R13" V 3980 5800 50  0000 C CNN
@@ -1664,7 +1592,7 @@ Wire Wire Line
 	4050 5800 4050 6300
 Connection ~ 4050 6300
 Wire Wire Line
-	3600 5800 3750 5800
+	3600 5800 3700 5800
 Wire Wire Line
 	3700 5800 3700 5700
 Wire Wire Line
@@ -1677,7 +1605,7 @@ Wire Wire Line
 	8900 5250 8900 5300
 Connection ~ 8900 5250
 $Comp
-L R R30
+L socket-rescue:R R30
 U 1 1 5B179FBF
 P 8050 2850
 F 0 "R30" V 8130 2850 50  0000 C CNN
@@ -1694,7 +1622,7 @@ Wire Wire Line
 	8050 2650 8050 2700
 Connection ~ 8050 2650
 $Comp
-L Q_NMOS_GSD Q5
+L socket-rescue:Q_NMOS_GSD Q5
 U 1 1 5B17D4BB
 P 7600 1550
 F 0 "Q5" H 7800 1600 50  0000 L CNN
@@ -1705,7 +1633,7 @@ F 3 "" H 7600 1550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R28
+L socket-rescue:R R28
 U 1 1 5B17EF01
 P 7400 1350
 F 0 "R28" V 7480 1350 50  0000 C CNN
@@ -1716,7 +1644,7 @@ F 3 "" H 7400 1350 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L R R29
+L socket-rescue:R R29
 U 1 1 5B17F8C7
 P 7400 1750
 F 0 "R29" V 7480 1750 50  0000 C CNN
@@ -1727,10 +1655,10 @@ F 3 "" H 7400 1750 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L VCC #PWR036
+L socket-rescue:VCC #PWR033
 U 1 1 5B180794
 P 7850 750
-F 0 "#PWR036" H 7850 600 50  0001 C CNN
+F 0 "#PWR033" H 7850 600 50  0001 C CNN
 F 1 "VCC" H 7850 900 50  0000 C CNN
 F 2 "" H 7850 750 50  0001 C CNN
 F 3 "" H 7850 750 50  0001 C CNN
@@ -1742,10 +1670,10 @@ Wire Wire Line
 Wire Wire Line
 	7850 1150 7850 1100
 $Comp
-L VCC #PWR037
+L socket-rescue:VCC #PWR034
 U 1 1 5B181A0F
 P 8700 3350
-F 0 "#PWR037" H 8700 3200 50  0001 C CNN
+F 0 "#PWR034" H 8700 3200 50  0001 C CNN
 F 1 "VCC" H 8700 3500 50  0000 C CNN
 F 2 "" H 8700 3350 50  0001 C CNN
 F 3 "" H 8700 3350 50  0001 C CNN
@@ -1757,18 +1685,18 @@ Wire Wire Line
 Wire Wire Line
 	8700 3750 8700 3700
 Wire Wire Line
-	7700 1950 7700 1750
+	7700 1750 7700 1900
 Wire Wire Line
 	7400 1900 7700 1900
 Connection ~ 7700 1900
 Wire Wire Line
-	7400 1500 7400 1600
+	7400 1500 7400 1550
 Connection ~ 7400 1550
 $Comp
-L GND #PWR038
+L socket-rescue:GND #PWR035
 U 1 1 5B184421
 P 8550 4550
-F 0 "#PWR038" H 8550 4300 50  0001 C CNN
+F 0 "#PWR035" H 8550 4300 50  0001 C CNN
 F 1 "GND" H 8550 4400 50  0000 C CNN
 F 2 "" H 8550 4550 50  0001 C CNN
 F 3 "" H 8550 4550 50  0001 C CNN
@@ -1778,7 +1706,7 @@ $EndComp
 Wire Wire Line
 	8550 3950 8750 3950
 $Comp
-L Q_NMOS_GSD Q7
+L socket-rescue:Q_NMOS_GSD Q7
 U 1 1 5B184429
 P 8450 4150
 F 0 "Q7" H 8650 4200 50  0000 L CNN
@@ -1789,7 +1717,7 @@ F 3 "" H 8450 4150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R31
+L socket-rescue:R R31
 U 1 1 5B18442F
 P 8250 3950
 F 0 "R31" V 8330 3950 50  0000 C CNN
@@ -1800,7 +1728,7 @@ F 3 "" H 8250 3950 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L R R32
+L socket-rescue:R R32
 U 1 1 5B184435
 P 8250 4350
 F 0 "R32" V 8330 4350 50  0000 C CNN
@@ -1811,17 +1739,15 @@ F 3 "" H 8250 4350 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	8550 4550 8550 4350
+	8550 4350 8550 4500
 Wire Wire Line
 	8250 4500 8550 4500
 Connection ~ 8550 4500
 Wire Wire Line
-	8250 4100 8250 4200
+	8250 4100 8250 4150
 Connection ~ 8250 4150
-NoConn ~ 8650 2400
-NoConn ~ 9500 5000
 $Comp
-L D D7
+L socket-rescue:D D7
 U 1 1 5B31642E
 P 2700 4150
 F 0 "D7" H 2700 4250 50  0000 C CNN
@@ -1832,7 +1758,7 @@ F 3 "" H 2700 4150 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L D D8
+L socket-rescue:D D8
 U 1 1 5B31734F
 P 4050 3100
 F 0 "D8" H 4050 3200 50  0000 C CNN
@@ -1845,7 +1771,7 @@ $EndComp
 Wire Wire Line
 	3900 3100 3850 3100
 $Comp
-L R R23
+L socket-rescue:R R23
 U 1 1 5B318A76
 P 4200 2900
 F 0 "R23" V 4280 2900 50  0000 C CNN
@@ -1861,10 +1787,10 @@ Wire Wire Line
 	4200 3100 4300 3100
 Connection ~ 4200 3100
 $Comp
-L VCC #PWR039
+L socket-rescue:VCC #PWR036
 U 1 1 5B31955D
 P 4200 2700
-F 0 "#PWR039" H 4200 2550 50  0001 C CNN
+F 0 "#PWR036" H 4200 2550 50  0001 C CNN
 F 1 "VCC" H 4200 2850 50  0000 C CNN
 F 2 "" H 4200 2700 50  0001 C CNN
 F 3 "" H 4200 2700 50  0001 C CNN
@@ -1874,7 +1800,7 @@ $EndComp
 Wire Wire Line
 	4200 2700 4200 2750
 $Comp
-L R R24
+L socket-rescue:R R24
 U 1 1 5B3D0D24
 P 5250 4200
 F 0 "R24" V 5330 4200 50  0000 C CNN
@@ -1885,10 +1811,10 @@ F 3 "" H 5250 4200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR040
+L socket-rescue:VCC #PWR037
 U 1 1 5B3D0FB5
 P 5250 4000
-F 0 "#PWR040" H 5250 3850 50  0001 C CNN
+F 0 "#PWR037" H 5250 3850 50  0001 C CNN
 F 1 "VCC" H 5250 4150 50  0000 C CNN
 F 2 "" H 5250 4000 50  0001 C CNN
 F 3 "" H 5250 4000 50  0001 C CNN
@@ -1898,7 +1824,7 @@ $EndComp
 Wire Wire Line
 	5250 4000 5250 4050
 $Comp
-L Q_PMOS_GSD Q6
+L socket-rescue:Q_PMOS_GSD Q6
 U 1 1 5ACFAF39
 P 7100 3350
 F 0 "Q6" H 7300 3400 50  0000 L CNN
@@ -1911,10 +1837,10 @@ $EndComp
 Wire Wire Line
 	7600 3150 7200 3150
 $Comp
-L VCC #PWR041
+L socket-rescue:VCC #PWR038
 U 1 1 5B3D30C4
 P 6550 2900
-F 0 "#PWR041" H 6550 2750 50  0001 C CNN
+F 0 "#PWR038" H 6550 2750 50  0001 C CNN
 F 1 "VCC" H 6550 3050 50  0000 C CNN
 F 2 "" H 6550 2900 50  0001 C CNN
 F 3 "" H 6550 2900 50  0001 C CNN
@@ -1930,4 +1856,180 @@ Wire Wire Line
 Wire Wire Line
 	6550 3350 6500 3350
 Connection ~ 6550 3350
+Wire Wire Line
+	9400 1000 9400 1100
+Connection ~ 9400 1000
+$Comp
+L socket-rescue:R R34
+U 1 1 5C0761A4
+P 9400 1250
+F 0 "R34" V 9480 1250 50  0000 C CNN
+F 1 "330 2W" V 9400 1250 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_Power_L20.0mm_W6.4mm_P25.40mm" V 9330 1250 50  0001 C CNN
+F 3 "" H 9400 1250 50  0001 C CNN
+	1    9400 1250
+	-1   0    0    1   
+$EndComp
+$Comp
+L socket-rescue:C C14
+U 1 1 5C0762EC
+P 9400 1600
+F 0 "C14" H 9425 1700 50  0000 L CNN
+F 1 "0.01 600V" H 9425 1500 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D6.0mm_W2.5mm_P5.00mm" H 9438 1450 50  0001 C CNN
+F 3 "" H 9400 1600 50  0001 C CNN
+	1    9400 1600
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	9400 1450 9400 1400
+Wire Wire Line
+	10250 3600 10250 3675
+$Comp
+L socket-rescue:R R35
+U 1 1 5C0775F9
+P 10250 3825
+F 0 "R35" V 10330 3825 50  0000 C CNN
+F 1 "330 2W" V 10250 3825 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_Power_L20.0mm_W6.4mm_P25.40mm" V 10180 3825 50  0001 C CNN
+F 3 "" H 10250 3825 50  0001 C CNN
+	1    10250 3825
+	-1   0    0    1   
+$EndComp
+$Comp
+L socket-rescue:C C15
+U 1 1 5C0775FF
+P 10250 4150
+F 0 "C15" H 10275 4250 50  0000 L CNN
+F 1 "0.01 600V" H 10275 4050 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D6.0mm_W2.5mm_P5.00mm" H 10288 4000 50  0001 C CNN
+F 3 "" H 10250 4150 50  0001 C CNN
+	1    10250 4150
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	10250 4000 10250 3975
+Connection ~ 10250 3600
+Wire Wire Line
+	9900 4300 10250 4300
+Connection ~ 9900 4300
+Wire Wire Line
+	10475 4300 10475 3850
+Wire Wire Line
+	10475 3850 10850 3850
+Connection ~ 10250 4300
+Wire Wire Line
+	8650 2400 8650 2550
+Wire Wire Line
+	8650 2550 9000 2550
+Text Label 9000 2550 0    60   ~ 0
+NC1
+Text Label 9900 1150 2    60   ~ 0
+NC1
+Wire Wire Line
+	9500 5000 9500 5225
+Wire Wire Line
+	9500 5225 9900 5225
+Text Label 9900 5225 0    60   ~ 0
+NC2
+Text Label 10750 3750 2    60   ~ 0
+NC2
+Wire Wire Line
+	9750 3950 9900 3950
+Connection ~ 9900 3950
+Wire Wire Line
+	8900 1350 9050 1350
+Connection ~ 9050 2100
+Wire Wire Line
+	9050 2100 9600 2100
+Wire Wire Line
+	9400 1750 9400 1800
+Wire Wire Line
+	9400 1800 9600 1800
+Wire Wire Line
+	1900 2350 1900 2500
+Wire Wire Line
+	2350 5350 2350 5450
+Wire Wire Line
+	2050 5350 2050 5450
+Wire Wire Line
+	2200 5750 2350 5750
+Wire Wire Line
+	1750 3100 1750 3800
+Wire Wire Line
+	1850 2700 2250 2700
+Wire Wire Line
+	2200 4850 2850 4850
+Wire Wire Line
+	2350 4950 2850 4950
+Wire Wire Line
+	9050 1000 9200 1000
+Wire Wire Line
+	9050 1350 9050 2100
+Wire Wire Line
+	9200 1000 9400 1000
+Wire Wire Line
+	9600 2100 9600 2150
+Wire Wire Line
+	9600 1800 9600 1900
+Wire Wire Line
+	10800 2150 11100 2150
+Wire Wire Line
+	9900 3600 10050 3600
+Wire Wire Line
+	10050 3600 10250 3600
+Wire Wire Line
+	4250 6300 4550 6300
+Wire Wire Line
+	4750 5550 4750 5950
+Wire Wire Line
+	6350 4550 6350 4800
+Wire Wire Line
+	8550 1350 8600 1350
+Wire Wire Line
+	9400 3950 9450 3950
+Wire Wire Line
+	5250 4400 5750 4400
+Wire Wire Line
+	5250 4400 5250 4450
+Wire Wire Line
+	5550 4600 6100 4600
+Wire Wire Line
+	5000 4800 5000 5050
+Wire Wire Line
+	6350 4950 6350 5000
+Wire Wire Line
+	6350 4150 6350 4550
+Wire Wire Line
+	6350 4800 6350 4950
+Wire Wire Line
+	6200 4350 6200 4500
+Wire Wire Line
+	4050 6300 4250 6300
+Wire Wire Line
+	3700 5800 3750 5800
+Wire Wire Line
+	9200 5600 9200 5700
+Wire Wire Line
+	8350 3000 8350 3100
+Wire Wire Line
+	7700 1900 7700 1950
+Wire Wire Line
+	7400 1550 7400 1600
+Wire Wire Line
+	8550 4500 8550 4550
+Wire Wire Line
+	8250 4150 8250 4200
+Wire Wire Line
+	9400 1000 10000 1000
+Wire Wire Line
+	10250 3600 10850 3600
+Wire Wire Line
+	9900 4300 9900 5000
+Wire Wire Line
+	10250 4300 10475 4300
+Wire Wire Line
+	9900 3950 9900 4300
+Wire Wire Line
+	9050 2100 9050 2400
 $EndSCHEMATC

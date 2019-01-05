@@ -42,11 +42,13 @@ INTERRUPT_HANDLER(EXTI_PORTB_IRQHandler, 4){}
 // External Interrupt PORTC
 INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 5){
 	BTNS_EXTI_DISABLE();
-	exti_event = 100; // set pause to 100us
+	exti_event = ANTICLASH_PAUSE; // set pause to 50us
 }
 
 // External Interrupt PORTD
 INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6){
+    BTNS_EXTI_DISABLE();
+	exti_event = ANTICLASH_PAUSE; // set pause to 50us
 }
 
 // External Interrupt PORTE
@@ -88,25 +90,25 @@ INTERRUPT_HANDLER(TIM5_UPD_OVF_BRK_TRG_IRQHandler, 13){}
 INTERRUPT_HANDLER(TIM5_CAP_COM_IRQHandler, 14){}
 
 #else // STM8S208, STM8S207, STM8S105 or STM8S103 or STM8AF62Ax or STM8AF52Ax or STM8AF626x
-volatile char Nustep = 0;  // microstep number
+//volatile char Nustep = 0;  // microstep number
 
 volatile char Ustep = 0;
 // Timer2 Update/Overflow/Break Interrupt
 INTERRUPT_HANDLER(TIM2_UPD_OVF_BRK_IRQHandler, 13){ // generate pulses for stepper CLK
-	char tmp;
+	U8 tmp;
 	if(TIM2_SR1 & TIM_SR1_UIF){
 		TIM2_SR1 &= ~TIM_SR1_UIF; // take off flag
 		tmp = PORT(STP_PORT, ODR) & 0xf0;
 		PORT(STP_PORT, ODR) = tmp | usteps[Ustep];
 		if(Dir){
+            if(Ustep & 1) --Nsteps;
 			if(++Ustep > 7){
 				Ustep = 0;
-				--Nsteps;
 			}
 		}else{
+            if(!(Ustep & 1)) --Nsteps;
 			if(--Ustep < 0){
 				Ustep = 7;
-				--Nsteps;
 			}
 		}
 		if(Nsteps == 0){
@@ -175,45 +177,7 @@ INTERRUPT_HANDLER(UART3_RX_IRQHandler, 21){}
 INTERRUPT_HANDLER(ADC2_IRQHandler, 22){}
 #else
 // ADC1 interrupt
-U16 old_potent_val = 0;
-U8 Upper_TIM1_CCR1L = 100;
 INTERRUPT_HANDLER(ADC1_IRQHandler, 22){
-	U16 v = ADC_DRL; // in right-alignment mode we should first read LSB
-	U8 chnl = ADC_CSR & 0x0f; // current channel converted
-	v |= ADC_DRH << 8;
-	if(chnl == 12){ // AIN12 - motor schunt
-		ADC_value = v;
-		if(drill_works && auto_speed){
-			if(v > MAX_DRILL_SPEED) DRILL_SLOWER();      // current = 0.48A
-			else if(v < 3){ // no motor or break?
-				DRILL_OFF();
-				uart_write("No drill motor?");
-			}else if(v < NORMAL_DRILL_SPEED) DRILL_FASTER(); // current = 0.29A
-		}
-		ADC_CSR = 0x24; // clear irq flags & next will be potentiometer
-	}else{ // AIN4 - potentiometer
-		U16 diff;
-		unsigned long tmp;
-		if(old_potent_val > v) diff = old_potent_val - v;
-		else diff = v - old_potent_val;
-		if(diff < POTENT_TRESHOLD) goto nochange; // no changing of value
-		old_potent_val = v; // store last value
-		if(drill_spd_regul){ // change drill speed: v = v*100/1024
-			tmp = v * 100L;
-			tmp >>= 10;
-			DRILL_SETMAX((U16)tmp); // set max speed
-		}else{ // change stepper speed: v = min + v*(max-min)/1024
-			tmp = v * (unsigned long)(MAX_STEPPER_SPEED - MIN_STEPPER_SPEED);
-			tmp >>= 10;
-			v = MIN_STEPPER_SPEED + (U16)tmp;
-			if((MAX_STEPPER_SPEED < v) && (MIN_STEPPER_SPEED < v)){
-				Stp_speed = v;
-				set_stepper_speed(v);
-			}
-		}
-nochange:
-		ADC_CSR = 0x2c; // clear irq flags & next will be motor shunt
-	}
 }
 #endif // STM8S208 or STM8S207 or STM8AF52Ax or STM8AF62Ax
 

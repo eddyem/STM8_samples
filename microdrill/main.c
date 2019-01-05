@@ -24,15 +24,11 @@
 #include "interrupts.h"
 #include "main.h"
 #include "stepper.h"
+#include "statemachine.h"
 
 unsigned long Global_time = 0L; // global time in ms
 volatile char exti_event = -1; // flag & counter of EXTI interrupt
 U16 paused_val = 500; // interval between LED flashing
-
-U8 drill_works = 0; // flag of working motor
-U8 set_to_zero = 0; // flag showing that motor is in state of zero point setting up
-U8 auto_speed = 0;
-U8 drill_spd_regul = 0; // in default case we regulate stepper speed by variable resistor
 
 U8 UART_rx[UART_BUF_LEN]; // cycle buffer for received data
 U8 UART_rx_start_i = 0;   // started index of received data (from which reading starts)
@@ -69,8 +65,7 @@ char usteps[8] =
 	#error Define MOTOR_TYPE_UNIPOLAR or MOTOR_TYPE_BIPOLAR
 #endif
 
-volatile U16 ADC_value = 0;    // value of last ADC measurement (drill sense)
-volatile U16 Stp_speed = 50; // stepper speed set by varistor
+volatile U16 Vpot, Vcap, Vshunt;
 
 /**
  * Send one byte through UART
@@ -163,71 +158,11 @@ void error_msg(char *msg){
 	UART_send_byte('\n');
 }
 
-U8 old_buttons_state = BTNS_EXTI_MASK; // default buttons state - none pressed
-void check_buttons(){
-	U8 btn_state = BTNS_IDR & BTNS_EXTI_MASK, btns_changed;
-	if(btn_state == old_buttons_state) goto rtn; // none changed
-	btns_changed = btn_state ^ old_buttons_state; // XOR -> 1 on changed states
-	// check for footswitch
-	if(FOOTSW_TEST(btns_changed) && !TRAY_BTM_SW){ // move only when tray is down!
-		if(!FOOTSW_TEST(btn_state)){ // pedal switch pressed - connect to ground!
-			if(!drill_works){
-				DRILL_ON();
-			}
-			add_steps(-5000); // this is a trick to move more than stage allows
-			uart_write("move down\n");
-		}else{
-			if(set_to_zero){
-				set_to_zero = 0;
-				stop_motor();
-			}else{
-				add_steps(-5000); // return to previous state (this function moves RELATIVELY)
-				uart_write("move up\n");
-			}
-		}
-	}
-	// check for tray endswitches. We don't care for their off state, so only check ON
-	if(TRAYSW_TEST(btns_changed) && TRAYSW_PRSD(btn_state)){
-		uart_write("tray stop\n");
-		TRAY_STOP(); // stop tray motor in any moving direction
-		if(!TRAY_BTM_SW) set_stepper_speed(Stp_speed); // restore stepper speed in down position
-	}
-	// check for user buttons pressed (the same - only pressed)
-	if(BTN12_TEST(btns_changed) && !BTN12_TEST(btn_state)){ // pressed both buttons
-		uart_write("move tray ");
-		DRILL_OFF();
-		if(!TRAY_TOP_SW){ // tray is up -> move it down & stepper up
-			uart_write("down\n");
-			move_motor(-FULL_SCALE_STEPS);
-			while(Nsteps); // wait until it moves
-			TRAY_DOWN();
-		}else{ // move tray up & stepper down
-			uart_write("up\n");
-			set_stepper_speed(MAX_STEPPER_SPEED); // move as faster as possible
-			move_motor(FULL_SCALE_STEPS);
-			while(Nsteps); // wait until it moves
-			TRAY_UP();
-		}
-	}else if(BTN1_TEST(btns_changed) && !BTN1_TEST(btn_state)){ // btn1
-		uart_write("button 1\n");
-		set_stepper_speed(MAX_STEPPER_SPEED);
-		move_motor(-FULL_SCALE_STEPS);
-		while(Nsteps); // wait until it moves
-		set_stepper_speed(MIN_STEPPER_SPEED);
-		set_to_zero = 1;
-	}else if(BTN2_TEST(btns_changed) && !BTN2_TEST(btn_state)){ // btn2
-		uart_write("button 2\n");
-		drill_spd_regul = !drill_spd_regul;
-	}
-	old_buttons_state = btn_state;
-rtn:
-	BTNS_EXTI_ENABLE();
-}
-
 int main() {
 	unsigned long T = 0L, TT = 0L;
 	int Ival;
-	U8 rb, v;
+	U8 rb, drlctr = 0;
+    U16 _u16;
 	CFG_GCR |= 1; // disable SWIM
 	// Configure clocking
 	CLK_CKDIVR = 0; // F_HSI = 16MHz, f_CPU = 16MHz
@@ -248,7 +183,7 @@ int main() {
 	// PWM frequency is 10kHz: 1000/10 = 100
 	TIM1_ARRH = 0;
 	TIM1_ARRL = 100;
-	TIM1_CCR1H = 0; TIM1_CCR1L = 10; // default: 10%
+	TIM1_CCR1H = 0; TIM1_CCR1L = DRILL_LOWSPEED; // default: 10%
 	// channel 1 generates PWM pulses
 	TIM1_CCMR1 = 0x60; // OC1M = 110b - PWM mode 1 ( 1 -> 0)
 	//TIM1_CCMR1 = 0x70; // OC1M = 111b - PWM mode 2 ( 0 -> 1)
@@ -257,31 +192,43 @@ int main() {
 	// interrupts: none for timer 1
 	TIM1_IER = 0;
 	// auto-reload + interrupt on overflow + enable
-	TIM1_CR1 = TIM_CR1_APRE | TIM_CR1_URS | TIM_CR1_CEN;
+	TIM1_CR1 = TIM_CR1_URS;
+    PC_DDR |= GPIO_PIN1;  // setup timer's output
+
+    // Configure timer 2 to generate signals for CLK
+	TIM2_PSCR = 13; // ~2kHz (16MHz / 8192) (1000 steps per second if ARR=1)
+	TIM2_IER = TIM_IER_UIE; // update interrupt enable
+	TIM2_CR1 |= TIM_CR1_APRE | TIM_CR1_URS; // auto reload + interrupt on overflow
 
 // configure ADC
-	// PB4 (AIN4) is potentiometer regulated motor speed
+    // PB5 (AIN5) - Vcap value
+	// PB4 (AIN4) - potentiometer regulated motor speed
 	// select PF4 - Sence (AIN12) & enable interrupt for EOC
-	ADC_CSR = 0x2c; // EOCIE = 1; CH[3:0] = 0x0c (12)
+	ADC_CSR = 0x0c; // EOCIE = 0 - no interrupt @ EOC; CH[3:0] = 0x0c (12)
 	ADC_TDRH = 0x10;// disable Schmitt triger for AIN12
-	ADC_TDRL = 0x10;// disable Schmitt triger for AIN4
+	ADC_TDRL = 0x30;// disable Schmitt triger for AIN4 & AIN5
 	// right alignment
 	ADC_CR2 = 0x08; // don't forget: first read ADC_DRL!
 	// f_{ADC} = f/18 & continuous non-buffered conversion & wake it up
-	ADC_CR1 = 0x73;
-	ADC_CR1 = 0x73; // turn on ADC (this needs second write operation)
+	ADC_CR1 = 0x71;
+	ADC_CR1 = 0x71; // turn on ADC (this needs second write operation)
 
 // Configure pins
 	// EXTI
 	BTNS_SETUP();
 	BTNS_EXTI_ENABLE();  // enable interrupts
-	// other
-	PC_DDR |= GPIO_PIN1;  // setup timer's output
-	DRILL_OFF();          // set PC1 to zero - power off motor
 
-	// PC2 - PP output (on-board LED)
+	DRILL_OFF();          // power off motor
+    // tray
+    PORT(TRAY_PORT, DDR) |= TRAY_PINS;
+    PORT(TRAY_PORT, CR1) |= TRAY_PINS;
+
+	// LEDS, LED2 (signal):
 	PORT(LED_PORT, DDR)  |= LED_PIN;
 	PORT(LED_PORT, CR1)  |= LED_PIN;
+    // LED0/1
+    PORT(LED01_PORT, DDR)  |= LED0_PIN|LED1_PIN;
+	PORT(LED01_PORT, CR1)  |= LED0_PIN|LED1_PIN;
 	// PD5 - UART2_TX
 	PORT(UART_PORT, DDR) |= UART_TX_PIN;
 	PORT(UART_PORT, CR1) |= UART_TX_PIN;
@@ -295,7 +242,7 @@ int main() {
 	// enable all interrupts
 	enableInterrupts();
 
-	set_stepper_speed(Stp_speed);
+	set_stepper_speed(95); // 95% of max speed
 	setup_stepper_pins();
 
 	// Loop
@@ -303,21 +250,40 @@ int main() {
 		if(Global_time != TT){ // once per 1ms
 			TT = Global_time;
 			// check EXTI counter
-			if(exti_event > 0){ // delay for 50us - decrement counter
-				exti_event--;
+            if(exti_event == ANTICLASH_PAUSE) check_buttons(); // button pressed just now
+			if(exti_event > 0){ // delay for 50us before turn on buttons EXTI
+				--exti_event;
 			}else if(exti_event == 0){
 				exti_event = -1;
-				check_buttons();
+                BTNS_EXTI_ENABLE();
 			}
+            // check drill speed & TIM1_CCR1L
+            switch(curstate){
+                case DRL_ACCEL: // acceleration after power ON
+                    if(++drlctr > 9){
+                        drlctr = 0;
+                        // acceleration for ~1 second
+                        if(drill_maxspeed > TIM1_CCR1L) TIM1_CCR1L = TIM1_CCR1L + 1;
+                        else{
+                            curstate = DRL_WORK;
+                        }
+                    }
+                break;
+                case DRL_WORK: // check if user change drill speed
+                    if(drill_maxspeed != TIM1_CCR1L){
+                        TIM1_CCR1L = drill_maxspeed;
+                    }
+                break;
+                default:
+            }
 		}
-		if((Global_time - T > paused_val) || (T > Global_time)){
-			//U8 i;
+		if(Global_time - T > paused_val){
 			T = Global_time;
+#ifdef EBUG
 			PORT(LED_PORT, ODR) ^= LED_PIN; // blink on-board LED
-			//ADC_value = 0;
-			//for(i = 0; i < 10; i++) ADC_value += ADC_values[i];
-			//ADC_value /= 10;
-		//	printUint((U8*)&ADC_value, 2); // & print out ADC value
+#endif
+            // check changing state for short press
+            if(exti_event == -1) check_buttons();
 		}
 		if(UART_read_byte(&rb)){ // buffer isn't empty
 			switch(rb){
@@ -327,10 +293,14 @@ int main() {
 					"m\tget steps\nx\tstop\np\tpause/resume\nM\tmove motor\na\tadd Nstps\n"
 					"0\tturn drill OFF\n1\tturn drill ON\n"
 					">\trotate faster\n<\trotate slower\n"
-					"u\ttray up\nd\ttray down\n"
-					"c\tauto speed off\nz\tauto speed on\n"
-					"g\tget speed\n");
+					"u\ttray up\nd\ttray down\nw\ttray stop\n"
+					"g\tget speed\nAx\tADC chan x\n"
+                    "T\tcurrent time\n");
 				break;
+                case 'T':
+                    uart_write("T=");
+                    printUint((U8*)&Global_time, 4);
+                break;
 				case '+':
 					paused_val += 100;
 					if(paused_val > 10000)
@@ -342,13 +312,13 @@ int main() {
 						paused_val = 100;
 				break;
 				case 'S': // set stepper speed
-					if(readInt(&Ival) && Ival > MIN_STEP_LENGTH)
+					if(readInt(&Ival) && Ival > -1 && Ival < 101)
 						set_stepper_speed(Ival);
 					else
 						error_msg("bad speed");
 				break;
 				case 's': // get stepper speed
-					printUint((U8*)&Stepper_speed, 2);
+					printUint(&Stepper_speed, 1);
 				break;
 				case 'm': // how much steps there is to the end of moving
 					printUint((U8*)&Nsteps, 4);
@@ -368,7 +338,7 @@ int main() {
 					stop_motor();
 				break;
 				case 'p': // pause/resume
-					pause_resume();
+					stp_pause_resume();
 				break;
 				case 'a': // add N steps
 					if(readInt(&Ival) && Ival){
@@ -377,6 +347,32 @@ int main() {
 						error_msg("bad value");
 					}
 				break;
+                case 'A': // ADC: Vpot, Vcap, Vshunt
+                    _u16 = 0xffff;
+                    if(readInt(&Ival)){
+                        switch(Ival){
+                        case 0:
+                            uart_write("Vpot");
+                            _u16 = Vpot;
+                        break;
+                        case 1:
+                            uart_write("Vcap");
+                            _u16 = Vcap;
+                        break;
+                        case 2:
+                            uart_write("Vshunt");
+                            _u16 = Vshunt;
+                        break;
+                        default:
+                        }
+
+                    }
+                    if(_u16 == 0xffff) error_msg("wrong channel");
+                    else{
+                        UART_send_byte('=');
+                        printUint((U8*)&_u16, 2);
+                    }
+                break;
 				case '0': // turn off drill
 					DRILL_OFF();
 				break;
@@ -385,28 +381,30 @@ int main() {
 				break;
 				case '>': // faster
 					DRILL_FASTER();
+                    printUint(&TIM1_CCR1L, 1);
 				break;
 				case '<': // slower
 					DRILL_SLOWER();
+                    printUint(&TIM1_CCR1L, 1);
 				break;
 				case 'u':
+                    DRILL_OFF();
 					TRAY_UP();
 				break;
 				case 'd':
+                    DRILL_OFF();
 					TRAY_DOWN();
 				break;
-				case 'c':
-					auto_speed = 0;
-				break;
-				case 'z':
-					auto_speed = 1;
-				break;
+                case 'w':
+                    TRAY_STOP();
+                break;
 				case 'g':
-					v = TIM1_CCR1L;
-					printUint(&v, 1);
+					_u16 = (TIM1_CCR1H << 8)| TIM1_CCR1L;
+					printUint((U8*)&_u16, 2);
 				break;
 			}
 		}
+        process_state();
 	}while(1);
 }
 

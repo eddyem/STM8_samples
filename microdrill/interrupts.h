@@ -22,7 +22,7 @@
 #ifndef __INTERRUPTS_H__
 #define __INTERRUPTS_H__
 
-#include "stm8l.h"
+#include "stm8s.h"
 
 // Top Level Interrupt
 INTERRUPT_DEFINITION(TLI_IRQHandler, 0);

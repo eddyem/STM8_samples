@@ -1,0 +1,1231 @@
+EESchema Schematic File Version 4
+LIBS:MCU_module-cache
+EELAYER 29 0
+EELAYER END
+$Descr A3 16535 11693
+encoding utf-8
+Sheet 1 1
+Title ""
+Date "14 nov 2014"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Label 1825 1075 2    60   ~ 0
+NRST
+Text Label 1825 1175 2    60   ~ 0
+OSC1IN
+Text Label 1825 1275 2    60   ~ 0
+OSC2IN
+Text Label 1825 1775 2    60   ~ 0
+PF4
+Text Label 1825 2075 2    60   ~ 0
+PB5
+Text Label 1825 2175 2    60   ~ 0
+PB4
+Text Label 1825 2275 2    60   ~ 0
+PB3
+Text Label 1825 2375 2    60   ~ 0
+PB2
+Text Label 1825 2475 2    60   ~ 0
+PB1
+Text Label 1825 2575 2    60   ~ 0
+PB0
+Text Label 4625 2575 0    60   ~ 0
+PE5
+Text Label 4625 2475 0    60   ~ 0
+PC1
+Text Label 4625 2375 0    60   ~ 0
+PC2
+Text Label 4625 2275 0    60   ~ 0
+PC3
+Text Label 4625 2175 0    60   ~ 0
+PC4
+Text Label 4625 2075 0    60   ~ 0
+PC5
+Text Label 4625 1975 0    60   ~ 0
+PC6
+Text Label 4625 1875 0    60   ~ 0
+PC7
+Text Label 4625 1775 0    60   ~ 0
+PD0
+Text Label 4625 1675 0    60   ~ 0
+SWIM/PD1
+Text Label 4625 1575 0    60   ~ 0
+PD2
+Text Label 4625 1475 0    60   ~ 0
+PD3
+Text Label 4625 1375 0    60   ~ 0
+PD4
+Text Label 4625 1275 0    60   ~ 0
+PD5
+Text Label 4625 1175 0    60   ~ 0
+PD6
+Text Label 4625 1075 0    60   ~ 0
+PD7
+Text Label 925  5475 2    60   ~ 0
+PC1
+Text Label 10200 2050 2    60   ~ 0
+PB3
+Text Label 10200 2150 2    60   ~ 0
+PB2
+Text Label 10200 1300 2    60   ~ 0
+PB1
+Text Label 10200 1400 2    60   ~ 0
+PB0
+Text Label 925  5675 2    60   ~ 0
+PF4
+$Comp
+L MCU_module-rescue:L9110 DA3
+U 1 1 53F0EF3C
+P 10800 3500
+F 0 "DA3" H 10800 3200 50  0000 C CNN
+F 1 "L9110" H 10800 3800 50  0000 C CNN
+F 2 "Package_SOIC:SOIC-8_3.9x4.9mm_P1.27mm" H 10800 3500 50  0001 C CNN
+F 3 "" H 10800 3500 50  0001 C CNN
+	1    10800 3500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_4 P3
+U 1 1 53F0F09A
+P 12300 1700
+F 0 "P3" V 12250 1700 50  0000 C CNN
+F 1 "Stepper" V 12350 1700 50  0000 C CNN
+F 2 "modules:4PIN" H 12300 1700 60  0001 C CNN
+F 3 "" H 12300 1700 60  0000 C CNN
+	1    12300 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:GND #PWR02
+U 1 1 53F0F2B8
+P 10200 2350
+F 0 "#PWR02" H 10200 2350 30  0001 C CNN
+F 1 "GND" H 10200 2280 30  0001 C CNN
+F 2 "" H 10200 2350 60  0000 C CNN
+F 3 "" H 10200 2350 60  0000 C CNN
+	1    10200 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:+5V #PWR03
+U 1 1 53F0F5FC
+P 11300 1750
+F 0 "#PWR03" H 11300 1840 20  0001 C CNN
+F 1 "+5V" H 11300 1840 30  0000 C CNN
+F 2 "" H 11300 1750 60  0000 C CNN
+F 3 "" H 11300 1750 60  0000 C CNN
+	1    11300 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_3 K1
+U 1 1 53F0FD67
+P 6200 1200
+F 0 "K1" V 6150 1200 50  0000 C CNN
+F 1 "POWER" V 6250 1200 40  0000 C CNN
+F 2 "modules:3PIN_Pwr" H 6200 1200 60  0001 C CNN
+F 3 "" H 6200 1200 60  0000 C CNN
+	1    6200 1200
+	-1   0    0    1   
+$EndComp
+$Comp
+L MCU_module-rescue:GND #PWR05
+U 1 1 53F0FD7A
+P 6600 1400
+F 0 "#PWR05" H 6600 1400 30  0001 C CNN
+F 1 "GND" H 6600 1330 30  0001 C CNN
+F 2 "" H 6600 1400 60  0000 C CNN
+F 3 "" H 6600 1400 60  0000 C CNN
+	1    6600 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6550 1300 6600 1300
+Wire Wire Line
+	6600 1300 6600 1400
+$Comp
+L MCU_module-rescue:+12V #PWR07
+U 1 1 53F0FEBE
+P 6600 1050
+F 0 "#PWR07" H 6600 1000 20  0001 C CNN
+F 1 "+12V" H 6600 1150 30  0000 C CNN
+F 2 "" H 6600 1050 60  0000 C CNN
+F 3 "" H 6600 1050 60  0000 C CNN
+	1    6600 1050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6600 1050 6600 1100
+Wire Wire Line
+	6600 1100 6550 1100
+Text Label 10200 3450 2    60   ~ 0
+PD2
+Text Label 10200 3550 2    60   ~ 0
+PD3
+Wire Wire Line
+	10200 3650 9900 3650
+Wire Wire Line
+	9900 3650 9900 3350
+Wire Wire Line
+	9900 3350 10200 3350
+Wire Wire Line
+	11400 3450 11400 3500
+Wire Wire Line
+	10200 3750 10200 3650
+Connection ~ 10200 3650
+$Comp
+L MCU_module-rescue:+5V #PWR09
+U 1 1 53F11209
+P 11500 3500
+F 0 "#PWR09" H 11500 3590 20  0001 C CNN
+F 1 "+5V" H 11500 3590 30  0000 C CNN
+F 2 "" H 11500 3500 60  0000 C CNN
+F 3 "" H 11500 3500 60  0000 C CNN
+	1    11500 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11400 3500 11500 3500
+Connection ~ 11400 3500
+Text Notes 11900 1350 0    60   ~ 0
+Stepper motor module
+$Comp
+L MCU_module-rescue:CONN_2 P4
+U 1 1 53F1169C
+P 12300 3500
+F 0 "P4" V 12250 3500 40  0000 C CNN
+F 1 "Slide" V 12350 3500 40  0000 C CNN
+F 2 "modules:2PIN" H 12300 3500 60  0001 C CNN
+F 3 "" H 12300 3500 60  0000 C CNN
+	1    12300 3500
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	11400 3350 11700 3350
+Wire Wire Line
+	11700 3350 11700 3400
+Wire Wire Line
+	11700 3400 11950 3400
+Wire Wire Line
+	11400 3650 11700 3650
+Wire Wire Line
+	11700 3650 11700 3600
+Wire Wire Line
+	11700 3600 11950 3600
+Wire Notes Line
+	11900 3100 11900 4900
+$Comp
+L MCU_module-rescue:PWR_FLAG #FLG010
+U 1 1 53F11FC5
+P 6800 1050
+F 0 "#FLG010" H 6800 1145 30  0001 C CNN
+F 1 "PWR_FLAG" H 6800 1230 30  0001 C CNN
+F 2 "" H 6800 1050 60  0000 C CNN
+F 3 "" H 6800 1050 60  0000 C CNN
+	1    6800 1050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6800 1050 6600 1050
+$Comp
+L MCU_module-rescue:PWR_FLAG #FLG011
+U 1 1 53F12233
+P 6800 1300
+F 0 "#FLG011" H 6800 1395 30  0001 C CNN
+F 1 "PWR_FLAG" H 6800 1480 30  0001 C CNN
+F 2 "" H 6800 1300 60  0000 C CNN
+F 3 "" H 6800 1300 60  0000 C CNN
+	1    6800 1300
+	-1   0    0    1   
+$EndComp
+Connection ~ 6600 1300
+Text Label 11700 4000 2    60   ~ 0
+PC2
+Text Label 11700 3850 2    60   ~ 0
+PC3
+Text Label 3350 5900 2    60   ~ 0
+PD0
+Text Notes 1650 4475 0    60   ~ 0
+Drill motor + pedal
+Text Notes 950  4250 0    60   ~ 0
+"DRILLSW" is foot-switch.\nPress it to move drill down,\nrelease to return it to start position.\nDouble-click turns drill motor on/off.\n
+Text Notes 12800 3000 0    60   ~ 0
+Two buttons on tray have following functionality:\nBTN1 - setup zero point (move slowly + set coordinate\n  to 0 after footswitch released); next pressing returns\n  device to normal state;\nBTN2 - switch between regulation of drill speed/stepper speed;\nBTN1+BTN2 (simultaneously) - move tray up/down.\n\n"volume" varistor allows to regulate motor speed.\nDefault is max drill speed, varistor regulates stepper speed.
+Text Notes 4875 2475 0    60   ~ 0
+Drill PWM
+Text Notes 1625 1775 2    60   ~ 0
+Drill sense
+Text Notes 4875 1775 0    60   ~ 0
+Drill SW
+Wire Notes Line
+	1675 2575 1625 2575
+Wire Notes Line
+	1625 2575 1625 2225
+Text Notes 1575 2425 2    60   ~ 0
+Stepper phases
+Text Notes 4975 1525 0    60   ~ 0
+Tray bridge
+Text Notes 4875 2175 0    60   ~ 0
+BTN1
+Text Notes 4875 2075 0    60   ~ 0
+BTN2
+Text Notes 1625 2175 2    60   ~ 0
+Rvar
+Text Label 11700 4450 2    60   ~ 0
+PB4
+Text Notes 4875 2375 0    60   ~ 0
+Tray Down
+Text Notes 4875 2275 0    60   ~ 0
+Tray Up
+Text Label 11700 4300 2    60   ~ 0
+PC5
+Text Label 11700 4150 2    60   ~ 0
+PC4
+Text Notes 10950 825  0    60   ~ 0
+All MCU inputs connected to switches\nshould be in "pull-up input" mode.
+Wire Notes Line
+	4925 1275 4975 1275
+Wire Notes Line
+	4975 1275 4975 1125
+Text Notes 5025 1225 0    60   ~ 0
+UART
+Wire Notes Line
+	4925 1575 4975 1575
+Wire Notes Line
+	4975 1575 4975 1425
+$Comp
+L MCU_module-rescue:CONN_1 UP1
+U 1 1 54628F0D
+P 12150 3850
+F 0 "UP1" H 12230 3850 40  0000 L CNN
+F 1 "CONN_1" H 12150 3905 30  0001 C CNN
+F 2 "modules:1PIN" H 12150 3850 60  0001 C CNN
+F 3 "" H 12150 3850 60  0000 C CNN
+	1    12150 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_1 DOWN1
+U 1 1 54628F38
+P 12150 4000
+F 0 "DOWN1" H 12230 4000 40  0000 L CNN
+F 1 "CONN_1" H 12150 4055 30  0001 C CNN
+F 2 "modules:1PIN" H 12150 4000 60  0001 C CNN
+F 3 "" H 12150 4000 60  0000 C CNN
+	1    12150 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_1 BTN1
+U 1 1 54628F3E
+P 12150 4150
+F 0 "BTN1" H 12230 4150 40  0000 L CNN
+F 1 "CONN_1" H 12150 4205 30  0001 C CNN
+F 2 "modules:1PIN" H 12150 4150 60  0001 C CNN
+F 3 "" H 12150 4150 60  0000 C CNN
+	1    12150 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_1 BTN2
+U 1 1 54628FEC
+P 12150 4300
+F 0 "BTN2" H 12230 4300 40  0000 L CNN
+F 1 "CONN_1" H 12150 4355 30  0001 C CNN
+F 2 "modules:1PIN" H 12150 4300 60  0001 C CNN
+F 3 "" H 12150 4300 60  0000 C CNN
+	1    12150 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_1 POT1
+U 1 1 54628FF2
+P 12150 4450
+F 0 "POT1" H 12230 4450 40  0000 L CNN
+F 1 "CONN_1" H 12150 4505 30  0001 C CNN
+F 2 "modules:1PIN" H 12150 4450 60  0001 C CNN
+F 3 "" H 12150 4450 60  0000 C CNN
+	1    12150 4450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11700 3850 12000 3850
+Wire Wire Line
+	11700 4000 12000 4000
+Wire Wire Line
+	11700 4150 12000 4150
+Wire Wire Line
+	11700 4300 12000 4300
+Wire Wire Line
+	11700 4450 12000 4450
+Wire Notes Line
+	11900 4900 12500 4900
+Wire Notes Line
+	12500 4900 12500 3100
+Wire Notes Line
+	12500 3100 11900 3100
+Text Notes 12100 3250 0    60   ~ 0
+Tray
+$Comp
+L MCU_module-rescue:GND #PWR014
+U 1 1 5462B234
+P 3425 6300
+F 0 "#PWR014" H 3425 6300 30  0001 C CNN
+F 1 "GND" H 3425 6230 30  0001 C CNN
+F 2 "" H 3425 6300 60  0000 C CNN
+F 3 "" H 3425 6300 60  0000 C CNN
+	1    3425 6300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3425 6300 3425 6100
+Wire Wire Line
+	3350 5900 3500 5900
+$Comp
+L MCU_module-rescue:GND #PWR015
+U 1 1 5462CB9D
+P 10200 3750
+F 0 "#PWR015" H 10200 3750 30  0001 C CNN
+F 1 "GND" H 10200 3680 30  0001 C CNN
+F 2 "" H 10200 3750 60  0000 C CNN
+F 3 "" H 10200 3750 60  0000 C CNN
+	1    10200 3750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11400 3500 11400 3550
+Wire Wire Line
+	6600 1300 6800 1300
+$Comp
+L MCU_module-rescue:GND #PWR?
+U 1 1 5C118D64
+P 1650 6275
+AR Path="/53EF036E/5C118D64" Ref="#PWR?"  Part="1" 
+AR Path="/5C118D64" Ref="#PWR08"  Part="1" 
+F 0 "#PWR08" H 1650 6275 30  0001 C CNN
+F 1 "GND" H 1650 6205 30  0001 C CNN
+F 2 "" H 1650 6275 60  0000 C CNN
+F 3 "" H 1650 6275 60  0000 C CNN
+	1    1650 6275
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:R R?
+U 1 1 5C118D6A
+P 1650 5925
+AR Path="/53EF036E/5C118D6A" Ref="R?"  Part="1" 
+AR Path="/5C118D6A" Ref="R3"  Part="1" 
+F 0 "R3" V 1730 5925 50  0000 C CNN
+F 1 "0.33R" V 1650 5925 50  0000 C CNN
+F 2 "Resistor_SMD:R_2512_6332Metric_Pad1.34x3.40mm_HandSolder" H 1650 5925 60  0001 C CNN
+F 3 "" H 1650 5925 60  0000 C CNN
+	1    1650 5925
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:R R?
+U 1 1 5C118D77
+P 1300 5675
+AR Path="/53EF036E/5C118D77" Ref="R?"  Part="1" 
+AR Path="/5C118D77" Ref="R2"  Part="1" 
+F 0 "R2" V 1380 5675 50  0000 C CNN
+F 1 "1k" V 1300 5675 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder" H 1300 5675 60  0001 C CNN
+F 3 "" H 1300 5675 60  0000 C CNN
+	1    1300 5675
+	0    -1   -1   0   
+$EndComp
+$Comp
+L MCU_module-rescue:S8205A VT?
+U 1 1 5C118D85
+P 2550 5275
+AR Path="/53EF036E/5C118D85" Ref="VT?"  Part="1" 
+AR Path="/5C118D85" Ref="VT1"  Part="1" 
+F 0 "VT1" H 2625 4900 60  0000 R CNN
+F 1 "S8205A" H 2700 5625 60  0000 R CNN
+F 2 "Package_SSOP:TSSOP-8_4.4x3mm_P0.65mm" H 2500 4975 60  0001 C CNN
+F 3 "~" H 2700 5275 60  0000 C CNN
+	1    2550 5275
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:GND #PWR?
+U 1 1 5C118D8C
+P 950 6275
+AR Path="/53EF036E/5C118D8C" Ref="#PWR?"  Part="1" 
+AR Path="/5C118D8C" Ref="#PWR01"  Part="1" 
+F 0 "#PWR01" H 950 6275 30  0001 C CNN
+F 1 "GND" H 950 6205 30  0001 C CNN
+F 2 "" H 950 6275 60  0000 C CNN
+F 3 "" H 950 6275 60  0000 C CNN
+	1    950  6275
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CP1 C?
+U 1 1 5C118D92
+P 950 5975
+AR Path="/53EF036E/5C118D92" Ref="C?"  Part="1" 
+AR Path="/5C118D92" Ref="C1"  Part="1" 
+F 0 "C1" H 1000 6075 50  0000 L CNN
+F 1 "0.1u" H 1000 5875 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder" H 950 5975 60  0001 C CNN
+F 3 "" H 950 5975 60  0000 C CNN
+	1    950  5975
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 5475 1800 5725
+Wire Wire Line
+	1800 5725 3300 5725
+Wire Wire Line
+	3300 5725 3300 5475
+Wire Wire Line
+	1800 5200 1800 5350
+Wire Wire Line
+	3300 5350 3300 5200
+Wire Wire Line
+	1725 5350 1800 5350
+Connection ~ 1800 5350
+Wire Wire Line
+	1800 5075 1800 4825
+Wire Wire Line
+	3300 4825 3300 5075
+Wire Wire Line
+	950  6275 950  6175
+Wire Wire Line
+	950  5775 950  5675
+Wire Wire Line
+	1650 6275 1650 6175
+Wire Wire Line
+	950  5675 1050 5675
+Wire Wire Line
+	10200 2250 10200 2350
+Wire Wire Line
+	9900 2250 10200 2250
+Wire Wire Line
+	9900 2250 9900 1950
+Wire Wire Line
+	9900 1950 10200 1950
+Wire Wire Line
+	10200 1950 10200 1500
+Wire Wire Line
+	10200 1500 9900 1500
+Wire Wire Line
+	9900 1500 9900 1200
+Wire Wire Line
+	9900 1200 10200 1200
+Wire Notes Line
+	11850 1200 11850 1950
+Wire Notes Line
+	11850 1950 13000 1950
+Wire Notes Line
+	13000 1950 13000 1200
+Wire Notes Line
+	13000 1200 11850 1200
+Wire Wire Line
+	11800 1750 11950 1750
+Wire Wire Line
+	11800 1750 11800 2250
+Wire Wire Line
+	11550 1750 11550 2100
+Wire Wire Line
+	11400 1350 11400 1400
+Wire Wire Line
+	11400 2100 11400 2150
+Wire Wire Line
+	11650 1850 11950 1850
+Wire Wire Line
+	11650 1950 11650 1850
+Wire Wire Line
+	11450 1550 11950 1550
+Wire Wire Line
+	11450 1500 11450 1550
+Wire Wire Line
+	11700 1650 11950 1650
+Wire Wire Line
+	11800 2250 11400 2250
+Wire Wire Line
+	11650 1950 11400 1950
+Wire Wire Line
+	11400 1500 11450 1500
+Wire Wire Line
+	11700 1200 11400 1200
+Wire Wire Line
+	11700 1200 11700 1650
+Wire Wire Line
+	11300 1750 11550 1750
+Wire Wire Line
+	11550 2100 11400 2100
+Connection ~ 11550 1750
+Wire Wire Line
+	11550 1350 11550 1750
+Wire Wire Line
+	11400 1350 11550 1350
+Connection ~ 11400 2100
+Wire Wire Line
+	11400 2050 11400 2100
+Connection ~ 11400 1350
+Wire Wire Line
+	11400 1300 11400 1350
+Connection ~ 10200 1500
+$Comp
+L MCU_module-rescue:L9110 DA1
+U 1 1 53F0EE9F
+P 10800 1350
+F 0 "DA1" H 10800 1050 50  0000 C CNN
+F 1 "L9110" H 10800 1650 50  0000 C CNN
+F 2 "Package_SOIC:SOIC-8_3.9x4.9mm_P1.27mm" H 10800 1350 50  0001 C CNN
+F 3 "" H 10800 1350 50  0001 C CNN
+	1    10800 1350
+	-1   0    0    -1  
+$EndComp
+Connection ~ 10200 1950
+Connection ~ 10200 2250
+$Comp
+L MCU_module-rescue:L9110 DA2
+U 1 1 53F0EF24
+P 10800 2100
+F 0 "DA2" H 10800 1800 50  0000 C CNN
+F 1 "L9110" H 10800 2400 50  0000 C CNN
+F 2 "Package_SOIC:SOIC-8_3.9x4.9mm_P1.27mm" H 10800 2100 50  0001 C CNN
+F 3 "" H 10800 2100 50  0001 C CNN
+	1    10800 2100
+	-1   0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:R R?
+U 1 1 5C12E7DD
+P 1300 5475
+AR Path="/53EF036E/5C12E7DD" Ref="R?"  Part="1" 
+AR Path="/5C12E7DD" Ref="R1"  Part="1" 
+F 0 "R1" V 1380 5475 50  0000 C CNN
+F 1 "1k" V 1300 5475 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder" H 1300 5475 60  0001 C CNN
+F 3 "" H 1300 5475 60  0000 C CNN
+	1    1300 5475
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1550 5475 1800 5475
+Connection ~ 1800 5475
+Wire Wire Line
+	1800 4825 3300 4825
+Wire Wire Line
+	3400 4825 3300 4825
+Connection ~ 3300 4825
+Wire Wire Line
+	1725 5775 3400 5775
+Wire Wire Line
+	3400 5775 3400 5350
+Wire Wire Line
+	1725 5775 1725 5675
+Wire Wire Line
+	3300 5350 3400 5350
+Connection ~ 3300 5350
+Connection ~ 6600 1050
+$Comp
+L MCU_module-rescue:+12V #PWR010
+U 1 1 5C14A5D0
+P 3350 4625
+F 0 "#PWR010" H 3350 4575 20  0001 C CNN
+F 1 "+12V" H 3350 4725 30  0000 C CNN
+F 2 "" H 3350 4625 60  0000 C CNN
+F 3 "" H 3350 4625 60  0000 C CNN
+	1    3350 4625
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3400 4625 3350 4625
+Wire Wire Line
+	1550 5675 1650 5675
+Wire Wire Line
+	1650 5675 1725 5675
+Connection ~ 1650 5675
+Connection ~ 1725 5675
+Wire Wire Line
+	1725 5675 1725 5350
+Wire Wire Line
+	925  5475 1050 5475
+Wire Wire Line
+	925  5675 950  5675
+Connection ~ 950  5675
+Wire Notes Line
+	625  4300 3975 4300
+Wire Notes Line
+	3975 4300 3975 6400
+Wire Notes Line
+	3975 6400 625  6400
+Wire Notes Line
+	625  6400 625  4300
+$Comp
+L MCU_module-rescue:+5V #PWR013
+U 1 1 5C17B7C6
+P 6700 1200
+F 0 "#PWR013" H 6700 1290 20  0001 C CNN
+F 1 "+5V" H 6700 1290 30  0000 C CNN
+F 2 "" H 6700 1200 60  0000 C CNN
+F 3 "" H 6700 1200 60  0000 C CNN
+	1    6700 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6550 1200 6700 1200
+$Comp
+L MCU_module-rescue:PWR_FLAG #FLG01
+U 1 1 5C17DC53
+P 6950 1200
+F 0 "#FLG01" H 6950 1295 30  0001 C CNN
+F 1 "PWR_FLAG" H 6950 1380 30  0001 C CNN
+F 2 "" H 6950 1200 60  0000 C CNN
+F 3 "" H 6950 1200 60  0000 C CNN
+	1    6950 1200
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	6950 1200 6700 1200
+Connection ~ 6700 1200
+Text Notes 6175 825  0    50   ~ 0
+Power input
+Wire Notes Line
+	5975 675  7100 675 
+Wire Notes Line
+	7100 675  7100 1525
+Wire Notes Line
+	7100 1525 5975 1525
+Wire Notes Line
+	5975 1525 5975 675 
+$Comp
+L stm8s105k4t6c:STM8S105K4T6C U1
+U 1 1 5C18CB8D
+P 3225 1925
+F 0 "U1" H 3225 3062 60  0000 C CNN
+F 1 "STM8S105K4T6C" H 3225 2956 60  0000 C CNN
+F 2 "Package_QFP:LQFP-32_7x7mm_P0.8mm" H 3225 2956 60  0001 C CNN
+F 3 "" H 3225 1925 60  0000 C CNN
+	1    3225 1925
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C3
+U 1 1 5C1B7788
+P 1550 1475
+F 0 "C3" V 1500 1575 50  0000 C CNN
+F 1 "1u" V 1600 1575 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.50mm_HandSolder" H 1588 1325 50  0001 C CNN
+F 3 "" H 1550 1475 50  0001 C CNN
+	1    1550 1475
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 5C1B78B0
+P 1300 1600
+F 0 "C2" V 1250 1700 50  0000 C CNN
+F 1 "0.1u" V 1350 1750 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.50mm_HandSolder" H 1338 1450 50  0001 C CNN
+F 3 "" H 1300 1600 50  0001 C CNN
+	1    1300 1600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1825 1575 1825 1675
+Wire Wire Line
+	1825 1875 1625 1875
+Wire Wire Line
+	1625 1875 1625 1675
+Wire Wire Line
+	1625 1675 1825 1675
+Connection ~ 1825 1675
+$Comp
+L MCU_module-rescue:GND #PWR06
+U 1 1 5C1C0E18
+P 1200 2025
+F 0 "#PWR06" H 1200 2025 30  0001 C CNN
+F 1 "GND" H 1200 1955 30  0001 C CNN
+F 2 "" H 1200 2025 60  0000 C CNN
+F 3 "" H 1200 2025 60  0000 C CNN
+	1    1200 2025
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1700 1475 1725 1475
+$Comp
+L MCU_module-rescue:GND #PWR04
+U 1 1 5C1C60A0
+P 1150 1625
+F 0 "#PWR04" H 1150 1625 30  0001 C CNN
+F 1 "GND" H 1150 1555 30  0001 C CNN
+F 2 "" H 1150 1625 60  0000 C CNN
+F 3 "" H 1150 1625 60  0000 C CNN
+	1    1150 1625
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1450 1600 1625 1600
+Wire Wire Line
+	1625 1600 1625 1675
+Connection ~ 1625 1675
+Wire Wire Line
+	1400 1475 1400 1375
+Wire Wire Line
+	1400 1375 1825 1375
+Wire Wire Line
+	1400 1475 1150 1475
+Wire Wire Line
+	1150 1475 1150 1600
+Connection ~ 1400 1475
+Wire Wire Line
+	1150 1625 1150 1600
+Connection ~ 1150 1600
+Wire Wire Line
+	1200 2025 1200 1975
+Wire Wire Line
+	1200 1975 1825 1975
+Text Notes 1625 2075 2    50   ~ 0
+Vcap
+Wire Wire Line
+	1825 2075 1725 2075
+Wire Wire Line
+	1725 2075 1725 1475
+Connection ~ 1725 1475
+Wire Wire Line
+	1725 1475 1825 1475
+$Comp
+L MCU_module-rescue:Conn_01x03_Female-Connector_Generic J2
+U 1 1 5C1E4FE5
+P 8575 1050
+F 0 "J2" H 8602 1076 50  0000 L CNN
+F 1 "SWIM" H 8602 985 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Horizontal" H 8575 1050 50  0001 C CNN
+F 3 "~" H 8575 1050 50  0001 C CNN
+	1    8575 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:Conn_01x04_Female-Connector_Generic J1
+U 1 1 5C1E50FC
+P 8550 1650
+F 0 "J1" H 8578 1626 50  0000 L CNN
+F 1 "USART" H 8578 1535 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Horizontal" H 8550 1650 50  0001 C CNN
+F 3 "~" H 8550 1650 50  0001 C CNN
+	1    8550 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:+5V #PWR017
+U 1 1 5C1E5719
+P 8250 1550
+F 0 "#PWR017" H 8250 1640 20  0001 C CNN
+F 1 "+5V" H 8250 1640 30  0000 C CNN
+F 2 "" H 8250 1550 60  0000 C CNN
+F 3 "" H 8250 1550 60  0000 C CNN
+	1    8250 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8250 1550 8350 1550
+$Comp
+L MCU_module-rescue:GND #PWR018
+U 1 1 5C1E8E04
+P 8350 1900
+F 0 "#PWR018" H 8350 1900 30  0001 C CNN
+F 1 "GND" H 8350 1830 30  0001 C CNN
+F 2 "" H 8350 1900 60  0000 C CNN
+F 3 "" H 8350 1900 60  0000 C CNN
+	1    8350 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8350 1900 8350 1850
+Text Label 8350 1650 2    60   ~ 0
+PD5
+Text Label 8350 1750 2    60   ~ 0
+PD6
+Text Notes 8150 1825 2    50   ~ 0
++5V\nTx\nRx\ngnd
+$Comp
+L MCU_module-rescue:GND #PWR019
+U 1 1 5C1ECBEC
+P 8375 1200
+F 0 "#PWR019" H 8375 1200 30  0001 C CNN
+F 1 "GND" H 8375 1130 30  0001 C CNN
+F 2 "" H 8375 1200 60  0000 C CNN
+F 3 "" H 8375 1200 60  0000 C CNN
+	1    8375 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8375 1200 8375 1150
+Text Label 8375 1050 2    60   ~ 0
+SWIM/PD1
+$Comp
+L Device:R R11
+U 1 1 5C1F0359
+P 7725 950
+F 0 "R11" V 7625 950 50  0000 C CNN
+F 1 "10k" V 7725 950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder" V 7655 950 50  0001 C CNN
+F 3 "" H 7725 950 50  0001 C CNN
+	1    7725 950 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8375 950  7875 950 
+$Comp
+L Device:C C4
+U 1 1 5C1F3F3B
+P 8125 1150
+F 0 "C4" V 8075 1250 50  0000 C CNN
+F 1 "0.1u" V 8175 1300 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.50mm_HandSolder" H 8163 1000 50  0001 C CNN
+F 3 "" H 8125 1150 50  0001 C CNN
+	1    8125 1150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	7975 1150 7875 1150
+Wire Wire Line
+	7875 1150 7875 950 
+Connection ~ 7875 950 
+Wire Wire Line
+	8275 1150 8375 1150
+Connection ~ 8375 1150
+$Comp
+L MCU_module-rescue:+5V #PWR016
+U 1 1 5C1FB06C
+P 7575 900
+F 0 "#PWR016" H 7575 990 20  0001 C CNN
+F 1 "+5V" H 7575 990 30  0000 C CNN
+F 2 "" H 7575 900 60  0000 C CNN
+F 3 "" H 7575 900 60  0000 C CNN
+	1    7575 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7575 900  7575 950 
+Wire Wire Line
+	7875 950  7875 875 
+Text Label 7875 875  0    60   ~ 0
+NRST
+Text Notes 8475 725  2    50   ~ 0
+SWIM / debug USART
+Wire Notes Line
+	7450 600  8900 600 
+Wire Notes Line
+	8900 600  8900 2025
+Wire Notes Line
+	8900 2025 7450 2025
+Wire Notes Line
+	7450 2025 7450 600 
+$Comp
+L MCU_module-rescue:CONN_1 +5V1
+U 1 1 5C21A65A
+P 12150 4625
+F 0 "+5V1" H 12230 4625 40  0000 L CNN
+F 1 "CONN_1" H 12150 4680 30  0001 C CNN
+F 2 "modules:1PIN" H 12150 4625 60  0001 C CNN
+F 3 "" H 12150 4625 60  0000 C CNN
+	1    12150 4625
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_1 GND1
+U 1 1 5C21A6B0
+P 12150 4750
+F 0 "GND1" H 12230 4750 40  0000 L CNN
+F 1 "CONN_1" H 12150 4805 30  0001 C CNN
+F 2 "modules:1PIN" H 12150 4750 60  0001 C CNN
+F 3 "" H 12150 4750 60  0000 C CNN
+	1    12150 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:+5V #PWR021
+U 1 1 5C21AD25
+P 11825 4625
+F 0 "#PWR021" H 11825 4715 20  0001 C CNN
+F 1 "+5V" H 11825 4715 30  0000 C CNN
+F 2 "" H 11825 4625 60  0000 C CNN
+F 3 "" H 11825 4625 60  0000 C CNN
+	1    11825 4625
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11825 4625 12000 4625
+$Comp
+L MCU_module-rescue:GND #PWR020
+U 1 1 5C21EB9C
+P 11800 4825
+F 0 "#PWR020" H 11800 4825 30  0001 C CNN
+F 1 "GND" H 11800 4755 30  0001 C CNN
+F 2 "" H 11800 4825 60  0000 C CNN
+F 3 "" H 11800 4825 60  0000 C CNN
+	1    11800 4825
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11800 4825 11800 4750
+Wire Wire Line
+	11800 4750 12000 4750
+$Comp
+L MCU_module-rescue:CONN_2 P1
+U 1 1 5C225621
+P 3750 4725
+F 0 "P1" V 3700 4725 40  0000 C CNN
+F 1 "Drill" V 3800 4725 40  0000 C CNN
+F 2 "modules:2PIN_Pwr" H 3750 4725 60  0001 C CNN
+F 3 "" H 3750 4725 60  0000 C CNN
+	1    3750 4725
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_2 P2
+U 1 1 5C225C07
+P 3850 6000
+F 0 "P2" V 3800 6000 40  0000 C CNN
+F 1 "DrillSW" V 3900 6000 40  0000 C CNN
+F 2 "modules:2PIN" H 3850 6000 60  0001 C CNN
+F 3 "" H 3850 6000 60  0000 C CNN
+	1    3850 6000
+	1    0    0    -1  
+$EndComp
+Text Notes 3475 4600 2    50   ~ 0
++
+Text Notes 3475 4775 2    50   ~ 0
+-
+Wire Wire Line
+	3500 6100 3425 6100
+Text Notes 1450 1175 2    50   ~ 0
+LED0
+Text Notes 1450 1275 2    50   ~ 0
+LED1
+Text Notes 4875 2575 0    50   ~ 0
+LED2
+Text Notes 4900 1075 0    50   ~ 0
+INPUT1
+$Comp
+L Device:Q_NMOS_GSD Q1
+U 1 1 5C240531
+P 5575 4675
+F 0 "Q1" H 5780 4721 50  0000 L CNN
+F 1 "IRML2502" H 5780 4630 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 5775 4775 50  0001 C CNN
+F 3 "" H 5575 4675 50  0001 C CNN
+	1    5575 4675
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_NMOS_GSD Q2
+U 1 1 5C240A56
+P 5575 5225
+F 0 "Q2" H 5780 5271 50  0000 L CNN
+F 1 "IRML2502" H 5780 5180 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 5775 5325 50  0001 C CNN
+F 3 "" H 5575 5225 50  0001 C CNN
+	1    5575 5225
+	1    0    0    -1  
+$EndComp
+Text Label 5375 4675 2    60   ~ 0
+OSC1IN
+Text Label 5375 5225 2    60   ~ 0
+OSC2IN
+Text Label 5350 5600 2    60   ~ 0
+PE5
+Text Label 5300 7400 2    60   ~ 0
+PD4
+Text Label 5300 7550 2    60   ~ 0
+PD7
+Text Notes 5650 4300 2    50   ~ 0
+LEDS 0..3
+$Comp
+L MCU_module-rescue:CONN_1 LED0
+U 1 1 5C24396A
+P 6175 4475
+F 0 "LED0" H 6255 4475 40  0000 L CNN
+F 1 "CONN_1" H 6175 4530 30  0001 C CNN
+F 2 "modules:1PIN" H 6175 4475 60  0001 C CNN
+F 3 "" H 6175 4475 60  0000 C CNN
+	1    6175 4475
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_1 LED1
+U 1 1 5C244A64
+P 6175 5025
+F 0 "LED1" H 6255 5025 40  0000 L CNN
+F 1 "CONN_1" H 6175 5080 30  0001 C CNN
+F 2 "modules:1PIN" H 6175 5025 60  0001 C CNN
+F 3 "" H 6175 5025 60  0000 C CNN
+	1    6175 5025
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_1 LED2
+U 1 1 5C244D2E
+P 6150 5600
+F 0 "LED2" H 6230 5600 40  0000 L CNN
+F 1 "CONN_1" H 6150 5655 30  0001 C CNN
+F 2 "modules:1PIN" H 6150 5600 60  0001 C CNN
+F 3 "" H 6150 5600 60  0000 C CNN
+	1    6150 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_1 INPUT0
+U 1 1 5C244E64
+P 6100 7400
+F 0 "INPUT0" H 6180 7400 40  0000 L CNN
+F 1 "CONN_1" H 6100 7455 30  0001 C CNN
+F 2 "modules:1PIN" H 6100 7400 60  0001 C CNN
+F 3 "" H 6100 7400 60  0000 C CNN
+	1    6100 7400
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_module-rescue:CONN_1 INPUT1
+U 1 1 5C244EC8
+P 6100 7550
+F 0 "INPUT1" H 6180 7550 40  0000 L CNN
+F 1 "CONN_1" H 6100 7605 30  0001 C CNN
+F 2 "modules:1PIN" H 6100 7550 60  0001 C CNN
+F 3 "" H 6100 7550 60  0000 C CNN
+	1    6100 7550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 5C246B91
+P 5425 4900
+F 0 "R4" V 5325 4900 50  0000 C CNN
+F 1 "10k" V 5425 4900 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder" V 5355 4900 50  0001 C CNN
+F 3 "" H 5425 4900 50  0001 C CNN
+	1    5425 4900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5575 4900 5600 4900
+Wire Wire Line
+	5675 4900 5675 4875
+Wire Wire Line
+	5275 4675 5375 4675
+Wire Wire Line
+	5275 4675 5275 4900
+$Comp
+L Device:R R5
+U 1 1 5C25359A
+P 5425 5425
+F 0 "R5" V 5325 5425 50  0000 C CNN
+F 1 "10k" V 5425 5425 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder" V 5355 5425 50  0001 C CNN
+F 3 "" H 5425 5425 50  0001 C CNN
+	1    5425 5425
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5275 5425 5275 5225
+Wire Wire Line
+	5275 5225 5375 5225
+Wire Wire Line
+	5575 5425 5625 5425
+$Comp
+L MCU_module-rescue:GND #PWR011
+U 1 1 5C25C42D
+P 5600 4925
+F 0 "#PWR011" H 5600 4925 30  0001 C CNN
+F 1 "GND" H 5600 4855 30  0001 C CNN
+F 2 "" H 5600 4925 60  0000 C CNN
+F 3 "" H 5600 4925 60  0000 C CNN
+	1    5600 4925
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 4925 5600 4900
+Connection ~ 5600 4900
+Wire Wire Line
+	5600 4900 5675 4900
+$Comp
+L MCU_module-rescue:GND #PWR012
+U 1 1 5C260BAF
+P 5625 5475
+F 0 "#PWR012" H 5625 5475 30  0001 C CNN
+F 1 "GND" H 5625 5405 30  0001 C CNN
+F 2 "" H 5625 5475 60  0000 C CNN
+F 3 "" H 5625 5475 60  0000 C CNN
+	1    5625 5475
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5625 5475 5625 5425
+Connection ~ 5625 5425
+Wire Wire Line
+	5625 5425 5675 5425
+$Comp
+L Device:R R8
+U 1 1 5C265BE1
+P 5800 5600
+F 0 "R8" V 5700 5600 50  0000 C CNN
+F 1 "510" V 5800 5600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder" V 5730 5600 50  0001 C CNN
+F 3 "" H 5800 5600 50  0001 C CNN
+	1    5800 5600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6000 5600 5950 5600
+Wire Wire Line
+	5650 5600 5350 5600
+Wire Wire Line
+	5675 5025 6025 5025
+Wire Wire Line
+	6025 4475 5675 4475
+Text Notes 5950 4450 2    50   ~ 0
+LEDs 0 and 1 - light\n2..3 - indicators
+Wire Notes Line
+	4900 4100 6525 4100
+Wire Notes Line
+	6525 4100 6525 6350
+Wire Notes Line
+	6525 6350 4900 6350
+Wire Notes Line
+	4900 6350 4900 4100
+$Comp
+L MCU_module-rescue:+5V #PWR0101
+U 1 1 5C2C5512
+P 1575 1875
+F 0 "#PWR0101" H 1575 1965 20  0001 C CNN
+F 1 "+5V" H 1575 1965 30  0000 C CNN
+F 2 "" H 1575 1875 60  0000 C CNN
+F 3 "" H 1575 1875 60  0000 C CNN
+	1    1575 1875
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1575 1875 1625 1875
+Connection ~ 1625 1875
+Wire Notes Line
+	5000 6700 6500 6700
+Wire Notes Line
+	6500 6700 6500 7675
+Wire Notes Line
+	6500 7675 5000 7675
+Wire Notes Line
+	5000 7675 5000 6700
+Text Notes 5825 6825 2    50   ~ 0
+Inputs
+Wire Wire Line
+	5950 7400 5300 7400
+Wire Wire Line
+	5300 7550 5950 7550
+Text Notes 4925 1375 0    50   ~ 0
+INPUT0
+NoConn ~ 4625 1875
+NoConn ~ 4625 1975
+$EndSCHEMATC

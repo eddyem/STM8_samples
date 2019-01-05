@@ -1,0 +1,6 @@
+(sym_lib_table
+  (lib (name socket-rescue)(type Legacy)(uri ${KIPRJMOD}/socket-rescue.lib)(options "")(descr ""))
+  (lib (name ch34x)(type Legacy)(uri ${KIPRJMOD}/ch34x.lib)(options "")(descr ""))
+  (lib (name bt137)(type Legacy)(uri ${KIPRJMOD}/bt137.lib)(options "")(descr ""))
+  (lib (name acs712)(type Legacy)(uri ${KIPRJMOD}/acs712.lib)(options "")(descr ""))
+)
