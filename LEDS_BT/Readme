@@ -1,0 +1,2 @@
+Setup "bluetooth control 8-lamp", connect STM8S103F2 to bluetooth HC-06.
+Manage up to 8 LEDs controlled by bluetooth module HC-06

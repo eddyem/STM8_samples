@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>/Big/Data/00__Electronics/STM8/220controlled_socket/kicad/socket.sch</source>
-    <date>Пн 25 июн 2018 20:37:06</date>
-    <tool>Eeschema 4.0.7</tool>
+    <source>/home/eddy/Dropbox/Dropbox/Projects/STM8_samples/220controlled_socket/kicad/socket.sch</source>
+    <date>Вс 06 янв 2019 16:31:28</date>
+    <tool>Eeschema 6.0.0-rc1-unknown</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title/>
@@ -22,569 +22,597 @@
     <comp ref="U3">
       <value>STM8S003F3P</value>
       <footprint>Package_SSOP:SSOP-20_4.4x6.5mm_P0.65mm</footprint>
-      <libsource lib="socket-rescue" part="STM8S003F3P-RESCUE-socket"/>
+      <libsource lib="socket-rescue" part="STM8S003F3P-RESCUE-socket" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A632CF7</tstamp>
     </comp>
     <comp ref="U1">
       <value>MAX3232</value>
       <footprint>Package_SSOP:SOP-16_4.4x10.4mm_P1.27mm</footprint>
-      <libsource lib="Interface_UART" part="MAX3232"/>
+      <libsource lib="socket-rescue" part="MAX3232" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A632ED9</tstamp>
     </comp>
     <comp ref="C7">
       <value>0.1</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A633096</tstamp>
     </comp>
     <comp ref="C4">
       <value>0.1</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A63312F</tstamp>
     </comp>
     <comp ref="C1">
       <value>0.1</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A63318D</tstamp>
     </comp>
     <comp ref="C2">
       <value>0.1</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A6331E2</tstamp>
     </comp>
     <comp ref="J1">
       <value>DB9_Female</value>
       <footprint>Connector_Dsub:DSUB-9_Female_Horizontal_P2.77x2.84mm_EdgePinOffset4.94mm_Housed_MountingHolesOffset7.48mm</footprint>
-      <libsource lib="Connector_Specialized" part="DB9_Female"/>
+      <libsource lib="socket-rescue" part="DB9_Female" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A633A5D</tstamp>
     </comp>
     <comp ref="D1">
       <value>SMF05</value>
       <footprint>Package_TO_SOT_SMD:SOT-353_SC-70-5_Handsoldering</footprint>
-      <libsource lib="Power_Protection" part="SP0504BAHT"/>
+      <libsource lib="socket-rescue" part="SP0504BAHT" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A6340F1</tstamp>
     </comp>
     <comp ref="U2">
       <value>CH340G</value>
       <footprint>Package_SOIC:SOIC-16_3.9x9.9mm_P1.27mm</footprint>
-      <libsource lib="ch34x" part="CH340G"/>
+      <libsource lib="ch34x" part="CH340G" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A63435A</tstamp>
     </comp>
     <comp ref="Y1">
       <value>12M</value>
       <footprint>Crystal:Crystal_HC49-U_Vertical</footprint>
-      <libsource lib="Device" part="Crystal"/>
+      <libsource lib="socket-rescue" part="Crystal" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A6346A7</tstamp>
     </comp>
     <comp ref="C3">
       <value>22p</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A634730</tstamp>
     </comp>
     <comp ref="C5">
       <value>22p</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A634AB8</tstamp>
     </comp>
     <comp ref="J2">
       <value>USB_B</value>
       <footprint>Connector_USB:USB_B_Horizontal</footprint>
-      <libsource lib="Connector_Specialized" part="USB_B"/>
+      <libsource lib="socket-rescue" part="USB_B" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A6355E2</tstamp>
     </comp>
     <comp ref="R1">
       <value>22</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A6379FA</tstamp>
     </comp>
     <comp ref="R2">
       <value>22</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A637D15</tstamp>
     </comp>
     <comp ref="C6">
       <value>0.1</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A639FC7</tstamp>
     </comp>
     <comp ref="J3">
       <value>5Vext</value>
       <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
-      <libsource lib="Connector_Generic" part="Conn_01x02"/>
+      <libsource lib="socket-rescue" part="Conn_01x02" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A649591</tstamp>
     </comp>
     <comp ref="C8">
       <value>0.1</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A64B889</tstamp>
     </comp>
     <comp ref="J4">
       <value>SWIM</value>
       <footprint>Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</footprint>
-      <libsource lib="Connector_Generic" part="Conn_01x03"/>
+      <libsource lib="socket-rescue" part="Conn_01x03" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A64FDB7</tstamp>
     </comp>
     <comp ref="D2">
       <value>SS14</value>
       <footprint>Diode_SMD:D_SMA-SMB_Universal_Handsoldering</footprint>
-      <libsource lib="Device" part="D_Schottky"/>
+      <libsource lib="socket-rescue" part="D_Schottky" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A650205</tstamp>
     </comp>
     <comp ref="C10">
       <value>0.1</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A652B90</tstamp>
     </comp>
     <comp ref="C9">
       <value>0.1</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A653BA1</tstamp>
     </comp>
     <comp ref="U8">
       <value>MOC3063M</value>
       <footprint>Package_DIP:DIP-6_W7.62mm</footprint>
-      <libsource lib="Relay_SolidState" part="MOC3063M"/>
+      <libsource lib="socket-rescue" part="MOC3063M" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A654A52</tstamp>
     </comp>
     <comp ref="D3">
       <value>BT137-600E</value>
       <footprint>Package_TO_SOT_THT:TO-220-3_Vertical</footprint>
-      <libsource lib="bt137" part="BT137-600E"/>
+      <libsource lib="bt137" part="BT137-600E" description="triode for alternating current (TRIAC)"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A6663E2</tstamp>
     </comp>
     <comp ref="R19">
       <value>330</value>
-      <footprint>Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal</footprint>
-      <libsource lib="Device" part="R"/>
+      <footprint>Resistor_SMD:R_1206_HandSoldering</footprint>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A666603</tstamp>
     </comp>
     <comp ref="R20">
       <value>330</value>
-      <footprint>Resistor_SMD:R_1206_3216Metric_Pad1.24x1.80mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <footprint>Resistor_SMD:R_1206_HandSoldering</footprint>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A6668C8</tstamp>
     </comp>
     <comp ref="R15">
       <value>150</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A666D5B</tstamp>
     </comp>
     <comp ref="Q8">
       <value>2N7002</value>
       <footprint>Package_TO_SOT_SMD:SOT-23_Handsoldering</footprint>
-      <libsource lib="Device" part="Q_NMOS_GSD"/>
+      <libsource lib="socket-rescue" part="Q_NMOS_GSD" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A668F1E</tstamp>
     </comp>
     <comp ref="R16">
       <value>330</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A66984A</tstamp>
     </comp>
     <comp ref="J6">
       <value>Power</value>
       <footprint>TerminalBlock:TerminalBlock_Altech_AK300-3_P5.00mm</footprint>
-      <libsource lib="Connector_Specialized" part="Screw_Terminal_01x03"/>
+      <libsource lib="socket-rescue" part="Screw_Terminal_01x03" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A66B8C0</tstamp>
     </comp>
     <comp ref="U10">
       <value>ACS712</value>
       <footprint>Package_SOIC:SOIC-8_3.9x4.9mm_P1.27mm</footprint>
-      <libsource lib="acs712" part="ACS712"/>
+      <libsource lib="acs712" part="ACS712" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A671829</tstamp>
     </comp>
     <comp ref="C11">
       <value>0.1</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A674128</tstamp>
     </comp>
     <comp ref="C12">
       <value>1n</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A67650B</tstamp>
     </comp>
     <comp ref="R5">
       <value>4k7</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A677EBD</tstamp>
     </comp>
     <comp ref="U9">
       <value>MOC3063M</value>
       <footprint>Package_DIP:DIP-6_W7.62mm</footprint>
-      <libsource lib="Relay_SolidState" part="MOC3063M"/>
+      <libsource lib="socket-rescue" part="MOC3063M" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A67BDE1</tstamp>
     </comp>
     <comp ref="D4">
       <value>BT137-600E</value>
       <footprint>Package_TO_SOT_THT:TO-220-3_Vertical</footprint>
-      <libsource lib="bt137" part="BT137-600E"/>
+      <libsource lib="bt137" part="BT137-600E" description="triode for alternating current (TRIAC)"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A67BDE7</tstamp>
     </comp>
     <comp ref="R21">
       <value>330</value>
-      <footprint>Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal</footprint>
-      <libsource lib="Device" part="R"/>
+      <footprint>Resistor_SMD:R_1206_HandSoldering</footprint>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A67BDED</tstamp>
     </comp>
     <comp ref="R22">
       <value>330</value>
-      <footprint>Resistor_SMD:R_1206_3216Metric_Pad1.24x1.80mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <footprint>Resistor_SMD:R_1206_HandSoldering</footprint>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A67BDF3</tstamp>
     </comp>
     <comp ref="R17">
       <value>150</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A67BDF9</tstamp>
     </comp>
     <comp ref="Q9">
       <value>2N7002</value>
       <footprint>Package_TO_SOT_SMD:SOT-23_Handsoldering</footprint>
-      <libsource lib="Device" part="Q_NMOS_GSD"/>
+      <libsource lib="socket-rescue" part="Q_NMOS_GSD" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A67BE0B</tstamp>
     </comp>
     <comp ref="R18">
       <value>330</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A67BE17</tstamp>
     </comp>
     <comp ref="K2">
       <value>SRD-05VDC</value>
       <footprint>Relay_THT:Relay_SPDT_SANYOU_SRD_Series_Form_C</footprint>
-      <libsource lib="Relay" part="G5LE-1"/>
+      <libsource lib="socket-rescue" part="G5LE-1" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A67BE1D</tstamp>
     </comp>
     <comp ref="J7">
       <value>Power</value>
       <footprint>TerminalBlock:TerminalBlock_Altech_AK300-3_P5.00mm</footprint>
-      <libsource lib="Connector_Specialized" part="Screw_Terminal_01x03"/>
+      <libsource lib="socket-rescue" part="Screw_Terminal_01x03" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A67BE23</tstamp>
     </comp>
     <comp ref="U6">
       <value>PC817</value>
       <footprint>Package_DIP:DIP-4_W7.62mm</footprint>
-      <libsource lib="Isolator" part="PC817"/>
+      <libsource lib="socket-rescue" part="PC817" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A67FC76</tstamp>
     </comp>
     <comp ref="U7">
       <value>PC817</value>
       <footprint>Package_DIP:DIP-4_W7.62mm</footprint>
-      <libsource lib="Isolator" part="PC817"/>
+      <libsource lib="socket-rescue" part="PC817" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A68037B</tstamp>
     </comp>
     <comp ref="U5">
       <value>PC817</value>
       <footprint>Package_DIP:DIP-4_W7.62mm</footprint>
-      <libsource lib="Isolator" part="PC817"/>
+      <libsource lib="socket-rescue" part="PC817" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A68120F</tstamp>
     </comp>
     <comp ref="R10">
       <value>150</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A683C5D</tstamp>
     </comp>
     <comp ref="R9">
       <value>150</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A6842AC</tstamp>
     </comp>
     <comp ref="R7">
       <value>150</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A685FA8</tstamp>
     </comp>
     <comp ref="R8">
       <value>150</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A6887AD</tstamp>
     </comp>
     <comp ref="Q1">
       <value>2N7002</value>
       <footprint>Package_TO_SOT_SMD:SOT-23_Handsoldering</footprint>
-      <libsource lib="Device" part="Q_NMOS_GSD"/>
+      <libsource lib="socket-rescue" part="Q_NMOS_GSD" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A688863</tstamp>
     </comp>
     <comp ref="Q2">
       <value>2N7002</value>
       <footprint>Package_TO_SOT_SMD:SOT-23_Handsoldering</footprint>
-      <libsource lib="Device" part="Q_NMOS_GSD"/>
+      <libsource lib="socket-rescue" part="Q_NMOS_GSD" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A688E43</tstamp>
     </comp>
     <comp ref="R4">
       <value>330</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A689B60</tstamp>
     </comp>
     <comp ref="R3">
       <value>330</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A689C9C</tstamp>
     </comp>
     <comp ref="J5">
       <value>DB15_Male</value>
       <footprint>Connector_Dsub:DSUB-15_Male_EdgeMount_P2.77mm</footprint>
-      <libsource lib="Connector_Specialized" part="DB15_Male"/>
+      <libsource lib="socket-rescue" part="DB15_Male" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A79F666</tstamp>
     </comp>
     <comp ref="Q3">
       <value>SI2300</value>
       <footprint>Package_TO_SOT_SMD:SOT-23_Handsoldering</footprint>
-      <libsource lib="Device" part="Q_NMOS_GSD"/>
+      <libsource lib="socket-rescue" part="Q_NMOS_GSD" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A7A8D09</tstamp>
     </comp>
     <comp ref="Q4">
       <value>SI2300</value>
       <footprint>Package_TO_SOT_SMD:SOT-23_Handsoldering</footprint>
-      <libsource lib="Device" part="Q_NMOS_GSD"/>
+      <libsource lib="socket-rescue" part="Q_NMOS_GSD" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A7AA80B</tstamp>
     </comp>
     <comp ref="R11">
       <value>330</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A7AC3F3</tstamp>
     </comp>
     <comp ref="R12">
       <value>330</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A7AC8CB</tstamp>
     </comp>
     <comp ref="R14">
       <value>330</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A7ACCA5</tstamp>
     </comp>
     <comp ref="D5">
-      <value>MM3Z3V6</value>
+      <value>5V suppressor</value>
       <footprint>Diode_SMD:D_SOD-323_HandSoldering</footprint>
-      <libsource lib="Device" part="D_Zener"/>
+      <libsource lib="socket-rescue" part="D_Zener" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A7C171C</tstamp>
     </comp>
     <comp ref="C13">
       <value>0.1</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="C"/>
+      <libsource lib="socket-rescue" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A7CF343</tstamp>
-    </comp>
-    <comp ref="D6">
-      <value>SS14</value>
-      <footprint>Diode_SMD:D_SMA-SMB_Universal_Handsoldering</footprint>
-      <libsource lib="Device" part="D_Schottky"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5A7D0BF4</tstamp>
     </comp>
     <comp ref="K1">
       <value>SRD-05VDC</value>
       <footprint>Relay_THT:Relay_SPDT_SANYOU_SRD_Series_Form_C</footprint>
-      <libsource lib="Relay" part="G5LE-1"/>
+      <libsource lib="socket-rescue" part="G5LE-1" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A66AAE1</tstamp>
-    </comp>
-    <comp ref="Q6">
-      <value>AO3407</value>
-      <footprint>Package_TO_SOT_SMD:SOT-23_Handsoldering</footprint>
-      <libsource lib="Device" part="Q_PMOS_GSD"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5ACFAF39</tstamp>
     </comp>
     <comp ref="R33">
       <value>47k</value>
       <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B171912</tstamp>
     </comp>
     <comp ref="R27">
       <value>47k</value>
       <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B171C65</tstamp>
     </comp>
     <comp ref="R25">
       <value>47k</value>
       <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B173BDC</tstamp>
     </comp>
     <comp ref="R26">
       <value>47k</value>
       <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B173ECD</tstamp>
     </comp>
     <comp ref="R6">
       <value>47k</value>
       <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B177690</tstamp>
     </comp>
     <comp ref="R13">
       <value>47k</value>
       <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B1781E2</tstamp>
     </comp>
     <comp ref="R30">
       <value>47k</value>
       <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B179FBF</tstamp>
     </comp>
     <comp ref="Q5">
       <value>2N7002</value>
       <footprint>Package_TO_SOT_SMD:SOT-23_Handsoldering</footprint>
-      <libsource lib="Device" part="Q_NMOS_GSD"/>
+      <libsource lib="socket-rescue" part="Q_NMOS_GSD" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B17D4BB</tstamp>
     </comp>
     <comp ref="R28">
       <value>330</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B17EF01</tstamp>
     </comp>
     <comp ref="R29">
       <value>47k</value>
       <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B17F8C7</tstamp>
     </comp>
     <comp ref="Q7">
       <value>2N7002</value>
       <footprint>Package_TO_SOT_SMD:SOT-23_Handsoldering</footprint>
-      <libsource lib="Device" part="Q_NMOS_GSD"/>
+      <libsource lib="socket-rescue" part="Q_NMOS_GSD" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B184429</tstamp>
     </comp>
     <comp ref="R31">
       <value>330</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B18442F</tstamp>
     </comp>
     <comp ref="R32">
       <value>47k</value>
       <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.50mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B184435</tstamp>
     </comp>
     <comp ref="D7">
       <value>SS14</value>
-      <footprint>Diode_SMD:D_SMA_Handsoldering</footprint>
-      <libsource lib="Device" part="D"/>
+      <footprint>Diode_SMD:D_SMA</footprint>
+      <libsource lib="socket-rescue" part="D" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B31642E</tstamp>
     </comp>
     <comp ref="D8">
       <value>SS14</value>
-      <footprint>Diode_SMD:D_SMA_Handsoldering</footprint>
-      <libsource lib="Device" part="D"/>
+      <footprint>Diode_SMD:D_SMA</footprint>
+      <libsource lib="socket-rescue" part="D" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B31734F</tstamp>
     </comp>
     <comp ref="R23">
       <value>4k7</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
-      <libsource lib="Device" part="R"/>
+      <libsource lib="socket-rescue" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B318A76</tstamp>
+    </comp>
+    <comp ref="R24">
+      <value>4k7</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.84x1.00mm_HandSolder</footprint>
+      <libsource lib="socket-rescue" part="R" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B3D0D24</tstamp>
+    </comp>
+    <comp ref="Q6">
+      <value>AO3407</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23_Handsoldering</footprint>
+      <libsource lib="socket-rescue" part="Q_PMOS_GSD" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACFAF39</tstamp>
+    </comp>
+    <comp ref="R34">
+      <value>330 2W</value>
+      <footprint>Resistor_THT:R_Axial_Power_L20.0mm_W6.4mm_P25.40mm</footprint>
+      <libsource lib="socket-rescue" part="R" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C0761A4</tstamp>
+    </comp>
+    <comp ref="C14">
+      <value>0.01 600V</value>
+      <footprint>Capacitor_THT:C_Disc_D6.0mm_W2.5mm_P5.00mm</footprint>
+      <libsource lib="socket-rescue" part="C" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C0762EC</tstamp>
+    </comp>
+    <comp ref="R35">
+      <value>330 2W</value>
+      <footprint>Resistor_THT:R_Axial_Power_L20.0mm_W6.4mm_P25.40mm</footprint>
+      <libsource lib="socket-rescue" part="R" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C0775F9</tstamp>
+    </comp>
+    <comp ref="C15">
+      <value>0.01 600V</value>
+      <footprint>Capacitor_THT:C_Disc_D6.0mm_W2.5mm_P5.00mm</footprint>
+      <libsource lib="socket-rescue" part="C" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C0775FF</tstamp>
     </comp>
   </components>
   <libparts>
@@ -616,20 +644,6 @@
         <pin num="3" name="G" type="input"/>
       </pins>
     </libpart>
-    <libpart lib="Device" part="C">
-      <description>Unpolarized capacitor</description>
-      <footprints>
-        <fp>C_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">C</field>
-        <field name="Value">C</field>
-      </fields>
-      <pins>
-        <pin num="1" name="~" type="passive"/>
-        <pin num="2" name="~" type="passive"/>
-      </pins>
-    </libpart>
     <libpart lib="ch34x" part="CH340G">
       <fields>
         <field name="Reference">U</field>
@@ -654,9 +668,20 @@
         <pin num="16" name="VCC" type="power_in"/>
       </pins>
     </libpart>
-    <libpart lib="Connector_Generic" part="Conn_01x02">
-      <description>Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
-      <docs>~</docs>
+    <libpart lib="socket-rescue" part="C">
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="socket-rescue" part="Conn_01x02">
       <footprints>
         <fp>Connector*:*_1x??_*</fp>
       </footprints>
@@ -669,9 +694,7 @@
         <pin num="2" name="Pin_2" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Connector_Generic" part="Conn_01x03">
-      <description>Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
-      <docs>~</docs>
+    <libpart lib="socket-rescue" part="Conn_01x03">
       <footprints>
         <fp>Connector*:*_1x??_*</fp>
       </footprints>
@@ -685,8 +708,7 @@
         <pin num="3" name="Pin_3" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Device" part="Crystal">
-      <description>Two pin crystal</description>
+    <libpart lib="socket-rescue" part="Crystal">
       <footprints>
         <fp>Crystal*</fp>
       </footprints>
@@ -699,8 +721,7 @@
         <pin num="2" name="2" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Device" part="D">
-      <description>Diode</description>
+    <libpart lib="socket-rescue" part="D">
       <footprints>
         <fp>TO-???*</fp>
         <fp>*SingleDiode</fp>
@@ -717,8 +738,7 @@
         <pin num="2" name="A" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Connector_Specialized" part="DB15_Male">
-      <description>15-pin male D-SUB connector (low-density/2 columns)</description>
+    <libpart lib="socket-rescue" part="DB15_Male">
       <footprints>
         <fp>DB*M*</fp>
       </footprints>
@@ -744,8 +764,7 @@
         <pin num="15" name="P15" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Connector_Specialized" part="DB9_Female">
-      <description>9-pin female D-SUB connector</description>
+    <libpart lib="socket-rescue" part="DB9_Female">
       <footprints>
         <fp>DB*F*</fp>
       </footprints>
@@ -765,8 +784,7 @@
         <pin num="9" name="9" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Device" part="D_Schottky">
-      <description>Schottky diode</description>
+    <libpart lib="socket-rescue" part="D_Schottky">
       <footprints>
         <fp>TO-???*</fp>
         <fp>*SingleDiode</fp>
@@ -783,9 +801,7 @@
         <pin num="2" name="A" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Device" part="D_Zener">
-      <description>Zener Diode</description>
-      <docs>https://en.wikipedia.org/wiki/Zener_diode</docs>
+    <libpart lib="socket-rescue" part="D_Zener">
       <footprints>
         <fp>TO-???*</fp>
         <fp>*SingleDiode</fp>
@@ -802,9 +818,7 @@
         <pin num="2" name="A" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Relay" part="G5LE-1">
-      <description>Omron G5LE relay, Miniature Single Pole, SPDT, 10A</description>
-      <docs>http://www.omron.com/ecb/products/pdf/en-g5le.pdf</docs>
+    <libpart lib="socket-rescue" part="G5LE-1">
       <footprints>
         <fp>Relay*SPDT*Omron*G5LE?1*</fp>
       </footprints>
@@ -821,16 +835,7 @@
         <pin num="5" name="~" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Interface_UART" part="MAX232">
-      <aliases>
-        <alias>MAX232I</alias>
-        <alias>MAX202</alias>
-        <alias>ADM232A</alias>
-        <alias>MAX3232</alias>
-        <alias>ICL3232</alias>
-      </aliases>
-      <description>Dual RS232 driver/receiver, 5V supply, 120kb/s, 0C-70C</description>
-      <docs>http://www.ti.com/lit/ds/symlink/max232.pdf</docs>
+    <libpart lib="socket-rescue" part="MAX3232">
       <footprints>
         <fp>SOIC*P1.27mm*</fp>
         <fp>DIP*W7.62mm*</fp>
@@ -838,7 +843,7 @@
       </footprints>
       <fields>
         <field name="Reference">U</field>
-        <field name="Value">MAX232</field>
+        <field name="Value">MAX3232</field>
       </fields>
       <pins>
         <pin num="1" name="C1+" type="passive"/>
@@ -859,24 +864,7 @@
         <pin num="16" name="VCC" type="power_in"/>
       </pins>
     </libpart>
-    <libpart lib="Relay_SolidState" part="MOC3031M">
-      <aliases>
-        <alias>MOC3032M</alias>
-        <alias>MOC3033M</alias>
-        <alias>MOC3041M</alias>
-        <alias>MOC3042M</alias>
-        <alias>MOC3043M</alias>
-        <alias>MOC3081M</alias>
-        <alias>MOC3082M</alias>
-        <alias>MOC3083M</alias>
-        <alias>MOC3061M</alias>
-        <alias>MOC3062M</alias>
-        <alias>MOC3063M</alias>
-        <alias>MOC3162M</alias>
-        <alias>MOC3163M</alias>
-      </aliases>
-      <description>Zero Cross Opto-Triac, Vdrm 250V, Ift 15mA, DIP6</description>
-      <docs>http://www.fairchildsemi.com/ds/MO/MOC3031M.pdf</docs>
+    <libpart lib="socket-rescue" part="MOC3063M">
       <footprints>
         <fp>DIP*W7.62mm*</fp>
         <fp>SMDIP*W9.53mm*</fp>
@@ -884,7 +872,7 @@
       </footprints>
       <fields>
         <field name="Reference">U</field>
-        <field name="Value">MOC3031M</field>
+        <field name="Value">MOC3063M</field>
       </fields>
       <pins>
         <pin num="1" name="~" type="passive"/>
@@ -895,7 +883,7 @@
         <pin num="6" name="~" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Isolator" part="PC817">
+    <libpart lib="socket-rescue" part="PC817">
       <footprints>
         <fp>DIP*W7.62mm*</fp>
       </footprints>
@@ -911,8 +899,7 @@
         <pin num="4" name="~" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Device" part="Q_NMOS_GSD">
-      <description>Transistor N-MOSFETwith substrate diode (general)</description>
+    <libpart lib="socket-rescue" part="Q_NMOS_GSD">
       <fields>
         <field name="Reference">Q</field>
         <field name="Value">Q_NMOS_GSD</field>
@@ -923,8 +910,7 @@
         <pin num="3" name="D" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Device" part="Q_PMOS_GSD">
-      <description>Transistor P-MOSFET with substrate diode (general)</description>
+    <libpart lib="socket-rescue" part="Q_PMOS_GSD">
       <fields>
         <field name="Reference">Q</field>
         <field name="Value">Q_PMOS_GSD</field>
@@ -935,8 +921,7 @@
         <pin num="3" name="D" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Device" part="R">
-      <description>Resistor</description>
+    <libpart lib="socket-rescue" part="R">
       <footprints>
         <fp>R_*</fp>
         <fp>R_*</fp>
@@ -950,9 +935,7 @@
         <pin num="2" name="~" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Power_Protection" part="SP0504BAHT">
-      <description>TVS Diode Array, 5.5V Standoff, 4 Channels, SOT-23-5 package</description>
-      <docs>http://www.littelfuse.com/~/media/files/littelfuse/technical%20resources/documents/data%20sheets/sp05xxba.pdf</docs>
+    <libpart lib="socket-rescue" part="SP0504BAHT">
       <footprints>
         <fp>SOT?23*</fp>
       </footprints>
@@ -1001,9 +984,7 @@
         <pin num="20" name="PD3" type="BiDi"/>
       </pins>
     </libpart>
-    <libpart lib="Connector_Specialized" part="Screw_Terminal_01x03">
-      <description>Generic screw terminal, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
-      <docs>~</docs>
+    <libpart lib="socket-rescue" part="Screw_Terminal_01x03">
       <footprints>
         <fp>TerminalBlock*:*</fp>
       </footprints>
@@ -1017,8 +998,7 @@
         <pin num="3" name="Pin_3" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Connector_Specialized" part="USB_B">
-      <description>USB Type B connector</description>
+    <libpart lib="socket-rescue" part="USB_B">
       <footprints>
         <fp>USB*</fp>
       </footprints>
@@ -1036,90 +1016,68 @@
     </libpart>
   </libparts>
   <libraries>
-    <library logical="socket-rescue">
-      <uri>socket-rescue.lib</uri>
-    </library>
-    <library logical="ch34x">
-      <uri>ch34x.lib</uri>
+    <library logical="acs712">
+      <uri>/home/eddy/Dropbox/Dropbox/Projects/STM8_samples/220controlled_socket/kicad/acs712.lib</uri>
     </library>
     <library logical="bt137">
-      <uri>bt137.lib</uri>
+      <uri>/home/eddy/Dropbox/Dropbox/Projects/STM8_samples/220controlled_socket/kicad/bt137.lib</uri>
     </library>
-    <library logical="Relay_SolidState">
-      <uri>/usr/share/kicad/library/Relay_SolidState.lib</uri>
+    <library logical="ch34x">
+      <uri>/home/eddy/Dropbox/Dropbox/Projects/STM8_samples/220controlled_socket/kicad/ch34x.lib</uri>
     </library>
-    <library logical="Device">
-      <uri>/usr/share/kicad/library/Device.lib</uri>
-    </library>
-    <library logical="Relay">
-      <uri>/usr/share/kicad/library/Relay.lib</uri>
-    </library>
-    <library logical="Interface_UART">
-      <uri>/usr/share/kicad/library/Interface_UART.lib</uri>
-    </library>
-    <library logical="Power_Protection">
-      <uri>/usr/share/kicad/library/Power_Protection.lib</uri>
-    </library>
-    <library logical="Connector_Specialized">
-      <uri>/usr/share/kicad/library/Connector_Specialized.lib</uri>
-    </library>
-    <library logical="Connector_Generic">
-      <uri>/usr/share/kicad/library/Connector_Generic.lib</uri>
-    </library>
-    <library logical="acs712">
-      <uri>acs712.lib</uri>
-    </library>
-    <library logical="Isolator">
-      <uri>/usr/share/kicad/library/Isolator.lib</uri>
+    <library logical="socket-rescue">
+      <uri>/home/eddy/Dropbox/Dropbox/Projects/STM8_samples/220controlled_socket/kicad/socket-rescue.lib</uri>
     </library>
   </libraries>
   <nets>
-    <net code="1" name="Net-(Q5-Pad3)">
-      <node ref="U8" pin="2"/>
-      <node ref="Q5" pin="3"/>
+    <net code="1" name="Net-(Q1-Pad1)">
+      <node ref="R6" pin="1"/>
+      <node ref="R4" pin="1"/>
+      <node ref="Q1" pin="1"/>
     </net>
-    <net code="2" name="Net-(C9-Pad1)">
-      <node ref="C9" pin="1"/>
-      <node ref="U3" pin="8"/>
+    <net code="2" name="Net-(J5-Pad3)">
+      <node ref="J5" pin="3"/>
+      <node ref="U6" pin="4"/>
     </net>
-    <net code="3" name="Net-(R20-Pad2)">
-      <node ref="R20" pin="2"/>
-      <node ref="U8" pin="6"/>
+    <net code="3" name="/~In0">
+      <node ref="U3" pin="12"/>
+      <node ref="D5" pin="1"/>
+      <node ref="R9" pin="2"/>
+      <node ref="R24" pin="2"/>
     </net>
-    <net code="4" name="Net-(D2-Pad2)">
-      <node ref="J2" pin="1"/>
-      <node ref="D2" pin="2"/>
+    <net code="4" name="Net-(J5-Pad4)">
+      <node ref="U6" pin="3"/>
+      <node ref="J5" pin="4"/>
     </net>
-    <net code="5" name="Net-(R15-Pad1)">
-      <node ref="R15" pin="1"/>
-      <node ref="U8" pin="1"/>
+    <net code="5" name="Net-(Q1-Pad3)">
+      <node ref="U6" pin="2"/>
+      <node ref="Q1" pin="3"/>
     </net>
-    <net code="6" name="Net-(K1-Pad5)">
-      <node ref="Q8" pin="3"/>
-      <node ref="K1" pin="5"/>
+    <net code="6" name="Net-(J5-Pad9)">
+      <node ref="R10" pin="1"/>
+      <node ref="J5" pin="9"/>
     </net>
-    <net code="7" name="Net-(D1-Pad5)">
-      <node ref="D1" pin="5"/>
-      <node ref="U2" pin="5"/>
-      <node ref="R1" pin="1"/>
+    <net code="7" name="Net-(J5-Pad12)">
+      <node ref="J5" pin="12"/>
+      <node ref="R9" pin="1"/>
     </net>
-    <net code="8" name="Net-(D1-Pad4)">
-      <node ref="U2" pin="6"/>
-      <node ref="D1" pin="4"/>
-      <node ref="R2" pin="1"/>
+    <net code="8" name="Net-(R22-Pad2)">
+      <node ref="R22" pin="2"/>
+      <node ref="U9" pin="6"/>
     </net>
-    <net code="9" name="Net-(C6-Pad2)">
-      <node ref="U2" pin="4"/>
-      <node ref="C6" pin="2"/>
+    <net code="9" name="Net-(C12-Pad1)">
+      <node ref="C12" pin="1"/>
+      <node ref="U10" pin="6"/>
     </net>
     <net code="10" name="Net-(C13-Pad1)">
       <node ref="R5" pin="2"/>
       <node ref="C13" pin="1"/>
       <node ref="U3" pin="20"/>
     </net>
-    <net code="11" name="Net-(R22-Pad2)">
-      <node ref="U9" pin="6"/>
-      <node ref="R22" pin="2"/>
+    <net code="11" name="Net-(D4-Pad3)">
+      <node ref="D4" pin="3"/>
+      <node ref="U9" pin="4"/>
+      <node ref="R21" pin="2"/>
     </net>
     <net code="12" name="Net-(R17-Pad1)">
       <node ref="U9" pin="1"/>
@@ -1129,438 +1087,444 @@
       <node ref="K2" pin="5"/>
       <node ref="Q9" pin="3"/>
     </net>
-    <net code="14" name="Net-(D4-Pad1)">
-      <node ref="D4" pin="1"/>
-      <node ref="R21" pin="1"/>
-      <node ref="K2" pin="3"/>
-      <node ref="J7" pin="3"/>
-    </net>
-    <net code="15" name="Net-(C12-Pad1)">
-      <node ref="C12" pin="1"/>
-      <node ref="U10" pin="6"/>
-    </net>
-    <net code="16" name="Net-(Q9-Pad1)">
-      <node ref="Q9" pin="1"/>
+    <net code="14" name="Net-(Q9-Pad1)">
       <node ref="R18" pin="1"/>
       <node ref="R33" pin="1"/>
+      <node ref="Q9" pin="1"/>
     </net>
-    <net code="17" name="Net-(D6-Pad1)">
-      <node ref="R5" pin="1"/>
-      <node ref="D6" pin="1"/>
+    <net code="15" name="Net-(J5-Pad2)">
+      <node ref="U7" pin="3"/>
+      <node ref="J5" pin="2"/>
     </net>
-    <net code="18" name="Net-(D3-Pad1)">
-      <node ref="U10" pin="2"/>
-      <node ref="K1" pin="3"/>
-      <node ref="D3" pin="1"/>
-      <node ref="R19" pin="1"/>
-      <node ref="U10" pin="1"/>
+    <net code="16" name="Net-(J5-Pad1)">
+      <node ref="U7" pin="4"/>
+      <node ref="J5" pin="1"/>
     </net>
-    <net code="19" name="Net-(K1-Pad4)">
-      <node ref="K1" pin="4"/>
+    <net code="17" name="Net-(Q2-Pad3)">
+      <node ref="U7" pin="2"/>
+      <node ref="Q2" pin="3"/>
     </net>
-    <net code="20" name="Net-(J5-Pad15)">
-      <node ref="J5" pin="15"/>
-      <node ref="R27" pin="1"/>
-      <node ref="Q6" pin="2"/>
+    <net code="18" name="Net-(R7-Pad1)">
+      <node ref="R7" pin="1"/>
+      <node ref="U6" pin="1"/>
+    </net>
+    <net code="19" name="Net-(R8-Pad1)">
+      <node ref="U7" pin="1"/>
+      <node ref="R8" pin="1"/>
+    </net>
+    <net code="20" name="/~In1">
+      <node ref="U5" pin="4"/>
+      <node ref="U3" pin="5"/>
     </net>
     <net code="21" name="Net-(Q3-Pad1)">
+      <node ref="R25" pin="1"/>
       <node ref="Q3" pin="1"/>
       <node ref="R11" pin="1"/>
-      <node ref="R25" pin="1"/>
     </net>
-    <net code="22" name="/NKEY2">
-      <node ref="R11" pin="2"/>
-      <node ref="U3" pin="13"/>
-    </net>
-    <net code="23" name="/NKEY1">
-      <node ref="U3" pin="15"/>
-      <node ref="R12" pin="2"/>
-    </net>
-    <net code="24" name="Net-(Q6-Pad1)">
-      <node ref="R14" pin="1"/>
-      <node ref="Q6" pin="1"/>
-      <node ref="R27" pin="2"/>
-    </net>
-    <net code="25" name="Net-(Q1-Pad1)">
-      <node ref="R4" pin="1"/>
-      <node ref="R6" pin="1"/>
-      <node ref="Q1" pin="1"/>
-    </net>
-    <net code="26" name="GNDREF">
-      <node ref="J7" pin="2"/>
-      <node ref="J6" pin="2"/>
-    </net>
-    <net code="27" name="Net-(J5-Pad13)">
-      <node ref="J5" pin="13"/>
-    </net>
-    <net code="28" name="Net-(J5-Pad5)">
-      <node ref="J5" pin="5"/>
-    </net>
-    <net code="29" name="/~In0">
-      <node ref="R9" pin="2"/>
-      <node ref="U3" pin="12"/>
-      <node ref="D5" pin="1"/>
-    </net>
-    <net code="30" name="Net-(U3-Pad1)">
-      <node ref="U3" pin="1"/>
-    </net>
-    <net code="31" name="Net-(J2-Pad3)">
-      <node ref="J2" pin="3"/>
-      <node ref="R1" pin="2"/>
-    </net>
-    <net code="32" name="Net-(J2-Pad2)">
-      <node ref="R2" pin="2"/>
-      <node ref="J2" pin="2"/>
-    </net>
-    <net code="33" name="Net-(C7-Pad2)">
-      <node ref="U1" pin="3"/>
-      <node ref="C7" pin="2"/>
-    </net>
-    <net code="34" name="Net-(C1-Pad2)">
-      <node ref="C1" pin="2"/>
-      <node ref="U1" pin="2"/>
-    </net>
-    <net code="35" name="Net-(C2-Pad2)">
-      <node ref="C2" pin="2"/>
-      <node ref="U1" pin="6"/>
-    </net>
-    <net code="36" name="Net-(C4-Pad2)">
-      <node ref="U1" pin="5"/>
-      <node ref="C4" pin="2"/>
-    </net>
-    <net code="37" name="Net-(C4-Pad1)">
-      <node ref="C4" pin="1"/>
-      <node ref="U1" pin="4"/>
-    </net>
-    <net code="38" name="Net-(C7-Pad1)">
-      <node ref="C7" pin="1"/>
-      <node ref="U1" pin="1"/>
-    </net>
-    <net code="39" name="Net-(Q8-Pad1)">
-      <node ref="R30" pin="1"/>
-      <node ref="Q8" pin="1"/>
-      <node ref="R16" pin="1"/>
-    </net>
-    <net code="40" name="Net-(Q5-Pad1)">
-      <node ref="R28" pin="1"/>
-      <node ref="Q5" pin="1"/>
-      <node ref="R29" pin="2"/>
-    </net>
-    <net code="41" name="/Triac0">
-      <node ref="R28" pin="2"/>
-      <node ref="U3" pin="19"/>
-    </net>
-    <net code="42" name="VCC">
-      <node ref="R8" pin="2"/>
-      <node ref="R7" pin="2"/>
-      <node ref="C10" pin="2"/>
-      <node ref="U2" pin="16"/>
-      <node ref="D2" pin="1"/>
-      <node ref="J3" pin="1"/>
-      <node ref="U1" pin="16"/>
-      <node ref="U3" pin="9"/>
-      <node ref="K2" pin="2"/>
-      <node ref="K1" pin="2"/>
-      <node ref="R15" pin="2"/>
-      <node ref="C11" pin="1"/>
-      <node ref="U10" pin="8"/>
-      <node ref="R17" pin="2"/>
-      <node ref="R23" pin="1"/>
-    </net>
-    <net code="43" name="Net-(Q4-Pad1)">
-      <node ref="Q4" pin="1"/>
-      <node ref="R12" pin="1"/>
-      <node ref="R26" pin="1"/>
-    </net>
-    <net code="44" name="Net-(Q2-Pad1)">
-      <node ref="R13" pin="2"/>
-      <node ref="Q2" pin="1"/>
-      <node ref="R3" pin="1"/>
-    </net>
-    <net code="45" name="Net-(K2-Pad4)">
-      <node ref="K2" pin="4"/>
-    </net>
-    <net code="46" name="/Rx">
-      <node ref="U3" pin="3"/>
-      <node ref="D8" pin="2"/>
-      <node ref="D7" pin="2"/>
-      <node ref="R23" pin="2"/>
-    </net>
-    <net code="47" name="Net-(D8-Pad1)">
-      <node ref="U1" pin="12"/>
-      <node ref="D8" pin="1"/>
-    </net>
-    <net code="48" name="Net-(Q7-Pad3)">
-      <node ref="Q7" pin="3"/>
-      <node ref="U9" pin="2"/>
-    </net>
-    <net code="49" name="Net-(Q7-Pad1)">
-      <node ref="Q7" pin="1"/>
-      <node ref="R31" pin="1"/>
-      <node ref="R32" pin="2"/>
-    </net>
-    <net code="50" name="/Triac1">
-      <node ref="R31" pin="2"/>
-      <node ref="U3" pin="16"/>
-    </net>
-    <net code="51" name="Net-(J5-Pad7)">
-      <node ref="J5" pin="7"/>
-      <node ref="Q4" pin="3"/>
-    </net>
-    <net code="52" name="Net-(J5-Pad12)">
-      <node ref="J5" pin="12"/>
-      <node ref="R9" pin="1"/>
-    </net>
-    <net code="53" name="GND">
-      <node ref="C10" pin="1"/>
-      <node ref="C11" pin="2"/>
-      <node ref="J3" pin="2"/>
-      <node ref="U5" pin="3"/>
-      <node ref="U2" pin="1"/>
-      <node ref="Q1" pin="2"/>
-      <node ref="C8" pin="2"/>
-      <node ref="J4" pin="1"/>
-      <node ref="C5" pin="1"/>
-      <node ref="U10" pin="5"/>
-      <node ref="C3" pin="1"/>
-      <node ref="Q2" pin="2"/>
-      <node ref="C1" pin="1"/>
-      <node ref="Q3" pin="2"/>
-      <node ref="U3" pin="7"/>
-      <node ref="J5" pin="11"/>
-      <node ref="J5" pin="6"/>
-      <node ref="C2" pin="1"/>
-      <node ref="C12" pin="2"/>
-      <node ref="J1" pin="5"/>
-      <node ref="D1" pin="2"/>
-      <node ref="Q8" pin="2"/>
-      <node ref="C9" pin="2"/>
-      <node ref="Q9" pin="2"/>
-      <node ref="U1" pin="15"/>
-      <node ref="R30" pin="2"/>
-      <node ref="R6" pin="2"/>
-      <node ref="D5" pin="2"/>
-      <node ref="R26" pin="2"/>
-      <node ref="R13" pin="1"/>
-      <node ref="Q7" pin="2"/>
-      <node ref="R32" pin="1"/>
-      <node ref="R29" pin="1"/>
-      <node ref="Q5" pin="2"/>
-      <node ref="R25" pin="2"/>
-      <node ref="R33" pin="2"/>
-      <node ref="J2" pin="4"/>
-      <node ref="C13" pin="2"/>
-      <node ref="Q4" pin="2"/>
-      <node ref="C6" pin="1"/>
-      <node ref="J2" pin="5"/>
-    </net>
-    <net code="54" name="Net-(J5-Pad8)">
+    <net code="22" name="Net-(J5-Pad8)">
       <node ref="J5" pin="8"/>
       <node ref="Q3" pin="3"/>
     </net>
-    <net code="55" name="Net-(D3-Pad3)">
+    <net code="23" name="Net-(J5-Pad7)">
+      <node ref="J5" pin="7"/>
+      <node ref="Q4" pin="3"/>
+    </net>
+    <net code="24" name="Net-(D3-Pad3)">
       <node ref="D3" pin="3"/>
       <node ref="R19" pin="2"/>
       <node ref="U8" pin="4"/>
     </net>
-    <net code="56" name="Net-(D4-Pad3)">
-      <node ref="D4" pin="3"/>
-      <node ref="U9" pin="4"/>
-      <node ref="R21" pin="2"/>
-    </net>
-    <net code="57" name="Net-(J5-Pad3)">
-      <node ref="U6" pin="4"/>
-      <node ref="J5" pin="3"/>
-    </net>
-    <net code="58" name="Net-(J5-Pad4)">
-      <node ref="U6" pin="3"/>
-      <node ref="J5" pin="4"/>
-    </net>
-    <net code="59" name="Net-(Q1-Pad3)">
-      <node ref="U6" pin="2"/>
-      <node ref="Q1" pin="3"/>
-    </net>
-    <net code="60" name="Net-(D7-Pad1)">
-      <node ref="U2" pin="2"/>
+    <net code="25" name="Net-(D7-Pad1)">
       <node ref="D7" pin="1"/>
+      <node ref="U2" pin="2"/>
     </net>
-    <net code="61" name="Net-(J5-Pad9)">
-      <node ref="J5" pin="9"/>
-      <node ref="R10" pin="1"/>
+    <net code="26" name="Net-(C3-Pad2)">
+      <node ref="U2" pin="7"/>
+      <node ref="C3" pin="2"/>
+      <node ref="Y1" pin="2"/>
     </net>
-    <net code="62" name="Net-(J5-Pad14)">
-      <node ref="Q6" pin="3"/>
+    <net code="27" name="Net-(D1-Pad4)">
+      <node ref="U2" pin="6"/>
+      <node ref="D1" pin="4"/>
+      <node ref="R2" pin="1"/>
+    </net>
+    <net code="28" name="Net-(J2-Pad3)">
+      <node ref="J2" pin="3"/>
+      <node ref="R1" pin="2"/>
+    </net>
+    <net code="29" name="Net-(J2-Pad2)">
+      <node ref="R2" pin="2"/>
+      <node ref="J2" pin="2"/>
+    </net>
+    <net code="30" name="Net-(D1-Pad5)">
+      <node ref="R1" pin="1"/>
+      <node ref="U2" pin="5"/>
+      <node ref="D1" pin="5"/>
+    </net>
+    <net code="31" name="Net-(C1-Pad2)">
+      <node ref="U1" pin="2"/>
+      <node ref="C1" pin="2"/>
+    </net>
+    <net code="32" name="Net-(C2-Pad2)">
+      <node ref="U1" pin="6"/>
+      <node ref="C2" pin="2"/>
+    </net>
+    <net code="33" name="Net-(C4-Pad2)">
+      <node ref="U1" pin="5"/>
+      <node ref="C4" pin="2"/>
+    </net>
+    <net code="34" name="Net-(C4-Pad1)">
+      <node ref="U1" pin="4"/>
+      <node ref="C4" pin="1"/>
+    </net>
+    <net code="35" name="Net-(C7-Pad1)">
+      <node ref="U1" pin="1"/>
+      <node ref="C7" pin="1"/>
+    </net>
+    <net code="36" name="Net-(C7-Pad2)">
+      <node ref="C7" pin="2"/>
+      <node ref="U1" pin="3"/>
+    </net>
+    <net code="37" name="Net-(C5-Pad2)">
+      <node ref="U2" pin="8"/>
+      <node ref="C5" pin="2"/>
+      <node ref="Y1" pin="1"/>
+    </net>
+    <net code="38" name="Net-(C9-Pad1)">
+      <node ref="C9" pin="1"/>
+      <node ref="U3" pin="8"/>
+    </net>
+    <net code="39" name="Net-(R20-Pad2)">
+      <node ref="R20" pin="2"/>
+      <node ref="U8" pin="6"/>
+    </net>
+    <net code="40" name="Net-(Q5-Pad3)">
+      <node ref="Q5" pin="3"/>
+      <node ref="U8" pin="2"/>
+    </net>
+    <net code="41" name="Net-(R15-Pad1)">
+      <node ref="U8" pin="1"/>
+      <node ref="R15" pin="1"/>
+    </net>
+    <net code="42" name="Net-(K1-Pad5)">
+      <node ref="K1" pin="5"/>
+      <node ref="Q8" pin="3"/>
+    </net>
+    <net code="43" name="Net-(C6-Pad2)">
+      <node ref="C6" pin="2"/>
+      <node ref="U2" pin="4"/>
+    </net>
+    <net code="44" name="Net-(J5-Pad14)">
       <node ref="J5" pin="14"/>
+      <node ref="Q6" pin="3"/>
     </net>
-    <net code="63" name="/~In1">
-      <node ref="U5" pin="4"/>
-      <node ref="U3" pin="5"/>
+    <net code="45" name="Net-(D2-Pad2)">
+      <node ref="D2" pin="2"/>
+      <node ref="J2" pin="1"/>
     </net>
-    <net code="64" name="Net-(R10-Pad2)">
+    <net code="46" name="Net-(C15-Pad2)">
+      <node ref="R35" pin="1"/>
+      <node ref="C15" pin="2"/>
+    </net>
+    <net code="47" name="Net-(C15-Pad1)">
+      <node ref="R21" pin="1"/>
+      <node ref="J7" pin="3"/>
+      <node ref="D4" pin="1"/>
+      <node ref="K2" pin="3"/>
+      <node ref="C15" pin="1"/>
+    </net>
+    <net code="48" name="/NC1">
+      <node ref="J6" pin="2"/>
+      <node ref="K1" pin="4"/>
+    </net>
+    <net code="49" name="Net-(D4-Pad2)">
+      <node ref="R22" pin="1"/>
+      <node ref="D4" pin="2"/>
+      <node ref="R35" pin="2"/>
+      <node ref="J7" pin="1"/>
+      <node ref="K2" pin="1"/>
+    </net>
+    <net code="50" name="/NC2">
+      <node ref="J7" pin="2"/>
+      <node ref="K2" pin="4"/>
+    </net>
+    <net code="51" name="Net-(D3-Pad1)">
+      <node ref="K1" pin="3"/>
+      <node ref="U10" pin="2"/>
+      <node ref="U10" pin="1"/>
+      <node ref="D3" pin="1"/>
+      <node ref="R19" pin="1"/>
+    </net>
+    <net code="52" name="VCC">
+      <node ref="U2" pin="16"/>
+      <node ref="R17" pin="2"/>
+      <node ref="R23" pin="1"/>
+      <node ref="K1" pin="2"/>
+      <node ref="R27" pin="2"/>
+      <node ref="R15" pin="2"/>
+      <node ref="R7" pin="2"/>
+      <node ref="R8" pin="2"/>
+      <node ref="U3" pin="9"/>
+      <node ref="J3" pin="1"/>
+      <node ref="R24" pin="1"/>
+      <node ref="D2" pin="1"/>
+      <node ref="U1" pin="16"/>
+      <node ref="U10" pin="8"/>
+      <node ref="C11" pin="1"/>
+      <node ref="K2" pin="2"/>
+      <node ref="C10" pin="2"/>
+    </net>
+    <net code="53" name="Net-(Q6-Pad1)">
+      <node ref="Q6" pin="1"/>
+      <node ref="R14" pin="1"/>
+    </net>
+    <net code="54" name="Net-(J5-Pad15)">
+      <node ref="Q6" pin="2"/>
+      <node ref="J5" pin="15"/>
+    </net>
+    <net code="55" name="Net-(C14-Pad1)">
+      <node ref="C14" pin="1"/>
+      <node ref="U10" pin="4"/>
+      <node ref="U10" pin="3"/>
+      <node ref="J6" pin="3"/>
+    </net>
+    <net code="56" name="Net-(D3-Pad2)">
+      <node ref="D3" pin="2"/>
+      <node ref="R34" pin="2"/>
+      <node ref="R20" pin="1"/>
+      <node ref="K1" pin="1"/>
+      <node ref="J6" pin="1"/>
+    </net>
+    <net code="57" name="Net-(C14-Pad2)">
+      <node ref="C14" pin="2"/>
+      <node ref="R34" pin="1"/>
+    </net>
+    <net code="58" name="Net-(Q4-Pad1)">
+      <node ref="Q4" pin="1"/>
+      <node ref="R26" pin="1"/>
+      <node ref="R12" pin="1"/>
+    </net>
+    <net code="59" name="Net-(Q2-Pad1)">
+      <node ref="R3" pin="1"/>
+      <node ref="Q2" pin="1"/>
+      <node ref="R13" pin="2"/>
+    </net>
+    <net code="60" name="Net-(Q7-Pad1)">
+      <node ref="R32" pin="2"/>
+      <node ref="Q7" pin="1"/>
+      <node ref="R31" pin="1"/>
+    </net>
+    <net code="61" name="Net-(Q8-Pad1)">
+      <node ref="R30" pin="1"/>
+      <node ref="R16" pin="1"/>
+      <node ref="Q8" pin="1"/>
+    </net>
+    <net code="62" name="Net-(Q5-Pad1)">
+      <node ref="R29" pin="2"/>
+      <node ref="Q5" pin="1"/>
+      <node ref="R28" pin="1"/>
+    </net>
+    <net code="63" name="Net-(R10-Pad2)">
       <node ref="R10" pin="2"/>
       <node ref="U5" pin="2"/>
     </net>
-    <net code="65" name="Net-(J5-Pad10)">
+    <net code="64" name="Net-(J5-Pad10)">
       <node ref="J5" pin="10"/>
       <node ref="U5" pin="1"/>
     </net>
-    <net code="66" name="Net-(J5-Pad2)">
-      <node ref="U7" pin="3"/>
-      <node ref="J5" pin="2"/>
+    <net code="65" name="Net-(D8-Pad1)">
+      <node ref="D8" pin="1"/>
+      <node ref="U1" pin="12"/>
     </net>
-    <net code="67" name="Net-(J5-Pad1)">
-      <node ref="U7" pin="4"/>
-      <node ref="J5" pin="1"/>
+    <net code="66" name="GND">
+      <node ref="Q9" pin="2"/>
+      <node ref="C1" pin="1"/>
+      <node ref="C2" pin="1"/>
+      <node ref="U2" pin="1"/>
+      <node ref="D1" pin="2"/>
+      <node ref="U3" pin="7"/>
+      <node ref="J5" pin="6"/>
+      <node ref="D5" pin="2"/>
+      <node ref="C13" pin="2"/>
+      <node ref="R33" pin="2"/>
+      <node ref="R25" pin="2"/>
+      <node ref="R26" pin="2"/>
+      <node ref="Q3" pin="2"/>
+      <node ref="Q4" pin="2"/>
+      <node ref="U10" pin="5"/>
+      <node ref="C12" pin="2"/>
+      <node ref="C11" pin="2"/>
+      <node ref="U5" pin="3"/>
+      <node ref="J1" pin="5"/>
+      <node ref="Q8" pin="2"/>
+      <node ref="J5" pin="11"/>
+      <node ref="Q1" pin="2"/>
+      <node ref="Q2" pin="2"/>
+      <node ref="R13" pin="1"/>
+      <node ref="C3" pin="1"/>
+      <node ref="R30" pin="2"/>
+      <node ref="C10" pin="1"/>
+      <node ref="J2" pin="5"/>
+      <node ref="R32" pin="1"/>
+      <node ref="Q7" pin="2"/>
+      <node ref="J2" pin="4"/>
+      <node ref="C6" pin="1"/>
+      <node ref="R29" pin="1"/>
+      <node ref="Q5" pin="2"/>
+      <node ref="J3" pin="2"/>
+      <node ref="C5" pin="1"/>
+      <node ref="J4" pin="1"/>
+      <node ref="U1" pin="15"/>
+      <node ref="C9" pin="2"/>
+      <node ref="R6" pin="2"/>
+      <node ref="C8" pin="2"/>
     </net>
-    <net code="68" name="Net-(Q2-Pad3)">
-      <node ref="Q2" pin="3"/>
-      <node ref="U7" pin="2"/>
+    <net code="67" name="/Rx">
+      <node ref="D8" pin="2"/>
+      <node ref="D7" pin="2"/>
+      <node ref="R23" pin="2"/>
+      <node ref="U3" pin="3"/>
     </net>
-    <net code="69" name="Net-(R7-Pad1)">
-      <node ref="U6" pin="1"/>
-      <node ref="R7" pin="1"/>
+    <net code="68" name="/Triac1">
+      <node ref="R31" pin="2"/>
+      <node ref="U3" pin="16"/>
     </net>
-    <net code="70" name="Net-(R8-Pad1)">
-      <node ref="R8" pin="1"/>
-      <node ref="U7" pin="1"/>
+    <net code="69" name="Net-(Q7-Pad3)">
+      <node ref="U9" pin="2"/>
+      <node ref="Q7" pin="3"/>
     </net>
-    <net code="71" name="Net-(U2-Pad12)">
-      <node ref="U2" pin="12"/>
-    </net>
-    <net code="72" name="/Tx">
-      <node ref="U3" pin="2"/>
-      <node ref="U1" pin="11"/>
-      <node ref="U2" pin="3"/>
-    </net>
-    <net code="73" name="Net-(U2-Pad9)">
-      <node ref="U2" pin="9"/>
-    </net>
-    <net code="74" name="Net-(U2-Pad10)">
-      <node ref="U2" pin="10"/>
-    </net>
-    <net code="75" name="Net-(U2-Pad11)">
-      <node ref="U2" pin="11"/>
-    </net>
-    <net code="76" name="Net-(U2-Pad13)">
-      <node ref="U2" pin="13"/>
-    </net>
-    <net code="77" name="Net-(U2-Pad14)">
-      <node ref="U2" pin="14"/>
-    </net>
-    <net code="78" name="Net-(U2-Pad15)">
+    <net code="70" name="Net-(U2-Pad15)">
       <node ref="U2" pin="15"/>
     </net>
-    <net code="79" name="Net-(C5-Pad2)">
-      <node ref="Y1" pin="1"/>
-      <node ref="U2" pin="8"/>
-      <node ref="C5" pin="2"/>
+    <net code="71" name="Net-(U2-Pad14)">
+      <node ref="U2" pin="14"/>
     </net>
-    <net code="80" name="Net-(C3-Pad2)">
-      <node ref="C3" pin="2"/>
-      <node ref="U2" pin="7"/>
-      <node ref="Y1" pin="2"/>
+    <net code="72" name="Net-(U2-Pad13)">
+      <node ref="U2" pin="13"/>
     </net>
-    <net code="81" name="/NRST">
+    <net code="73" name="Net-(U2-Pad12)">
+      <node ref="U2" pin="12"/>
+    </net>
+    <net code="74" name="Net-(U2-Pad11)">
+      <node ref="U2" pin="11"/>
+    </net>
+    <net code="75" name="Net-(U2-Pad10)">
+      <node ref="U2" pin="10"/>
+    </net>
+    <net code="76" name="Net-(U2-Pad9)">
+      <node ref="U2" pin="9"/>
+    </net>
+    <net code="77" name="Net-(U8-Pad3)">
+      <node ref="U8" pin="3"/>
+    </net>
+    <net code="78" name="Net-(U8-Pad5)">
+      <node ref="U8" pin="5"/>
+    </net>
+    <net code="79" name="/NRST">
       <node ref="C8" pin="1"/>
       <node ref="J4" pin="2"/>
       <node ref="U3" pin="4"/>
     </net>
-    <net code="82" name="/SWIM">
+    <net code="80" name="/SWIM">
       <node ref="J4" pin="3"/>
       <node ref="U3" pin="18"/>
     </net>
-    <net code="83" name="Net-(U1-Pad7)">
-      <node ref="U1" pin="7"/>
-    </net>
-    <net code="84" name="Net-(U1-Pad8)">
+    <net code="81" name="Net-(U1-Pad8)">
       <node ref="U1" pin="8"/>
     </net>
-    <net code="85" name="Net-(U1-Pad9)">
+    <net code="82" name="Net-(U1-Pad7)">
+      <node ref="U1" pin="7"/>
+    </net>
+    <net code="83" name="Net-(U1-Pad9)">
       <node ref="U1" pin="9"/>
     </net>
-    <net code="86" name="Net-(U1-Pad10)">
+    <net code="84" name="/PKEY1">
+      <node ref="U3" pin="11"/>
+      <node ref="R27" pin="1"/>
+      <node ref="R14" pin="2"/>
+    </net>
+    <net code="85" name="/NKEY1">
+      <node ref="U3" pin="15"/>
+      <node ref="R12" pin="2"/>
+    </net>
+    <net code="86" name="/Relay0">
+      <node ref="R16" pin="2"/>
+      <node ref="U3" pin="17"/>
+    </net>
+    <net code="87" name="/Triac0">
+      <node ref="U3" pin="19"/>
+      <node ref="R28" pin="2"/>
+    </net>
+    <net code="88" name="/Out1">
+      <node ref="U3" pin="6"/>
+      <node ref="R4" pin="2"/>
+    </net>
+    <net code="89" name="Net-(U1-Pad10)">
       <node ref="U1" pin="10"/>
     </net>
-    <net code="87" name="/Out1">
-      <node ref="R4" pin="2"/>
-      <node ref="U3" pin="6"/>
+    <net code="90" name="/TXD">
+      <node ref="U1" pin="13"/>
+      <node ref="D1" pin="1"/>
+      <node ref="J1" pin="3"/>
     </net>
-    <net code="88" name="/Out0">
-      <node ref="U3" pin="10"/>
-      <node ref="R3" pin="2"/>
+    <net code="91" name="Net-(J1-Pad9)">
+      <node ref="J1" pin="9"/>
     </net>
-    <net code="89" name="/PKEY1">
-      <node ref="R14" pin="2"/>
-      <node ref="U3" pin="11"/>
-    </net>
-    <net code="90" name="Net-(J1-Pad4)">
+    <net code="92" name="Net-(J1-Pad4)">
       <node ref="J1" pin="4"/>
-    </net>
-    <net code="91" name="Net-(J1-Pad6)">
-      <node ref="J1" pin="6"/>
-    </net>
-    <net code="92" name="Net-(J1-Pad7)">
-      <node ref="J1" pin="7"/>
     </net>
     <net code="93" name="Net-(J1-Pad8)">
       <node ref="J1" pin="8"/>
     </net>
-    <net code="94" name="Net-(J1-Pad9)">
-      <node ref="J1" pin="9"/>
+    <net code="94" name="Net-(J1-Pad7)">
+      <node ref="J1" pin="7"/>
     </net>
-    <net code="95" name="/RXD">
-      <node ref="J1" pin="2"/>
-      <node ref="D1" pin="3"/>
-      <node ref="U1" pin="14"/>
+    <net code="95" name="Net-(J1-Pad6)">
+      <node ref="J1" pin="6"/>
     </net>
-    <net code="96" name="/TXD">
-      <node ref="D1" pin="1"/>
-      <node ref="J1" pin="3"/>
-      <node ref="U1" pin="13"/>
-    </net>
-    <net code="97" name="Net-(J1-Pad1)">
+    <net code="96" name="Net-(J1-Pad1)">
       <node ref="J1" pin="1"/>
     </net>
-    <net code="98" name="/Relay1">
-      <node ref="R18" pin="2"/>
+    <net code="97" name="/RXD">
+      <node ref="J1" pin="2"/>
+      <node ref="U1" pin="14"/>
+      <node ref="D1" pin="3"/>
+    </net>
+    <net code="98" name="/Tx">
+      <node ref="U1" pin="11"/>
+      <node ref="U3" pin="2"/>
+      <node ref="U2" pin="3"/>
+    </net>
+    <net code="99" name="/Out0">
+      <node ref="U3" pin="10"/>
+      <node ref="R3" pin="2"/>
+    </net>
+    <net code="100" name="Net-(J5-Pad13)">
+      <node ref="J5" pin="13"/>
+    </net>
+    <net code="101" name="Net-(J5-Pad5)">
+      <node ref="J5" pin="5"/>
+    </net>
+    <net code="102" name="Net-(U3-Pad1)">
+      <node ref="U3" pin="1"/>
+    </net>
+    <net code="103" name="/NKEY2">
+      <node ref="U3" pin="13"/>
+      <node ref="R11" pin="2"/>
+    </net>
+    <net code="104" name="/Cur0">
+      <node ref="U10" pin="7"/>
+      <node ref="R5" pin="1"/>
+    </net>
+    <net code="105" name="/Relay1">
       <node ref="U3" pin="14"/>
+      <node ref="R18" pin="2"/>
     </net>
-    <net code="99" name="/Relay0">
-      <node ref="U3" pin="17"/>
-      <node ref="R16" pin="2"/>
-    </net>
-    <net code="100" name="Net-(U8-Pad3)">
-      <node ref="U8" pin="3"/>
-    </net>
-    <net code="101" name="Net-(U8-Pad5)">
-      <node ref="U8" pin="5"/>
-    </net>
-    <net code="102" name="Net-(J6-Pad3)">
-      <node ref="J6" pin="3"/>
-      <node ref="U10" pin="3"/>
-      <node ref="U10" pin="4"/>
-    </net>
-    <net code="103" name="Net-(D3-Pad2)">
-      <node ref="R20" pin="1"/>
-      <node ref="J6" pin="1"/>
-      <node ref="K1" pin="1"/>
-      <node ref="D3" pin="2"/>
-    </net>
-    <net code="104" name="Net-(U9-Pad3)">
+    <net code="106" name="Net-(U9-Pad3)">
       <node ref="U9" pin="3"/>
     </net>
-    <net code="105" name="Net-(U9-Pad5)">
+    <net code="107" name="Net-(U9-Pad5)">
       <node ref="U9" pin="5"/>
-    </net>
-    <net code="106" name="Net-(D4-Pad2)">
-      <node ref="J7" pin="1"/>
-      <node ref="K2" pin="1"/>
-      <node ref="R22" pin="1"/>
-      <node ref="D4" pin="2"/>
-    </net>
-    <net code="107" name="/Cur0">
-      <node ref="U10" pin="7"/>
-      <node ref="D6" pin="2"/>
     </net>
   </nets>
 </export>
