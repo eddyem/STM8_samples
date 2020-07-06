@@ -1,0 +1,6 @@
+(sym_lib_table
+  (lib (name drum-rescue)(type Legacy)(uri ${KIPRJMOD}/drum-rescue.lib)(options "")(descr ""))
+  (lib (name stm8s105k4t6c)(type Legacy)(uri ${KIPRJMOD}/stm8s105k4t6c.lib)(options "")(descr ""))
+  (lib (name tda2822)(type Legacy)(uri ${KIPRJMOD}/tda2822.lib)(options "")(descr ""))
+  (lib (name CD74HC154)(type Legacy)(uri ${KIPRJMOD}/CD74HC154.lib)(options "")(descr ""))
+)

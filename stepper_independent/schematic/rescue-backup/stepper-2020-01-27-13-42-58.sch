@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2
+EESchema Schematic File Version 2  date Ср 12 фев 2014 14:02:01
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -29,6 +29,8 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:stm8
+LIBS:st-microelectronics
 LIBS:stm8s105k4t6c
 LIBS:stepper-cache
 EELAYER 27 0
@@ -513,92 +515,6 @@ Wire Wire Line
 	4000 1300 4000 1150
 Wire Wire Line
 	4000 850  4000 750 
-$Comp
-L CONN_6 P4
-U 1 1 52FB29A7
-P 1050 5300
-F 0 "P4" V 1000 5300 50  0000 C CNN
-F 1 "CONN_5" V 1100 5300 50  0000 C CNN
-F 2 "" H 1050 5300 60  0000 C CNN
-F 3 "" H 1050 5300 60  0000 C CNN
-	1    1050 5300
-	-1   0    0    1   
-$EndComp
-Text Notes 800  5750 0    60   ~ 0
-Motor N enable
-Text Label 1400 5550 0    60   ~ 0
-PB0
-Text Label 1400 5450 0    60   ~ 0
-PB1
-Text Label 1400 5350 0    60   ~ 0
-PB2
-Text Label 1400 5250 0    60   ~ 0
-PB3
-Text Label 1400 5150 0    60   ~ 0
-PB4
-$Comp
-L GND #PWR014
-U 1 1 52FB2B4C
-P 1800 5150
-F 0 "#PWR014" H 1800 5150 30  0001 C CNN
-F 1 "GND" H 1800 5080 30  0001 C CNN
-F 2 "" H 1800 5150 60  0000 C CNN
-F 3 "" H 1800 5150 60  0000 C CNN
-	1    1800 5150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1400 5050 1800 5050
-Wire Wire Line
-	1800 5050 1800 5150
-$Comp
-L CONN_3 K1
-U 1 1 52FB2C32
-P 1050 6100
-F 0 "K1" V 1000 6100 50  0000 C CNN
-F 1 "CONN_3" V 1100 6100 40  0000 C CNN
-F 2 "" H 1050 6100 60  0000 C CNN
-F 3 "" H 1050 6100 60  0000 C CNN
-	1    1050 6100
-	-1   0    0    1   
-$EndComp
-Text Notes 700  6400 0    60   ~ 0
-All motors DIR/CLK
-Text Label 1400 6000 0    60   ~ 0
-PD4
-Text Label 1400 6100 0    60   ~ 0
-PB5
-$Comp
-L +3.3V #PWR015
-U 1 1 52FB2C41
-P 1850 6200
-F 0 "#PWR015" H 1850 6160 30  0001 C CNN
-F 1 "+3.3V" H 1850 6310 30  0000 C CNN
-F 2 "" H 1850 6200 60  0000 C CNN
-F 3 "" H 1850 6200 60  0000 C CNN
-	1    1850 6200
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1400 6200 1850 6200
-Text Notes 750  6000 0    60   ~ 0
-CLK
-Text Notes 750  6100 0    60   ~ 0
-DIR
-Text Notes 750  6250 0    60   ~ 0
-VDD
-Text Notes 700  5050 0    60   ~ 0
-GND
-Text Notes 700  5150 0    60   ~ 0
-EN4
-Text Notes 700  5250 0    60   ~ 0
-EN3
-Text Notes 700  5350 0    60   ~ 0
-EN2
-Text Notes 700  5450 0    60   ~ 0
-EN1
-Text Notes 700  5550 0    60   ~ 0
-EN0
 Wire Notes Line
 	600  500  600  4200
 Wire Notes Line
@@ -609,4 +525,207 @@ Wire Notes Line
 	7500 500  600  500 
 Text Notes 3550 4450 0    118  ~ 0
 STM8 board
+$Comp
+L DB25 J1
+U 1 1 52FB403E
+P 1150 6100
+F 0 "J1" H 1200 7450 70  0000 C CNN
+F 1 "DB25" H 1100 4750 70  0000 C CNN
+F 2 "" H 1150 6100 60  0000 C CNN
+F 3 "" H 1150 6100 60  0000 C CNN
+	1    1150 6100
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR014
+U 1 1 52FB40A4
+P 2200 7500
+F 0 "#PWR014" H 2200 7500 30  0001 C CNN
+F 1 "GND" H 2200 7430 30  0001 C CNN
+F 2 "" H 2200 7500 60  0000 C CNN
+F 3 "" H 2200 7500 60  0000 C CNN
+	1    2200 7500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 7200 2200 7200
+Wire Wire Line
+	2200 5800 2200 7500
+Wire Wire Line
+	1600 7000 2200 7000
+Connection ~ 2200 7200
+Wire Wire Line
+	2200 6800 1600 6800
+Connection ~ 2200 7000
+Wire Wire Line
+	1600 6600 2200 6600
+Connection ~ 2200 6800
+Wire Wire Line
+	1600 6400 2200 6400
+Connection ~ 2200 6600
+Wire Wire Line
+	1600 6200 2200 6200
+Connection ~ 2200 6400
+Wire Wire Line
+	1600 6000 2200 6000
+Connection ~ 2200 6200
+Wire Wire Line
+	1600 5800 2200 5800
+Connection ~ 2200 6000
+Text Label 1600 4900 0    60   ~ 0
+2nd out
+Text Label 1600 5100 0    60   ~ 0
+X CLK
+Text Label 1600 5300 0    60   ~ 0
+X DIR
+Text Label 1600 5500 0    60   ~ 0
+Y CLK
+Text Label 1600 5700 0    60   ~ 0
+Y DIR
+Text Label 1600 5900 0    60   ~ 0
+Z CLK
+Text Label 1600 6100 0    60   ~ 0
+Z DIR
+Text Label 1600 6300 0    60   ~ 0
+A CLK
+Text Label 1600 6500 0    60   ~ 0
+A DIR
+Text Label 1600 6700 0    60   ~ 0
+IN1
+Text Label 1600 6900 0    60   ~ 0
+IN2
+Text Label 1600 7100 0    60   ~ 0
+IN3
+Text Label 1600 7300 0    60   ~ 0
+IN4
+Text Label 1600 5200 0    60   ~ 0
+IN5
+Text Label 1600 5400 0    60   ~ 0
+EN
+Text Label 1600 5600 0    60   ~ 0
+1st out
+Wire Wire Line
+	1600 5300 3000 5300
+Wire Wire Line
+	1600 5700 3000 5700
+Wire Wire Line
+	1600 6100 3000 6100
+Wire Wire Line
+	1600 6500 3000 6500
+Text Label 3000 5300 0    60   ~ 0
+PB0
+Text Label 3000 5700 0    60   ~ 0
+PB1
+Text Label 3000 6100 0    60   ~ 0
+PB2
+Text Label 3000 6500 0    60   ~ 0
+PB3
+Wire Wire Line
+	1600 5100 2600 5100
+Wire Wire Line
+	1600 5500 2600 5500
+Wire Wire Line
+	1600 5900 2600 5900
+Wire Wire Line
+	1600 6300 2600 6300
+NoConn ~ 1600 5000
+Text Label 2600 5100 0    60   ~ 0
+PC1
+Text Label 2600 5500 0    60   ~ 0
+PD4
+Text Label 2600 5900 0    60   ~ 0
+PD2
+NoConn ~ 2600 6300
+Wire Wire Line
+	1600 4900 2300 4900
+Wire Wire Line
+	1600 5200 2300 5200
+Wire Wire Line
+	1600 5400 2300 5400
+Wire Wire Line
+	1600 5600 2300 5600
+Wire Wire Line
+	1600 7300 2300 7300
+Wire Wire Line
+	1600 7100 2300 7100
+Wire Wire Line
+	1600 6900 2300 6900
+Wire Wire Line
+	1600 6700 2300 6700
+NoConn ~ 2300 4900
+NoConn ~ 2300 5200
+NoConn ~ 2300 5400
+NoConn ~ 2300 5600
+NoConn ~ 2300 6700
+NoConn ~ 2300 6900
+NoConn ~ 2300 7100
+NoConn ~ 2300 7300
+$Comp
+L CONN_5 P4
+U 1 1 52FB4AA7
+P 4800 5300
+F 0 "P4" V 4750 5300 50  0000 C CNN
+F 1 "CONN_5" V 4850 5300 50  0000 C CNN
+F 2 "" H 4800 5300 60  0000 C CNN
+F 3 "" H 4800 5300 60  0000 C CNN
+	1    4800 5300
+	-1   0    0    1   
+$EndComp
+Text Notes 700  4600 0    118  ~ 0
+To TB6560_T4_V4
+Text Notes 4150 4900 0    118  ~ 0
+USB <-> TTL
+Text Label 5200 5100 0    61   ~ 0
+GND
+Text Label 5200 5200 0    61   ~ 0
+RXD
+Text Label 5200 5300 0    61   ~ 0
+TXD
+Text Label 5200 5400 0    61   ~ 0
+5.0V
+Text Label 5200 5500 0    61   ~ 0
+3.3V
+$Comp
+L GND #PWR015
+U 1 1 52FB4CEF
+P 6200 5200
+F 0 "#PWR015" H 6200 5200 30  0001 C CNN
+F 1 "GND" H 6200 5130 30  0001 C CNN
+F 2 "" H 6200 5200 60  0000 C CNN
+F 3 "" H 6200 5200 60  0000 C CNN
+	1    6200 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5200 5100 6200 5100
+Wire Wire Line
+	6200 5100 6200 5200
+Wire Wire Line
+	5200 5200 5800 5200
+Wire Wire Line
+	5800 5200 5800 4800
+Wire Wire Line
+	5200 5300 6400 5300
+Wire Wire Line
+	6400 5300 6400 4800
+$Comp
+L +3.3V #PWR016
+U 1 1 52FB4EDC
+P 6600 5400
+F 0 "#PWR016" H 6600 5360 30  0001 C CNN
+F 1 "+3.3V" H 6600 5510 30  0000 C CNN
+F 2 "" H 6600 5400 60  0000 C CNN
+F 3 "" H 6600 5400 60  0000 C CNN
+	1    6600 5400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5200 5500 6600 5500
+Wire Wire Line
+	6600 5500 6600 5400
+NoConn ~ 5200 5400
+Text Label 5800 4800 0    61   ~ 0
+PD5
+Text Label 6400 4800 0    61   ~ 0
+PD6
 $EndSCHEMATC

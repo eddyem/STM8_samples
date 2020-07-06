@@ -1,4 +1,4 @@
-update=Пн 27 янв 2020 13:43:00
+update=Пн 18 ноя 2019 14:38:35
 last_client=kicad
 [eeschema]
 version=1

@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name 8leds)(type KiCad)(uri ${KIPRJMOD}/8leds.pretty)(options "")(descr ""))
+)

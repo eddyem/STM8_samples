@@ -1,0 +1,371 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 9
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L 8leds:STM8S103devbrd U2
+U 1 1 5DFA3AAD
+P 3290 2990
+F 0 "U2" H 3290 3665 50  0000 C CNN
+F 1 "STM8S103devbrd" H 3290 3574 50  0000 C CNN
+F 2 "8leds:STM8S103devbrd" H 3290 2990 50  0001 C CNN
+F 3 "" H 3290 2990 50  0001 C CNN
+	1    3290 2990
+	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_Linear:LM1117-5.0 U1
+U 1 1 5DFA47BA
+P 2040 990
+F 0 "U1" H 2040 1232 50  0000 C CNN
+F 1 "LM1117-5.0" H 2040 1141 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-223-3_TabPin2" H 2040 990 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm1117.pdf" H 2040 990 50  0001 C CNN
+	1    2040 990 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 5DFA6886
+P 1740 1140
+F 0 "C1" H 1626 1094 50  0000 R CNN
+F 1 "0.1" H 1626 1185 50  0000 R CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 1778 990 50  0001 C CNN
+F 3 "~" H 1740 1140 50  0001 C CNN
+	1    1740 1140
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 5DFA883D
+P 2340 1140
+F 0 "C2" H 2225 1094 50  0000 R CNN
+F 1 "0.1" H 2225 1185 50  0000 R CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 2378 990 50  0001 C CNN
+F 3 "~" H 2340 1140 50  0001 C CNN
+	1    2340 1140
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 5DFA8FF1
+P 2040 1290
+F 0 "#PWR02" H 2040 1040 50  0001 C CNN
+F 1 "GND" H 2045 1117 50  0000 C CNN
+F 2 "" H 2040 1290 50  0001 C CNN
+F 3 "" H 2040 1290 50  0001 C CNN
+	1    2040 1290
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR01
+U 1 1 5DFA9312
+P 1740 1290
+F 0 "#PWR01" H 1740 1040 50  0001 C CNN
+F 1 "GND" H 1745 1117 50  0000 C CNN
+F 2 "" H 1740 1290 50  0001 C CNN
+F 3 "" H 1740 1290 50  0001 C CNN
+	1    1740 1290
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 5DFA967F
+P 2340 1290
+F 0 "#PWR04" H 2340 1040 50  0001 C CNN
+F 1 "GND" H 2345 1117 50  0000 C CNN
+F 2 "" H 2340 1290 50  0001 C CNN
+F 3 "" H 2340 1290 50  0001 C CNN
+	1    2340 1290
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C3
+U 1 1 5DFA9A66
+P 2680 1140
+F 0 "C3" H 2795 1186 50  0000 L CNN
+F 1 "10u" H 2795 1095 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 2718 990 50  0001 C CNN
+F 3 "~" H 2680 1140 50  0001 C CNN
+	1    2680 1140
+	1    0    0    -1  
+$EndComp
+Connection ~ 2340 990 
+Wire Wire Line
+	2340 1290 2680 1290
+Connection ~ 2340 1290
+$Comp
+L Connector_Generic:Conn_01x02 J1
+U 1 1 5DFAB0E7
+P 970 1160
+F 0 "J1" H 930 960 50  0000 L CNN
+F 1 "Conn2" H 850 1270 50  0000 L CNN
+F 2 "8leds:solderpad2" H 970 1160 50  0001 C CNN
+F 3 "~" H 970 1160 50  0001 C CNN
+	1    970  1160
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:D D1
+U 1 1 5DFACAEE
+P 1450 1140
+F 0 "D1" V 1360 1090 50  0000 R CNN
+F 1 "SS14" V 1540 1120 50  0000 R CNN
+F 2 "Diode_SMD:D_SMA_Handsoldering" H 1450 1140 50  0001 C CNN
+F 3 "~" H 1450 1140 50  0001 C CNN
+	1    1450 1140
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1740 990  1450 990 
+Connection ~ 1740 990 
+Wire Wire Line
+	1450 1290 1740 1290
+Connection ~ 1740 1290
+Wire Wire Line
+	1170 1060 1170 990 
+Wire Wire Line
+	1170 990  1450 990 
+Connection ~ 1450 990 
+Wire Wire Line
+	1170 1160 1170 1290
+Wire Wire Line
+	1170 1290 1450 1290
+Connection ~ 1450 1290
+$Comp
+L power:+5V #PWR08
+U 1 1 5DFB3C3C
+P 2680 990
+F 0 "#PWR08" H 2680 840 50  0001 C CNN
+F 1 "+5V" H 2695 1163 50  0000 C CNN
+F 2 "" H 2680 990 50  0001 C CNN
+F 3 "" H 2680 990 50  0001 C CNN
+	1    2680 990 
+	1    0    0    -1  
+$EndComp
+Connection ~ 2680 990 
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 5DFB4CCC
+P 1450 1290
+F 0 "#FLG01" H 1450 1365 50  0001 C CNN
+F 1 "PWR_FLAG" H 1450 1463 50  0001 C CNN
+F 2 "" H 1450 1290 50  0001 C CNN
+F 3 "~" H 1450 1290 50  0001 C CNN
+	1    1450 1290
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+5V #PWR06
+U 1 1 5DFBAD3F
+P 2480 3240
+F 0 "#PWR06" H 2480 3090 50  0001 C CNN
+F 1 "+5V" H 2495 3413 50  0000 C CNN
+F 2 "" H 2480 3240 50  0001 C CNN
+F 3 "" H 2480 3240 50  0001 C CNN
+	1    2480 3240
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2480 3240 2790 3240
+$Comp
+L power:GND #PWR07
+U 1 1 5DFBCCAC
+P 2650 3290
+F 0 "#PWR07" H 2650 3040 50  0001 C CNN
+F 1 "GND" H 2655 3117 50  0000 C CNN
+F 2 "" H 2650 3290 50  0001 C CNN
+F 3 "" H 2650 3290 50  0001 C CNN
+	1    2650 3290
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2650 3290 2650 3140
+Wire Wire Line
+	2650 3140 2790 3140
+NoConn ~ 3790 3340
+NoConn ~ 3790 3440
+NoConn ~ 2790 2540
+NoConn ~ 2790 2840
+NoConn ~ 2790 3040
+NoConn ~ 2790 2940
+$Comp
+L Connector:Conn_01x04_Female J2
+U 1 1 5DFC0835
+P 1900 2740
+F 0 "J2" H 1800 2480 50  0000 C CNN
+F 1 "Bluetooth" H 1800 2950 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Horizontal" H 1900 2740 50  0001 C CNN
+F 3 "~" H 1900 2740 50  0001 C CNN
+	1    1900 2740
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	2100 2640 2790 2640
+Wire Wire Line
+	2100 2740 2790 2740
+Text Label 2110 2640 0    50   ~ 0
+Rxd
+Text Label 2100 2740 0    50   ~ 0
+Txd
+Text Label 2100 2840 0    50   ~ 0
+bGnd
+Text Label 2100 2940 0    50   ~ 0
+Vcc
+$Comp
+L power:+5V #PWR03
+U 1 1 5DFC657A
+P 2100 2940
+F 0 "#PWR03" H 2100 2790 50  0001 C CNN
+F 1 "+5V" H 2115 3113 50  0000 C CNN
+F 2 "" H 2100 2940 50  0001 C CNN
+F 3 "" H 2100 2940 50  0001 C CNN
+	1    2100 2940
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR05
+U 1 1 5DFC6C31
+P 2340 2840
+F 0 "#PWR05" H 2340 2590 50  0001 C CNN
+F 1 "GND" H 2345 2667 50  0000 C CNN
+F 2 "" H 2340 2840 50  0001 C CNN
+F 3 "" H 2340 2840 50  0001 C CNN
+	1    2340 2840
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2100 2840 2340 2840
+NoConn ~ 2790 3340
+NoConn ~ 2790 3440
+$Sheet
+S 3870 1960 160  510 
+U 5DFCAF2B
+F0 "MOSFET" 50
+F1 "mosfet.sch" 50
+F2 "ChX" I B 3950 2470 50 
+$EndSheet
+$Sheet
+S 4210 1960 160  510 
+U 5DFF31DB
+F0 "sheet5DFF31D8" 50
+F1 "mosfet.sch" 50
+F2 "ChX" I B 4290 2470 50 
+$EndSheet
+$Sheet
+S 4550 1960 160  510 
+U 5DFF3434
+F0 "sheet5DFF3431" 50
+F1 "mosfet.sch" 50
+F2 "ChX" I B 4630 2470 50 
+$EndSheet
+$Sheet
+S 4890 1960 160  510 
+U 5DFF3671
+F0 "sheet5DFF366E" 50
+F1 "mosfet.sch" 50
+F2 "ChX" I B 4970 2470 50 
+$EndSheet
+$Sheet
+S 5230 1960 160  510 
+U 5DFF38EC
+F0 "sheet5DFF38E9" 50
+F1 "mosfet.sch" 50
+F2 "ChX" I B 5310 2470 50 
+$EndSheet
+$Sheet
+S 4700 3040 510  160 
+U 5DFF4253
+F0 "sheet5DFF4250" 50
+F1 "mosfet.sch" 50
+F2 "ChX" I L 4700 3120 50 
+$EndSheet
+$Sheet
+S 4690 3370 510  160 
+U 5DFF447E
+F0 "sheet5DFF447B" 50
+F1 "mosfet.sch" 50
+F2 "ChX" I L 4690 3450 50 
+$EndSheet
+$Sheet
+S 4690 3720 510  160 
+U 5DFF4C27
+F0 "sheet5DFF4C24" 50
+F1 "mosfet.sch" 50
+F2 "ChX" I L 4690 3800 50 
+$EndSheet
+Wire Wire Line
+	3790 2540 3950 2540
+Wire Wire Line
+	3950 2540 3950 2470
+Wire Wire Line
+	3790 2640 4290 2640
+Wire Wire Line
+	4290 2640 4290 2470
+Wire Wire Line
+	3790 2740 4630 2740
+Wire Wire Line
+	4630 2740 4630 2470
+Wire Wire Line
+	3790 2840 4970 2840
+Wire Wire Line
+	4970 2840 4970 2470
+Wire Wire Line
+	3790 2940 5310 2940
+Wire Wire Line
+	5310 2940 5310 2470
+Wire Wire Line
+	3790 3040 4520 3040
+Wire Wire Line
+	4520 3040 4520 3120
+Wire Wire Line
+	4520 3120 4700 3120
+Wire Wire Line
+	3790 3140 4210 3140
+Wire Wire Line
+	4210 3140 4210 3450
+Wire Wire Line
+	4210 3450 4690 3450
+Wire Wire Line
+	4060 3240 4060 3800
+Wire Wire Line
+	4060 3800 4690 3800
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5DFFA3FE
+P 1450 990
+F 0 "#FLG0101" H 1450 1065 50  0001 C CNN
+F 1 "PWR_FLAG" H 1450 1163 50  0001 C CNN
+F 2 "" H 1450 990 50  0001 C CNN
+F 3 "~" H 1450 990 50  0001 C CNN
+	1    1450 990 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2340 990  2680 990 
+Wire Wire Line
+	3790 3240 4060 3240
+$Comp
+L power:+12V #PWR0101
+U 1 1 5DFFF6E7
+P 1170 990
+F 0 "#PWR0101" H 1170 840 50  0001 C CNN
+F 1 "+12V" H 1185 1163 50  0000 C CNN
+F 2 "" H 1170 990 50  0001 C CNN
+F 3 "" H 1170 990 50  0001 C CNN
+	1    1170 990 
+	1    0    0    -1  
+$EndComp
+Connection ~ 1170 990 
+$EndSCHEMATC

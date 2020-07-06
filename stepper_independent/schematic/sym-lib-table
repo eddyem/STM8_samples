@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name stepper-rescue)(type Legacy)(uri ${KIPRJMOD}/stepper-rescue.lib)(options "")(descr ""))
+  (lib (name stm8s105k4t6c)(type Legacy)(uri ${KIPRJMOD}/stm8s105k4t6c.lib)(options "")(descr ""))
+)

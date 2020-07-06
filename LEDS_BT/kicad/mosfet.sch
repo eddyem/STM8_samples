@@ -1,0 +1,164 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 9
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector_Generic:Conn_01x02 J?
+U 1 1 5DFCBDDF
+P 4330 1540
+AR Path="/5DFCBDDF" Ref="J?"  Part="1" 
+AR Path="/5DFCAF2B/5DFCBDDF" Ref="J3"  Part="1" 
+AR Path="/5DFEE3FD/5DFCBDDF" Ref="J?"  Part="1" 
+AR Path="/5DFF31DB/5DFCBDDF" Ref="J4"  Part="1" 
+AR Path="/5DFF3434/5DFCBDDF" Ref="J5"  Part="1" 
+AR Path="/5DFF3671/5DFCBDDF" Ref="J6"  Part="1" 
+AR Path="/5DFF38EC/5DFCBDDF" Ref="J7"  Part="1" 
+AR Path="/5DFF4253/5DFCBDDF" Ref="J8"  Part="1" 
+AR Path="/5DFF447E/5DFCBDDF" Ref="J9"  Part="1" 
+AR Path="/5DFF4C27/5DFCBDDF" Ref="J10"  Part="1" 
+F 0 "J3" H 4290 1340 50  0000 L CNN
+F 1 "Conn2" H 4210 1650 50  0000 L CNN
+F 2 "8leds:solderpad2" H 4330 1540 50  0001 C CNN
+F 3 "~" H 4330 1540 50  0001 C CNN
+	1    4330 1540
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_NMOS_GSD Q1
+U 1 1 5DFCC390
+P 3840 1840
+AR Path="/5DFCAF2B/5DFCC390" Ref="Q1"  Part="1" 
+AR Path="/5DFEE3FD/5DFCC390" Ref="Q?"  Part="1" 
+AR Path="/5DFF31DB/5DFCC390" Ref="Q2"  Part="1" 
+AR Path="/5DFF3434/5DFCC390" Ref="Q3"  Part="1" 
+AR Path="/5DFF3671/5DFCC390" Ref="Q4"  Part="1" 
+AR Path="/5DFF38EC/5DFCC390" Ref="Q5"  Part="1" 
+AR Path="/5DFF4253/5DFCC390" Ref="Q6"  Part="1" 
+AR Path="/5DFF447E/5DFCC390" Ref="Q7"  Part="1" 
+AR Path="/5DFF4C27/5DFCC390" Ref="Q8"  Part="1" 
+F 0 "Q1" H 4046 1886 50  0000 L CNN
+F 1 "IRLML2502" H 4046 1795 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23_Handsoldering" H 4040 1940 50  0001 C CNN
+F 3 "~" H 3840 1840 50  0001 C CNN
+	1    3840 1840
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+12V #PWR011
+U 1 1 5DFCCBA0
+P 4130 1540
+AR Path="/5DFCAF2B/5DFCCBA0" Ref="#PWR011"  Part="1" 
+AR Path="/5DFEE3FD/5DFCCBA0" Ref="#PWR?"  Part="1" 
+AR Path="/5DFF31DB/5DFCCBA0" Ref="#PWR014"  Part="1" 
+AR Path="/5DFF3434/5DFCCBA0" Ref="#PWR017"  Part="1" 
+AR Path="/5DFF3671/5DFCCBA0" Ref="#PWR020"  Part="1" 
+AR Path="/5DFF38EC/5DFCCBA0" Ref="#PWR023"  Part="1" 
+AR Path="/5DFF4253/5DFCCBA0" Ref="#PWR026"  Part="1" 
+AR Path="/5DFF447E/5DFCCBA0" Ref="#PWR029"  Part="1" 
+AR Path="/5DFF4C27/5DFCCBA0" Ref="#PWR032"  Part="1" 
+F 0 "#PWR011" H 4130 1390 50  0001 C CNN
+F 1 "+12V" H 4145 1713 50  0000 C CNN
+F 2 "" H 4130 1540 50  0001 C CNN
+F 3 "" H 4130 1540 50  0001 C CNN
+	1    4130 1540
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4130 1640 3940 1640
+$Comp
+L power:GND #PWR010
+U 1 1 5DFD6796
+P 3940 2040
+AR Path="/5DFCAF2B/5DFD6796" Ref="#PWR010"  Part="1" 
+AR Path="/5DFEE3FD/5DFD6796" Ref="#PWR?"  Part="1" 
+AR Path="/5DFF31DB/5DFD6796" Ref="#PWR013"  Part="1" 
+AR Path="/5DFF3434/5DFD6796" Ref="#PWR016"  Part="1" 
+AR Path="/5DFF3671/5DFD6796" Ref="#PWR019"  Part="1" 
+AR Path="/5DFF38EC/5DFD6796" Ref="#PWR022"  Part="1" 
+AR Path="/5DFF4253/5DFD6796" Ref="#PWR025"  Part="1" 
+AR Path="/5DFF447E/5DFD6796" Ref="#PWR028"  Part="1" 
+AR Path="/5DFF4C27/5DFD6796" Ref="#PWR031"  Part="1" 
+F 0 "#PWR010" H 3940 1790 50  0001 C CNN
+F 1 "GND" H 3945 1867 50  0000 C CNN
+F 2 "" H 3940 2040 50  0001 C CNN
+F 3 "" H 3940 2040 50  0001 C CNN
+	1    3940 2040
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5DFD6F6F
+P 3340 1990
+AR Path="/5DFCAF2B/5DFD6F6F" Ref="R1"  Part="1" 
+AR Path="/5DFEE3FD/5DFD6F6F" Ref="R?"  Part="1" 
+AR Path="/5DFF31DB/5DFD6F6F" Ref="R3"  Part="1" 
+AR Path="/5DFF3434/5DFD6F6F" Ref="R5"  Part="1" 
+AR Path="/5DFF3671/5DFD6F6F" Ref="R7"  Part="1" 
+AR Path="/5DFF38EC/5DFD6F6F" Ref="R9"  Part="1" 
+AR Path="/5DFF4253/5DFD6F6F" Ref="R11"  Part="1" 
+AR Path="/5DFF447E/5DFD6F6F" Ref="R13"  Part="1" 
+AR Path="/5DFF4C27/5DFD6F6F" Ref="R15"  Part="1" 
+F 0 "R1" H 3500 1920 50  0000 R CNN
+F 1 "10k" V 3340 2050 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 3270 1990 50  0001 C CNN
+F 3 "~" H 3340 1990 50  0001 C CNN
+	1    3340 1990
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR09
+U 1 1 5DFD9C7C
+P 3340 2140
+AR Path="/5DFCAF2B/5DFD9C7C" Ref="#PWR09"  Part="1" 
+AR Path="/5DFEE3FD/5DFD9C7C" Ref="#PWR?"  Part="1" 
+AR Path="/5DFF31DB/5DFD9C7C" Ref="#PWR012"  Part="1" 
+AR Path="/5DFF3434/5DFD9C7C" Ref="#PWR015"  Part="1" 
+AR Path="/5DFF3671/5DFD9C7C" Ref="#PWR018"  Part="1" 
+AR Path="/5DFF38EC/5DFD9C7C" Ref="#PWR021"  Part="1" 
+AR Path="/5DFF4253/5DFD9C7C" Ref="#PWR024"  Part="1" 
+AR Path="/5DFF447E/5DFD9C7C" Ref="#PWR027"  Part="1" 
+AR Path="/5DFF4C27/5DFD9C7C" Ref="#PWR030"  Part="1" 
+F 0 "#PWR09" H 3340 1890 50  0001 C CNN
+F 1 "GND" H 3345 1967 50  0000 C CNN
+F 2 "" H 3340 2140 50  0001 C CNN
+F 3 "" H 3340 2140 50  0001 C CNN
+	1    3340 2140
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 5DFDCC74
+P 3490 1840
+AR Path="/5DFCAF2B/5DFDCC74" Ref="R2"  Part="1" 
+AR Path="/5DFEE3FD/5DFDCC74" Ref="R?"  Part="1" 
+AR Path="/5DFF31DB/5DFDCC74" Ref="R4"  Part="1" 
+AR Path="/5DFF3434/5DFDCC74" Ref="R6"  Part="1" 
+AR Path="/5DFF3671/5DFDCC74" Ref="R8"  Part="1" 
+AR Path="/5DFF38EC/5DFDCC74" Ref="R10"  Part="1" 
+AR Path="/5DFF4253/5DFDCC74" Ref="R12"  Part="1" 
+AR Path="/5DFF447E/5DFDCC74" Ref="R14"  Part="1" 
+AR Path="/5DFF4C27/5DFDCC74" Ref="R16"  Part="1" 
+F 0 "R2" H 3650 1770 50  0000 R CNN
+F 1 "510" V 3490 1920 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 3420 1840 50  0001 C CNN
+F 3 "~" H 3490 1840 50  0001 C CNN
+	1    3490 1840
+	0    1    -1   0   
+$EndComp
+Wire Wire Line
+	3340 1840 3200 1840
+Connection ~ 3340 1840
+Text HLabel 3200 1840 0    50   Input ~ 0
+ChX
+$EndSCHEMATC
